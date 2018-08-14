@@ -1,4 +1,5 @@
 const config = require('./.contentful.json')
+const client = require('./plugins/contentful.js').createClient()
 
 module.exports = {
   env: {
@@ -49,14 +50,14 @@ module.exports = {
       }
     }
   },
-  generate: {
-    routes () {
-      return client.getEntries({
-          'content_type': config.CTF_BLOG_POST_TYPE_ID
-        }).then((entries) => {
-        return [ 'posts' ] + [...entries.items.map(entry => `posts/${entry.fields.slug}`)]
-      })
-    }
-  },
+  // generate: {
+  //   routes () {
+  //     return client.getEntries({
+  //         'content_type': config.CTF_BLOG_POST_TYPE_ID
+  //       }).then((entries) => {
+  //       return [ 'posts' ] + [...entries.items.map(entry => `posts/${entry.fields.slug}`)]
+  //     })
+  //   }
+  // },
 }
 

@@ -1,0 +1,52 @@
+// Navbar
+.navbar {
+    &.is-fixed-top.is-fadein {
+        animation:navbarShow 1s both;
+        & + main {
+            margin-top: 5rem;
+        }
+    }
+
+    .navbar-brand {
+      .navbar-brand__title {
+        font-size: 2rem;
+  
+        & + .subtitle {
+          color: #fff;
+        }
+      }
+    }
+  
+    .navbar-menu {
+        & > .navbar-start, & > .navbar-end {
+            a {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+@keyframes navbarShow {
+	0% {
+		transform:translate(0, -10rem);
+		opacity:0;
+	}
+	100% {
+		transform:translate(0, 0);
+		opacity:1;
+	}
+}
+
+// Image
+.image {
+    &.is-circle > img {
+        border-radius: 50%;
+    }
+}
+
+// 
+.breadcrumb.is-bg-white {
+    padding: 1rem;
+    background: #fff;
+    margin-bottom: 0;
+}

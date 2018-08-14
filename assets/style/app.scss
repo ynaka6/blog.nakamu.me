@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Leckerli+One");
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import "~bulma/sass/utilities/_all";
+
+$variable-columns: false;
+$primary: #579fbf;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
+
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+@import "_custom/_utility";
+@import "_custom/_extension";
+
+
+body {
+    background: #fafdff;
+}
+
+.font-leckerli-one {
+    font-family: 'Leckerli One', cursive;
+}
+
+@media screen and (max-width: 1088px) {
+    .section {
+        padding: 3rem .5rem;
+    }
+}

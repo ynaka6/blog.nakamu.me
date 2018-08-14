@@ -28,7 +28,11 @@ module.exports = {
     '~/plugins/buefy.js'
   ],
   css: [
-    '~/assets/style/app.scss'
+    '~/assets/style/app.scss',
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
   ],
   /*
   ** Customize the progress bar color

@@ -44,9 +44,18 @@
     }
 }
 
-// 
+// breadcrumb
 .breadcrumb.is-bg-white {
     padding: 1rem;
     background: #fff;
     margin-bottom: 0;
+}
+
+// button
+.button {
+    &.is-circle {
+        border-radius: 10rem;
+        width: 2.25em;
+        height: 2.25em;
+    }
 }

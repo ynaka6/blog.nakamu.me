@@ -1,5 +1,6 @@
 const config = require('./.contentful.json')
-const client = require('./plugins/contentful.js').createClient()
+const {createClient} = require('./plugins/contentful')
+const client = createClient()
 
 module.exports = {
   env: {
@@ -50,13 +51,28 @@ module.exports = {
       }
     }
   },
+  generate: {
+    routes () {
+      return Promise.all([
+        client.getEntries({
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID
+        })
+      ])
+      .then(([entries, postType]) => {
+        return [
+          '/posts',
+          ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
+        ]
+      })
+    }
+  },
   // generate: {
   //   routes () {
   //     return client.getEntries({
   //         'content_type': config.CTF_BLOG_POST_TYPE_ID
   //       }).then((entries) => {
-  //       return [ 'posts' ] + [...entries.items.map(entry => `posts/${entry.fields.slug}`)]
-  //     })
+  //         return [ 'posts' ] + [...entries.items.map(entry => `posts/${entry.fields.slug}`)]
+  //       }).catch(error => {})
   //   }
   // },
 }

@@ -12,6 +12,21 @@
       </div>
     </section>
 
+    <nav class="breadcrumb is-bg-white has-succeeds-separator" aria-label="breadcrumbs">
+      <div class="container">
+        <ul>
+            <li>
+                <router-link to="/">
+                  HOME
+                </router-link>
+            </li>
+            <li class="is-active">
+                <a href="#" aria-current="page">#{{ tag }}の投稿</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
     <section class="section">
 
         <div class="columns is-multiline">
@@ -31,17 +46,43 @@ import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
 export default {
-  asyncData ({ env, params }) {
-    return client.getEntries({
-      'content_type': env.CTF_BLOG_POST_TYPE_ID,
-      'fields.tags[in]': params.tag,
-      order: '-sys.createdAt'
-    }).then(entries => {
+  head () {
       return {
-        posts: entries.items,
-        tag: params.tag
+          title: this.title ,
+          meta: [
+              { name: 'description', content: this.description },
+
+              { name: 'twitter:card', content: 'summary' },
+              { name: 'twitter:site', content: this.person.fields.twitter },
+              { name: 'twitter:creator', content: this.person.fields.twitter },
+              { name: 'twitter:image', content: this.person.fields.image.fields.file.url },
+              { name: 'twitter:title', content: this.title },
+              { name: 'twitter:description', content: this.description },
+
+              { name: 'og:title', content: this.title },
+              { name: 'og:description', content: this.description },
+          ]
       }
-    })
+  },
+  asyncData ({ env, params }) {
+    return Promise.all([
+        client.getEntries({
+            'sys.id': env.CTF_PERSON_ID
+        }),
+        client.getEntries({
+          'content_type': env.CTF_BLOG_POST_TYPE_ID,
+          'fields.tags[in]': params.tag,
+          order: '-sys.createdAt'
+        })
+    ]).then(([entries, posts]) => {
+        return {
+          person: entries.items[0],
+          posts: posts.items,
+          tag: params.tag,
+          title: `#${params.tag}の投稿一覧`,
+          description: `#${params.tag}の投稿一覧ページです。`
+        }
+    }).catch(console.error)
   },
   components: {
       PostCard

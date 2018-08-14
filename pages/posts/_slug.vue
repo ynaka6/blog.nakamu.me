@@ -74,13 +74,34 @@ import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
 export default {
+  head () {
+    return {
+        title: this.title,
+        meta: [
+            { name: 'description', content: this.description },
+
+            { name: 'twitter:card', content: 'summary' },
+            { name: 'twitter:site', content: this.person.fields.twitter },
+            { name: 'twitter:creator', content: this.person.fields.twitter },
+            { name: 'twitter:image', content: this.person.fields.image.fields.file.url },
+            { name: 'twitter:title', content: this.title },
+            { name: 'twitter:description', content: this.description },
+
+            { name: 'og:title', content: this.title },
+            { name: 'og:description', content: this.description },
+        ]
+    }
+  },
   asyncData ({ env, params }) {
     return client.getEntries({
       'content_type': env.CTF_BLOG_POST_TYPE_ID,
       'fields.slug': params.slug
     }).then(entries => {
       return {
-        post: entries.items[0]
+        post: entries.items[0],
+        person: entries.items[0].fields.author,
+        title: `${entries.items[0].fields.title}`,
+        description: `「${entries.items[0].fields.title}」の詳細ページ`
       }
     })
     .catch(console.error)

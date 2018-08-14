@@ -18,7 +18,7 @@
             </div>
             <div class="media-content">
                 <h4><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title m-b-0">{{ post.fields.title }}</nuxt-link></h4>
-                <p><span class="title is-6"><a :href="'http://twitter.com/' + post.fields.author.fields.twitter">@{{ post.fields.author.fields.name }}</a></span></p>
+                <p><span class="title is-6"><a :href="post.fields.author.fields.url">@{{ post.fields.author.fields.name }}</a></span></p>
                 <!-- <p class="subtitle is-6">{{ ( new Date(post.fields.publishDate)).toDateString() }}</p> -->
             </div>
         </div>

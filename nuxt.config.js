@@ -1,8 +1,6 @@
 const config = require('./.contentful.json')
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
-const { createClientManagement } = require('./plugins/contentful-management')
-const clientManagement = createClientManagement()
 
 module.exports = {
   env: {
@@ -65,8 +63,7 @@ module.exports = {
         client.getEntries({
           'content_type': process.env.CTF_BLOG_POST_TYPE_ID
         }),
-        clientManagement.getSpace(process.env.CTF_SPACE_ID)
-          .then(space => space.getContentType(process.env.CTF_BLOG_POST_TYPE_ID))
+        client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
       ])
       .then(([entries, postType]) => {
         return [

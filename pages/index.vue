@@ -16,45 +16,9 @@
       </div>
       <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
-            <li data-target="pane-1" id="1">
-                <a>
-                    <span>Pictures</span>
-                </a>
-            </li>
-            <li data-target="pane-2" id="2" class="is-active">
-                <a>
-                    <span>Article</span>
-                </a>
-            </li>
-            <li data-target="pane-3" id="3">
-                <a>
-                    <span>Team</span>
-                </a>
-            </li>
-            <li data-target="pane-4" id="4">
-                <a>
-                    <span>Video</span>
-                </a>
-            </li>
-            <li data-target="pane-1" id="1">
-                <a>
-                    <span>Pictures</span>
-                </a>
-            </li>
-            <li data-target="pane-2" id="2">
-                <a>
-                    <span>Article</span>
-                </a>
-            </li>
-            <li data-target="pane-3" id="3">
-                <a>
-                    <span>Team</span>
-                </a>
-            </li>
-            <li data-target="pane-4" id="4">
-                <a>
-                    <span>Video</span>
-                </a>
+            <li data-target="pane-1" id="1" v-for="(tag, index) in tags" :key="index">
+                <nuxt-link
+                    :to="{ name: 'tags-tag', params: { tag: tag }}">{{ tag }}</nuxt-link>
             </li>
         </ul>
        </div>
@@ -113,11 +77,13 @@ export default {
                 'content_type': env.CTF_BLOG_POST_TYPE_ID,
                 order: '-sys.createdAt',
                 limit: 6
-            })
-            ]).then(([entries, posts]) => {
+            }),
+            client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+            ]).then(([entries, posts, postType]) => {
             return {
                 person: entries.items[0],
                 posts: posts.items,
+                tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
                 title: 'Blogホーム',
                 description: '香港在住のWebデベロッパー「Nakamu」が今ままでのエンジニア経験を元にした技術ブログまとめます。'
             }

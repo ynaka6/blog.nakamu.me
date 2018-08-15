@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="tabs is-boxed is-centered main-menu" id="nav">
+      <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
             <li data-target="pane-1" id="1">
                 <a>
@@ -57,7 +57,7 @@
                 </a>
             </li>
         </ul>
-       </div> -->
+       </div>
     </section>
 
 

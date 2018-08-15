@@ -1,11 +1,14 @@
 const config = require('./.contentful.json')
-const {createClient} = require('./plugins/contentful')
+const { createClient } = require('./plugins/contentful')
 const client = createClient()
+const { createClientManagement } = require('./plugins/contentful-management')
+const clientManagement = createClientManagement()
 
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID || process.env.CTF_SPACE_ID,
     CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN || process.env.CTF_CDA_ACCESS_TOKEN,
+    CTF_CMA_ACCESS_TOKEN: config.CTF_CMA_ACCESS_TOKEN || process.env.CTF_CMA_ACCESS_TOKEN,
     CTF_PERSON_ID: config.CTF_PERSON_ID || process.env.CTF_PERSON_ID,
     CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID || process.env.CTF_BLOG_POST_TYPE_ID,
   },
@@ -61,12 +64,15 @@ module.exports = {
       return Promise.all([
         client.getEntries({
           'content_type': process.env.CTF_BLOG_POST_TYPE_ID
-        })
+        }),
+        clientManagement.getSpace(process.env.CTF_SPACE_ID)
+          .then(space => space.getContentType(process.env.CTF_BLOG_POST_TYPE_ID))
       ])
       .then(([entries, postType]) => {
         return [
           '/posts',
           ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
+          ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`)
         ]
       })
     }

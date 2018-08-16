@@ -75,14 +75,11 @@ module.exports = {
       })
     }
   },
-  // generate: {
-  //   routes () {
-  //     return client.getEntries({
-  //         'content_type': config.CTF_BLOG_POST_TYPE_ID
-  //       }).then((entries) => {
-  //         return [ 'posts' ] + [...entries.items.map(entry => `posts/${entry.fields.slug}`)]
-  //       }).catch(error => {})
-  //   }
-  // },
+  modules: [
+    ['@nuxtjs/google-analytics']
+  ],
+  'google-analytics': {
+    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+  }
 }
 

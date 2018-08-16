@@ -2,6 +2,13 @@ const config = require('./.contentful.json')
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
+const modules = []
+if (process.env.NODE_ENV === 'production') {
+  modules.push(['@nuxtjs/google-analytics', {
+    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+  }])
+}
+
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID || process.env.CTF_SPACE_ID,
@@ -75,11 +82,6 @@ module.exports = {
       })
     }
   },
-  modules: [
-    ['@nuxtjs/google-analytics']
-  ],
-  'google-analytics': {
-    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
-  }
+  modules: modules
 }
 

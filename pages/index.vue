@@ -86,8 +86,7 @@ export default {
                 limit: 6
             }),
             client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-            ]).then(([entries, posts, postType]) => {
-                console.log(postType)
+        ]).then(([entries, posts, postType]) => {
             return {
                 person: entries.items[0],
                 posts: posts.items,

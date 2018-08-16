@@ -6,7 +6,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="has-text-centered title is-size-2">
-              {{ category }}の投稿 ({{ posts.length }})
+              "{{ category }}"の投稿 ({{ posts.length }})
           </h1>
         </div>
       </div>

@@ -14,19 +14,23 @@
           </div>
         </div>
       </div>
-      <div class="tabs is-boxed is-centered main-menu" id="nav">
+      <!-- <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
             <li data-target="pane-1" id="1" v-for="(tag, index) in tags" :key="index">
                 <nuxt-link
                     :to="{ name: 'tags-tag', params: { tag: tag }}">{{ tag }}</nuxt-link>
             </li>
         </ul>
-       </div>
+       </div> -->
     </section>
 
 
     <section class="section">
 
+        <div class="has-text-centered m-b-30">
+            <h2 class="title is-underline font-quicksand">Latest Articles</h2>
+            <p class="subtitle has-text-grey is-6">最新記事</p>
+        </div>
         <div class="columns is-multiline">
           <div class="column is-one-third" v-for="(post, index) in posts" :key="index">
               <PostCard :post="post"></PostCard>
@@ -41,11 +45,14 @@
             </div>
         </div>
     </section>
+
+    <Tags :tags="tags"/>
   </main>
 </template>
 
 <script>
 import PostCard from '~/components/Post/Card.vue'
+import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -90,7 +97,8 @@ export default {
         }).catch(console.error)
     },
     components: {
-        PostCard
+        PostCard,
+        Tags
     }
 }
 </script>

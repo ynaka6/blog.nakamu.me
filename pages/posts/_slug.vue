@@ -1,7 +1,7 @@
 <template>
   <main>
     
-    <nav class="breadcrumb is-bg-white has-succeeds-separator" aria-label="breadcrumbs">
+    <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
             <li>
@@ -86,12 +86,13 @@
         </div>
       </div>
     </section>
-
+    <Tags :tags="tags"/>
   </main>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
@@ -116,21 +117,25 @@ export default {
     }
   },
   asyncData ({ env, params }) {
-    return client.getEntries({
-      'content_type': env.CTF_BLOG_POST_TYPE_ID,
-      'fields.slug': params.slug
-    }).then(entries => {
-      return {
-        post: entries.items[0],
-        person: entries.items[0].fields.author,
-        title: `${entries.items[0].fields.title}`,
-        description: `「${entries.items[0].fields.title}」の詳細ページ`
-      }
-    })
-    .catch(console.error)
+    return Promise.all([
+              client.getEntries({
+                'content_type': env.CTF_BLOG_POST_TYPE_ID,
+                'fields.slug': params.slug
+              }),
+              client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+          ]).then(([entries, postType]) => {
+              return {
+                  post: entries.items[0],
+                  person: entries.items[0].fields.author,
+                  tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
+                  title: `${entries.items[0].fields.title}`,
+                  description: `「${entries.items[0].fields.title}」の詳細ページ`
+              }
+    }).catch(console.error)
   },
   components: {
-    VueMarkdown
+    VueMarkdown,
+    Tags
   }
 }
 </script>

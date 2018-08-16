@@ -42,6 +42,36 @@ body {
     font-family: 'Leckerli One', cursive;
 }
 
+.font-quicksand {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.is-underline {
+    position: relative;
+    margin-bottom: 3rem !important;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      display: inline-block;
+      width: 60px;
+      height: 5px;
+      left: 50%;
+      -moz-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: $dark;
+      border-radius: 2px;
+    }
+  
+    &.is-white:before {
+      background-color: $white;
+    }
+  }
+  
+
 @media screen and (max-width: 1088px) {
     .section {
         padding: 3rem .5rem;

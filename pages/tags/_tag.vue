@@ -12,7 +12,7 @@
       </div>
     </section>
 
-    <nav class="breadcrumb is-bg-white has-succeeds-separator" aria-label="breadcrumbs">
+    <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
             <li>
@@ -28,19 +28,24 @@
     </nav>
 
     <section class="section">
-
+        <div class="has-text-centered m-b-30">
+            <h2 class="title is-underline font-quicksand">Articles</h2>
+            <p class="subtitle has-text-grey is-6">記事一覧</p>
+        </div>
         <div class="columns is-multiline">
           <div class="column is-one-third" v-for="(post, index) in posts" :key="index">
               <PostCard :post="post"></PostCard>              
           </div>
         </div>
-
     </section>
+
+    <Tags :tags="tags"/>
   </main>
 </template>
 
 <script>
 import PostCard from '~/components/Post/Card.vue'
+import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
@@ -73,19 +78,22 @@ export default {
           'content_type': env.CTF_BLOG_POST_TYPE_ID,
           'fields.tags[in]': params.tag,
           order: '-sys.createdAt'
-        })
-    ]).then(([entries, posts]) => {
+        }),
+        client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+    ]).then(([entries, posts, postType]) => {
         return {
           person: entries.items[0],
           posts: posts.items,
           tag: params.tag,
+          tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
           title: `#${params.tag}の投稿一覧`,
           description: `#${params.tag}の投稿一覧ページです。`
         }
     }).catch(console.error)
   },
   components: {
-      PostCard
+      PostCard,
+      Tags
   }
 }
 </script>

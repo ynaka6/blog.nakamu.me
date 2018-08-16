@@ -34,6 +34,13 @@
                             :key="tag"
                             :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
                       </div>
+
+                      <img class="thumbnail"
+                          :src="post.fields.heroImage.fields.file.url"
+                          :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
+                          v-if="post.fields.heroImage.fields.file.url"
+                      >
+
                   </div>
               </div>
               <div class="content article__content">
@@ -42,9 +49,9 @@
 
               <hr>
 
-              <div class="media">
+              <div class="media is-block-mobile">
                 <div class="media-left">
-                  <figure class="image is-64x64 is-circle">
+                  <figure class="image is-profile-image is-circle">
                       <img :src="post.fields.author.fields.image.fields.file.url" alt="Image">
                   </figure>
                 </div>
@@ -52,9 +59,25 @@
                   <p class="title is-4">
                     <a :href="post.fields.author.fields.url">@{{ post.fields.author.fields.name }}</a>
                   </p>
-                  <p class="subtitle is-6">
+                  <p class="subtitle is-6 m-b-10">
                     {{ post.fields.author.fields.shortBio }}
                   </p>
+                  <div class="socials">
+                    <a
+                      :href="'https://twitter.com/' + post.fields.author.fields.twitter"
+                      target="_blank"
+                      style="color: #55acee;"
+                    >
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a
+                      :href="'https://github.com/' + post.fields.author.fields.github"
+                      target="_blank"
+                      style="color: #333;"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -120,6 +143,30 @@ export default {
   .article__content {
     margin-top: 2rem;
     line-height: 1.6rem;
+  }
+  .image.is-profile-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .socials {
+    & > a {
+      display: inline-block;
+      margin-left: .5rem;
+      font-size: 1.5rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .image.is-profile-image {
+      width: auto;
+      height: auto;
+      padding: 0 7rem 2rem;
+    }
   }
 
   @media screen and (max-width: 1088px) {

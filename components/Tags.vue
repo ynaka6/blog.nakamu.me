@@ -11,7 +11,7 @@
           </div>
 
           <div class="columns" style="margin-top: 1.5rem;">
-            <div class="column is-offset-3 is-6">
+            <div class="column is-offset-1 is-10">
               <div class="tags m-t-10 is-centered">
                   <nuxt-link
                       v-for="tag in tags"

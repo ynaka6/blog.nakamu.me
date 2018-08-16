@@ -14,14 +14,14 @@
           </div>
         </div>
       </div>
-      <!-- <div class="tabs is-boxed is-centered main-menu" id="nav">
+      <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
-            <li data-target="pane-1" id="1" v-for="(tag, index) in tags" :key="index">
+            <li data-target="pane-1" id="1" v-for="(category, index) in categories" :key="index">
                 <nuxt-link
-                    :to="{ name: 'tags-tag', params: { tag: tag }}">{{ tag }}</nuxt-link>
+                    :to="{ name: 'categories-category', params: { category: category }}">{{ category }}</nuxt-link>
             </li>
         </ul>
-       </div> -->
+       </div>
     </section>
 
 
@@ -87,9 +87,13 @@ export default {
             }),
             client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
             ]).then(([entries, posts, postType]) => {
+                console.log(postType)
             return {
                 person: entries.items[0],
                 posts: posts.items,
+                // TODO : APIから項目の一覧が取得できないので調査する
+                // categories: postType.fields.find(field => field.id === 'category').validations[0].in,
+                categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
                 tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
                 title: 'Blogホーム',
                 description: '香港在住のWebデベロッパー「Nakamu」が今ままでのエンジニア経験を元にした技術ブログまとめます。'

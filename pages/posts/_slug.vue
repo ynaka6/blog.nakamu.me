@@ -9,6 +9,10 @@
                   HOME
                 </router-link>
             </li>
+            <li>
+                <nuxt-link
+                    :to="{ name: 'categories-category', params: { category: post.fields.category }}">{{ post.fields.category }}</nuxt-link>
+            </li>
             <li class="is-active">
                 <a href="#" aria-current="page">{{ post.fields.title }}</a>
             </li>

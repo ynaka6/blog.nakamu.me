@@ -39,6 +39,13 @@ export default {
     }
 }
 
+@media screen and (max-width: 1088px) {
+  #page-top {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
 @keyframes fadein {
 	0% {
 		opacity:0;

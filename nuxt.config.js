@@ -21,12 +21,14 @@ module.exports = {
   ** Headers of the page
   */
  head: {
-    title: 'Nakamu Engineer Blog',
-    titleTemplate: '%s - Nakamu Engineer Blog',
+    htmlAttrs: {
+      lang: 'ja',
+    },
+    title: 'なかむ🇭🇰エンジニアブログ',
+    titleTemplate: '%s - なかむ🇭🇰エンジニアブログ',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nakamu Engneer Blog' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

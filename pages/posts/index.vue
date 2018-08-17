@@ -59,7 +59,7 @@ export default {
             { name: 'twitter:card', content: 'summary' },
             { name: 'twitter:site', content: this.person.fields.twitter },
             { name: 'twitter:creator', content: this.person.fields.twitter },
-            { name: 'twitter:image', content: this.person.fields.image.fields.file.url },
+            { name: 'twitter:image', content: 'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill' },
             { name: 'twitter:title', content: this.title },
             { name: 'twitter:description', content: this.description },
 

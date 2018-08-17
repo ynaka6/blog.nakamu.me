@@ -60,13 +60,14 @@ export default {
     head () {
         return {
             title: this.title,
+            titleTemplate: '%s',
             meta: [
                 { name: 'description', content: this.description },
 
-                { name: 'twitter:card', content: 'summary' },
+                { name: 'twitter:card', content: 'summary_large_image' },
                 { name: 'twitter:site', content: this.person.fields.twitter },
                 { name: 'twitter:creator', content: this.person.fields.twitter },
-                { name: 'twitter:image', content: this.person.fields.image.fields.file.url },
+                { name: 'twitter:image', content: 'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill' },
                 { name: 'twitter:title', content: this.title },
                 { name: 'twitter:description', content: this.description },
 
@@ -94,8 +95,8 @@ export default {
                 // categories: postType.fields.find(field => field.id === 'category').validations[0].in,
                 categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
                 tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
-                title: 'Blogホーム',
-                description: '香港在住のWebデベロッパー「Nakamu」が今ままでのエンジニア経験を元にした技術ブログまとめます。'
+                title: 'なかむ🇭🇰エンジニアブログ',
+                description: '香港在住のWebデベロッパー「なかむ」が今ままでのエンジニア経験を元にした技術ブログまとめます。'
             }
         }).catch(console.error)
     },

@@ -40,9 +40,9 @@
             <h2 class="title is-underline font-quicksand">Articles</h2>
             <p class="subtitle has-text-grey is-6">記事一覧</p>
         </div>
-        <div class="columns is-multiline">
-          <div class="column is-one-third" v-for="(post, index) in posts" :key="index">
-              <PostCard :post="post"></PostCard>              
+        <div class="columns is-multiline is-tablet">
+          <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in posts" :key="index">
+              <PostCard :post="post"></PostCard>
           </div>
         </div>
     </section>

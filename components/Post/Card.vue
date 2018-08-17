@@ -50,4 +50,6 @@ export default {
 .post__title {
   font-size: 1.4rem;
 }
+
+
 </style>

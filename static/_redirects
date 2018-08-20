@@ -1,0 +1,5 @@
+# Redirect default Netlify subdomain to primary domain
+https://nakamublog.netlify.com/* https://blog.nakamu.life/:splat 301!
+
+# These extra rules are required because HTTPS is not forced
+http://nakamublog.netlify.com/* https://blog.nakamu.life/:splat 301!

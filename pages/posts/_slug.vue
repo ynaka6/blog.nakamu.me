@@ -133,7 +133,7 @@ export default {
                   person: entries.items[0].fields.author,
                   tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
                   title: `${entries.items[0].fields.title}`,
-                  description: `「${entries.items[0].fields.title}」の詳細ページ`
+                  description: `${entries.items[0].fields.description}`
               }
     }).catch(console.error)
   },

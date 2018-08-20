@@ -111,7 +111,7 @@ export default {
             { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:site', content: this.person.fields.twitter },
             { name: 'twitter:creator', content: this.person.fields.twitter },
-            { name: 'twitter:image', content: this.post.fields.heroImage.fields.file.url },
+            { name: 'twitter:image', content: `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` },
             { name: 'twitter:title', content: this.title },
             { name: 'twitter:description', content: this.description },
 

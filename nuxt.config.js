@@ -16,6 +16,9 @@ module.exports = {
     CTF_CMA_ACCESS_TOKEN: config.CTF_CMA_ACCESS_TOKEN || process.env.CTF_CMA_ACCESS_TOKEN,
     CTF_PERSON_ID: config.CTF_PERSON_ID || process.env.CTF_PERSON_ID,
     CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID || process.env.CTF_BLOG_POST_TYPE_ID,
+    
+    ALGOLIA_APPLICATION_ID: process.env.ALGOLIA_APPLICATION_ID,
+    ALGOLIA_SEARCH_API_KEY: process.env.ALGOLIA_SEARCH_API_KEY,
   },
   /*
   ** Headers of the page

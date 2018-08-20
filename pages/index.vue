@@ -6,11 +6,26 @@
           <h1 class="has-text-centered title is-size-1 font-leckerli-one">
               Engineer Blog
           </h1>
-          <div class="content">
-            <!-- <div class="control has-icons-left has-icons-right search-field">
-              <input type="text" placeholder="" class="input is-large">
+          <div>
+            <div class="control has-icons-left has-icons-right search-field" :class="{'is-large is-loading': this.loading}">
+              <input type="text" placeholder="" class="input is-large is-rounded" v-model="keyword">
               <span class="icon is-medium is-left"><i class="fa fa-search"></i></span>
-            </div> -->
+            </div>
+
+            <div class="dropdown is-block is-fullwidth" :class="{'is-active': this.algoliaResults.length > 0}">
+                <div class="dropdown-menu" style="width: 100%">
+                    <div class="dropdown-content suggest__content">
+                        <nuxt-link
+                            v-for="(algoliaResult, index) in algoliaResults" :key="index"
+                            :to="{ name: 'posts-slug', params: { slug: algoliaResult.slug }}"
+                            class="dropdown-item"
+                        >
+                            <p class="suggest__item__title" v-html="algoliaResult._highlightResult.title.value"></p>
+                            <p class="suggest__item__description has-text-grey" v-html="algoliaResult._highlightResult.description.value"></p>
+                        </nuxt-link>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -56,6 +71,9 @@ import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
+import algoliasearch from 'algoliasearch'
+const algoliaSearch = algoliasearch(process.env.ALGOLIA_APPLICATION_ID, process.env.ALGOLIA_SEARCH_API_KEY)
+const algoliaClient= algoliaSearch.initIndex('myblog')
 export default {
     head () {
         return {
@@ -96,17 +114,36 @@ export default {
                 categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
                 tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
                 title: 'なかむ🇭🇰エンジニアブログ',
-                description: '香港在住のWebデベロッパー「なかむ」が今ままでのエンジニア経験を元にした技術ブログまとめます。'
+                description: '香港在住のWebデベロッパー「なかむ」が今ままでのエンジニア経験を元にした技術ブログまとめます。',
+                keyword: '',
+                algoliaResults: [],
+                loading: false,
             }
         }).catch(console.error)
+    },
+    watch: {
+        keyword: function(val) {
+            if (val === '') {
+                this.algoliaResults = []
+                return
+            }
+            this.loading = true
+            algoliaClient.search(val, function (err, content) {
+                this.loading = false
+                if (err) {
+                    throw err
+                }
+                this.algoliaResults = content.hits
+            }.bind(this))
+        }
     },
     components: {
         PostCard,
         Tags
-    }
+    },
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>
 

@@ -51,9 +51,9 @@
               <div class="content article__content">
                 <div class="post-toc">
                   <p class="post-toc__title">目次</p>
-                  <div :id="`toc-${post.fields.slug}`"></div>
+                  <div v-html="tocHtml"></div>
                 </div>
-                <vue-markdown :toc="true" :toc-id="`toc-${post.fields.slug}`">{{post.fields.body}}</vue-markdown>
+                <vue-markdown :toc="toc" toc-id="toc" v-on:toc-rendered="tocAllRight">{{post.fields.body}}</vue-markdown>
               </div>
 
               <hr>
@@ -138,9 +138,20 @@ export default {
                   person: entries.items[0].fields.author,
                   tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
                   title: `${entries.items[0].fields.title}`,
-                  description: `${entries.items[0].fields.description}`
+                  description: `${entries.items[0].fields.description}`,
+                  toc: true,
+                  tocHtml: '',
               }
     }).catch(console.error)
+  },
+  methods: {
+    tocAllRight: function (tocHtmlStr) {
+      console.log("toc is parsed :", tocHtmlStr)
+      console.log(document.getElementById("toc"))
+      // document.getElementById("toc").innerHTML = tocHtmlStr
+
+      this.tocHtml = tocHtmlStr
+    }
   },
   components: {
     VueMarkdown,

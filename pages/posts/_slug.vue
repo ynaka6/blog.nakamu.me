@@ -47,8 +47,13 @@
 
                   </div>
               </div>
+
               <div class="content article__content">
-                  <vue-markdown>{{post.fields.body}}</vue-markdown>
+                <div class="post-toc">
+                  <p class="post-toc__title">目次</p>
+                  <div :id="`toc-${post.fields.slug}`"></div>
+                </div>
+                <vue-markdown :toc="true" :toc-id="`toc-${post.fields.slug}`">{{post.fields.body}}</vue-markdown>
               </div>
 
               <hr>
@@ -145,6 +150,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .post-toc {
+    background-color: #F9F9F9;
+    border: 1px solid #AAAAAA;
+    margin-bottom: 4rem;
+    padding: 1rem;
+  }
+  .post-toc__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
   .article__title {
     font-size: 1.8rem;
     margin-bottom: 1rem;

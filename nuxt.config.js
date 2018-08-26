@@ -2,7 +2,9 @@ const config = require('./.contentful.json')
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
-const modules = []
+const modules = [
+  ['@nuxtjs/moment', ['ja']]
+]
 if (process.env.NODE_ENV === 'production') {
   modules.push(['@nuxtjs/google-analytics', {
     id: process.env.GOOGLE_ANALYTICS_TRACKING_ID

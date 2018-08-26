@@ -8,9 +8,11 @@
                 sizes="(min-width: 1024px) 400px, 100vw"
                 v-if="post.fields.heroImage"
             >
+            <span class="image__category-label" v-text="post.fields.category"></span>
         </nuxt-link>
     </div>
     <div class="card-content">
+        <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
         <div class="media">
             <div class="media-left">
                 <figure class="image is-48x48 is-circle">
@@ -50,6 +52,15 @@ export default {
 .post__title {
   font-size: 1.4rem;
 }
-
+.image__category-label {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    background: #fcee21;
+    padding: .2rem 1rem;
+    color: #444444;
+    font-weight: bold;
+    font-size: .8rem;
+}
 
 </style>

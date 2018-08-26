@@ -27,23 +27,28 @@
             <div class="card-content">
               <div class="media">
                   <div class="media-content">
-                      <time class="tag is-rounded m-b-10">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
+                      <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
                       <h1 class="title article__title">
                         {{ post.fields.title }}
                       </h1>
+                      <p class="subtitle is-6 has-text-gray m-t-5" v-text="post.fields.description"></p>
 
-                      <div class="tags m-t-10">
+                      <div class="tags m-t-5">
                         <nuxt-link
                             v-for="tag in post.fields.tags"
                             :key="tag"
                             :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
                       </div>
 
-                      <img class="thumbnail"
-                          :src="post.fields.heroImage.fields.file.url"
-                          :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
-                          v-if="post.fields.heroImage.fields.file.url"
-                      >
+                      <div style="position: relative;">
+                        <img class="thumbnail"
+                            :src="post.fields.heroImage.fields.file.url"
+                            :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
+                            v-if="post.fields.heroImage.fields.file.url"
+                        >
+                        <span class="image__category-label" v-text="post.fields.category"></span>
+                      </div>
+
 
                   </div>
               </div>
@@ -161,6 +166,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .image__category-label {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+      background: #fcee21;
+      padding: .2rem 1rem;
+      color: #444444;
+      font-weight: bold;
+      font-size: .8rem;
+  }
   .post-toc {
     background-color: #F9F9F9;
     border: 1px solid #AAAAAA;

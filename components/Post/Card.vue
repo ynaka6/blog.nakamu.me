@@ -13,30 +13,29 @@
     </div>
     <div class="card-content">
         <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
-        <div class="media">
-            <div class="media-left">
-                <figure class="image is-48x48 is-circle">
-                    <img
-                        :src="post.fields.author.fields.image.fields.file.url"
-                        alt="Image"
-                    >
-                </figure>
-            </div>
-            <div class="media-content">
-                <h4><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title m-b-0">{{ post.fields.title }}</nuxt-link></h4>
-                <p><span class="title is-6"><a :href="post.fields.author.fields.url">@{{ post.fields.author.fields.name }}</a></span></p>
-                <!-- <p class="subtitle is-6">{{ ( new Date(post.fields.publishDate)).toDateString() }}</p> -->
-            </div>
-        </div>
-        <div class="content">
-              {{ post.fields.description }}
-              <div class="background-icon"><span class="icon-twitter"></span></div>
+        <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
+        <div class="content m-b-30">
+              <div class="has-text-grey is-size-7">{{ post.fields.description }}</div>
               <div class="tags m-t-10">
                   <nuxt-link
                       v-for="tag in post.fields.tags"
                       :key="tag"
                       :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
               </div>
+        </div>
+        <div class="media media--position-bottom">
+            <div class="media-left">
+                <figure class="image is-32x32">
+                    <img
+                        :src="post.fields.author.fields.image.fields.file.url"
+                        alt="Image"
+                        class="is-rounded"
+                    >
+                </figure>
+            </div>
+            <div class="media-content p-t-5">
+                <p><span class="title is-6"><a :href="post.fields.author.fields.url">@{{ post.fields.author.fields.name }}</a></span></p>
+            </div>
         </div>
     </div>
 </div>
@@ -50,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .post__title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .image__category-label {
     position: absolute;
@@ -61,6 +60,11 @@ export default {
     color: #444444;
     font-weight: bold;
     font-size: .8rem;
+}
+
+.media--position-bottom {
+    position: absolute;
+    bottom: .5rem;
 }
 
 </style>

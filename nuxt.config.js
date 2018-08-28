@@ -42,7 +42,8 @@ module.exports = {
     ]
   },
   plugins: [
-    '~/plugins/buefy.js'
+    '~/plugins/buefy.js',
+    '~/plugins/vue-scrollto.js'
   ],
   css: [
     '~/assets/style/app.scss',

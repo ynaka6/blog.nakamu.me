@@ -1,5 +1,10 @@
 <template>
-    <a id="page-top" class="button is-danger is-large is-circle" :class="{'is-hidden': scrollY < 200}" @click="scrollToTop()">
+    <a
+      id="page-top"
+      class="button is-danger is-large is-circle"
+      :class="{'is-hidden': scrollY < 200}"
+      v-scroll-to="'body'"
+    >
       <i class="fas fa-angle-up"></i>
     </a>
 </template>
@@ -16,9 +21,6 @@ export default {
   methods: {
     handleScroll() {
       this.scrollY = window.scrollY;
-    },
-    scrollToTop(){
-        window.scrollTo(0, 0)
     }
   },
 };

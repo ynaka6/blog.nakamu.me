@@ -3,6 +3,7 @@ const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
 const modules = [
+  ['@nuxtjs/pwa'],
   ['@nuxtjs/moment', ['ja']]
 ]
 if (process.env.NODE_ENV === 'production') {
@@ -92,6 +93,10 @@ module.exports = {
       })
     }
   },
-  modules: modules
+  modules: modules,
+  manifest: {
+    name: "なかむ🇭🇰エンジニアブログ",
+    lang: 'ja'
+  }
 }
 

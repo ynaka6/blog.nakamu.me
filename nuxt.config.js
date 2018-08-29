@@ -96,7 +96,17 @@ module.exports = {
   modules: modules,
   manifest: {
     name: "なかむ🇭🇰エンジニアブログ",
-    lang: 'ja'
-  }
+    lang: 'ja',
+    short_name: 'Nakamu.blog',
+    title: 'なかむ🇭🇰エンジニアブログ',
+    'og:title': 'なかむ🇭🇰エンジニアブログ',
+    description: 'なかむ🇭🇰エンジニアブログ',
+    'og:description': 'なかむ🇭🇰エンジニアブログ',
+    theme_color: '#ffffff',
+    background_color: '#ffffff'
+  },
+  workbox: {
+    dev: true, //開発環境でもPWA
+  },
 }
 

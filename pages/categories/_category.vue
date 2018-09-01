@@ -12,6 +12,11 @@
       </div>
       <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
+            <li>
+                <router-link to="/">
+                  HOME
+                </router-link>
+            </li>
             <li :class="{'is-active': c === category}" v-for="(c, index) in categories" :key="index">
                 <nuxt-link
                     :to="{ name: 'categories-category', params: { category: c }}" class="is-active">{{ c }}</nuxt-link>

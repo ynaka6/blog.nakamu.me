@@ -31,6 +31,10 @@
       </div>
       <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
+            <li class="is-active">
+                <nuxt-link
+                    to="/">ホーム</nuxt-link>
+            </li>
             <li data-target="pane-1" id="1" v-for="(category, index) in categories" :key="index">
                 <nuxt-link
                     :to="{ name: 'categories-category', params: { category: category }}">{{ category }}</nuxt-link>

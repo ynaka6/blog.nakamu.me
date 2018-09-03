@@ -31,7 +31,7 @@
                       <h1 class="title article__title">
                         {{ post.fields.title }}
                       </h1>
-                      <p class="subtitle is-6 has-text-gray m-t-5" v-text="post.fields.description"></p>
+                      <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
 
                       <div class="tags m-t-5">
                         <nuxt-link

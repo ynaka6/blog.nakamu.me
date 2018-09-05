@@ -100,11 +100,25 @@
         </div>
       </div>
     </section>
+
+    <section class="section">
+        <div class="has-text-centered m-b-30">
+            <h2 class="title is-underline font-quicksand">Rlated Articles</h2>
+            <p class="subtitle has-text-grey is-6">関連記事</p>
+        </div>
+        <div class="columns is-centered is-multiline is-tablet">
+          <div class="column is-flex is-6-tablet is-3-desktop" v-for="(post, index) in relatedPosts" :key="index">
+              <PostCard :post="post"></PostCard>
+          </div>
+        </div>
+    </section>
+
     <Tags :tags="tags"/>
   </main>
 </template>
 
 <script>
+import PostCard from '~/components/Post/Card.vue'
 import VueMarkdown from 'vue-markdown'
 import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
@@ -130,35 +144,39 @@ export default {
         ]
     }
   },
-  asyncData ({ env, params }) {
-    return Promise.all([
-              client.getEntries({
-                'content_type': env.CTF_BLOG_POST_TYPE_ID,
-                'fields.slug': params.slug
-              }),
-              client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-          ]).then(([entries, postType]) => {
-              return {
-                  post: entries.items[0],
-                  person: entries.items[0].fields.author,
-                  tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
-                  title: `${entries.items[0].fields.title}`,
-                  description: `${entries.items[0].fields.description}`,
-                  toc: true,
-                  tocHtml: '',
-              }
-    }).catch(console.error)
+  async asyncData ({ env, params }) {
+    const entries = await client.getEntries({
+      'content_type': env.CTF_BLOG_POST_TYPE_ID,
+      'fields.slug': params.slug
+    })
+    const postType = await client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+
+    const categories = await client.getEntries({
+      'content_type': env.CTF_BLOG_POST_TYPE_ID,
+      'fields.category[in]': entries.items[0].fields.category,
+      'fields.slug[ne]': params.slug,
+      order: '-sys.createdAt',
+      limit: 4
+    })
+
+    return {
+        post: entries.items[0],
+        person: entries.items[0].fields.author,
+        tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
+        title: `${entries.items[0].fields.title}`,
+        description: `${entries.items[0].fields.description}`,
+        toc: true,
+        tocHtml: '',
+        relatedPosts: categories.items
+    }
   },
   methods: {
     tocAllRight: function (tocHtmlStr) {
-      console.log("toc is parsed :", tocHtmlStr)
-      console.log(document.getElementById("toc"))
-      // document.getElementById("toc").innerHTML = tocHtmlStr
-
       this.tocHtml = tocHtmlStr
     }
   },
   components: {
+    PostCard,
     VueMarkdown,
     Tags
   }

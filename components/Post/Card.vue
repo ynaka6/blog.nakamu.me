@@ -15,7 +15,7 @@
         <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
         <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
         <div class="content m-b-30">
-              <div class="has-text-grey is-size-7">{{ post.fields.description }}</div>
+              <div class="has-text-grey is-size-7" v-html="post.fields.description"></div>
               <div class="tags m-t-10">
                   <nuxt-link
                       v-for="tag in post.fields.tags"

@@ -95,6 +95,27 @@
                 </div>
               </div>
 
+              <hr>
+
+              <div class="is-clearfix">
+                <div v-if="prevPost" class="is-pulled-left">
+                  <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: prevPost.fields.slug }}">
+                    <i class="fas fa-angle-left"></i>
+                  </nuxt-link>
+                  <p class="is-size-7 m-t-5">
+                    前の記事
+                  </p>
+                </div>
+                <div v-if="nextPost" class="is-pulled-right">
+                  <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: nextPost.fields.slug }}">
+                    <i class="fas fa-angle-right"></i>
+                  </nuxt-link>
+                  <p class="is-size-7 m-t-5">
+                    次の記事
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -149,6 +170,21 @@ export default {
       'content_type': env.CTF_BLOG_POST_TYPE_ID,
       'fields.slug': params.slug
     })
+
+    const prevEntries = await client.getEntries({
+        'content_type': env.CTF_BLOG_POST_TYPE_ID,
+        'sys.createdAt[lt]': entries.items[0].sys.createdAt,
+        order: '-sys.createdAt',
+        limit: 1
+    })
+
+    const nextEntries = await client.getEntries({
+        'content_type': env.CTF_BLOG_POST_TYPE_ID,
+        'sys.createdAt[gt]': entries.items[0].sys.createdAt,
+        order: 'sys.createdAt',
+        limit: 1
+    })
+
     const postType = await client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
 
     const categories = await client.getEntries({
@@ -161,6 +197,8 @@ export default {
 
     return {
         post: entries.items[0],
+        prevPost: prevEntries.items.length ? prevEntries.items[0] : null,
+        nextPost: nextEntries.items.length ? nextEntries.items[0] : null,
         person: entries.items[0].fields.author,
         tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
         title: `${entries.items[0].fields.title}`,

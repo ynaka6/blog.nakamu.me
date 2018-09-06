@@ -61,6 +61,24 @@
                 <vue-markdown :toc="toc" toc-id="toc" v-on:toc-rendered="tocAllRight">{{post.fields.body}}</vue-markdown>
               </div>
 
+              <div class="m-t-50 columns is-multiple is-mobile">
+                <div class="column">
+                  <a :href="twitterShareUrl" class="button is-twitter is-block is-medium" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+                <div class="column">
+                  <a :href="fbShareUrl" class="button is-facebook is-block is-medium" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+                <div class="column">
+                  <a :href="hatenaShareUrl" class="button is-hatena is-block is-medium" target="_blank">
+                    B!
+                  </a>
+                </div>
+              </div>
+
               <hr>
 
               <div class="media is-block-mobile">
@@ -206,6 +224,21 @@ export default {
         toc: true,
         tocHtml: '',
         relatedPosts: categories.items
+    }
+  },
+  computed: {
+    twitterShareUrl: function () {
+      console.log(this.$route.fullPath)
+      const url = process.env.BASE_URL + this.$route.fullPath
+      return `https://twitter.com/intent/tweet?text=${this.title}&url=${url}`
+    },
+    fbShareUrl: function () {
+      const url = process.env.BASE_URL + this.$route.fullPath
+      return `https://www.facebook.com/sharer/sharer.php?u=${url}`
+    },
+    hatenaShareUrl: function () {
+      const url = process.env.BASE_URL + this.$route.fullPath
+      return `https://b.hatena.ne.jp/add?mode=confirm&title=${this.title}&url=${url}`
     }
   },
   methods: {

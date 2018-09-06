@@ -9,6 +9,10 @@ $danger: #ff5f5f;
 $danger-invert: findColorInvert($danger);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
+$facebook: #3B5998;
+$facebook-invert: findColorInvert($facebook);
+$hatena: #008fde;
+$hatena-invert: findColorInvert($hatena);
 
 $colors: (
     "white": ($white, $black),
@@ -20,7 +24,9 @@ $colors: (
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
+    "twitter": ($twitter, $twitter-invert),
+    "facebook": ($facebook, $facebook-invert),
+    "hatena": ($hatena, $hatena-invert)
 );
 
 $link: $primary;

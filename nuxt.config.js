@@ -24,6 +24,7 @@ module.exports = {
     ALGOLIA_SEARCH_API_KEY: process.env.ALGOLIA_SEARCH_API_KEY,
 
     HTTP_SCHEMA: process.env.HTTP_SCHEMA,
+    BASE_URL: process.env.BASE_URL,
   },
   /*
   ** Headers of the page

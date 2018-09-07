@@ -4,6 +4,7 @@
     <nuxt/>
     <Footer/>
     <ButtonPageTop />
+    <ModalContact />
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 import ButtonPageTop from '~/components/Button/PageTop.vue'
+import ModalContact from '~/components/Modal/Contact.vue'
 
 export default {
   components: {
     Header,
     Footer,
-    ButtonPageTop
+    ButtonPageTop,
+    ModalContact,
   }
 }
 </script>

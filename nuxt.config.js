@@ -45,7 +45,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/buefy.js',
-    '~/plugins/vue-scrollto.js'
+    '~/plugins/vue-scrollto.js',
+    '~/plugins/vee-validate.js',
   ],
   css: [
     '~/assets/style/app.scss',
@@ -62,6 +63,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vee-validate'],
     /*
     ** Run ESLint on save
     */

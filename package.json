@@ -12,6 +12,7 @@
   },
   "scripts": {
     "dev": "nuxt",
+    "lambda": "netlify-lambda serve lambda",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -28,10 +29,13 @@
     "buefy": "^0.6.6",
     "contentful": "^7.0.0",
     "contentful-management": "^5.3.2",
+    "email-validator": "^2.0.4",
     "moment": "^2.22.2",
+    "netlify-lambda": "^0.4.0",
     "node-sass": "^4.9.2",
     "nuxt": "^1.4.0",
     "sass-loader": "^7.1.0",
+    "vee-validate": "^2.1.0-beta.8",
     "vue-markdown": "^2.2.4",
     "vue-scrollto": "^2.11.0"
   },

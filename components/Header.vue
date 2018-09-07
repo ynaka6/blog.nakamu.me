@@ -31,9 +31,9 @@
             Blog
           </router-link>
           <a
-            href="mailto:yuuki.nakamura.0828@gmail.com"
-            target="_blank"
+            href="javascript:void(0)"
             class="navbar-item is-text-font-quicksand"
+            @click="toggleContactModal"
           >
             Contact
           </a>
@@ -59,6 +59,9 @@ export default {
   methods: {
     handleScroll() {
       this.scrollY = window.scrollY;
+    },
+    toggleContactModal() {
+      this.$store.dispatch('toggleContactModal');
     },
   },
 };

@@ -26,6 +26,7 @@ module.exports = {
 
     HTTP_SCHEMA: process.env.HTTP_SCHEMA,
     BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
   },
   /*
   ** Headers of the page
@@ -98,6 +99,9 @@ module.exports = {
     }
   },
   modules: modules,
+  axios: {
+    baseURL: process.env.API_URL,
+  },
   manifest: {
     name: "なかむ🇭🇰エンジニアブログ",
     lang: 'ja',

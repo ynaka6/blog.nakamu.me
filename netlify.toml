@@ -1,4 +1,4 @@
 [build]
-  Command = "netlify-lambda build && yarn generate"
+  Command = "netlify-lambda build lambda && yarn generate"
   functions = "functions"
   publish = "dist"

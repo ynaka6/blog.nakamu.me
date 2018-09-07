@@ -13,9 +13,9 @@
   "scripts": {
     "dev": "nuxt",
     "lambda": "netlify-lambda serve lambda",
-    "build": "nuxt build",
+    "build": "netlify-lambda build lambda && nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "netlify-lambda build lambda && nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },

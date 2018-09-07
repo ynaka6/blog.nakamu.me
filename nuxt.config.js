@@ -4,7 +4,8 @@ const client = createClient()
 
 const modules = [
   ['@nuxtjs/pwa'],
-  ['@nuxtjs/moment', ['ja']]
+  ['@nuxtjs/moment', ['ja']],
+  ['@nuxtjs/axios']
 ]
 if (process.env.NODE_ENV === 'production') {
   modules.push(['@nuxtjs/google-analytics', {

@@ -133,10 +133,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
-axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
-
 export default {
   name: 'ContactModal',
   props: {
@@ -154,7 +150,7 @@ export default {
     validateBeforeSubmit() {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          axios.post('/contact', {
+          this.$axios.$post('/contact', {
             name: this.name,
             email: this.email,
             title: this.title,

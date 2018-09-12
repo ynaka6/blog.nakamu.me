@@ -191,15 +191,15 @@ export default {
 
     const prevEntries = await client.getEntries({
         'content_type': env.CTF_BLOG_POST_TYPE_ID,
-        'sys.createdAt[lt]': entries.items[0].sys.createdAt,
-        order: '-sys.createdAt',
+        'fields.publishDate[lt]': entries.items[0].fields.publishDate,
+        order: '-fields.publishDate',
         limit: 1
     })
 
     const nextEntries = await client.getEntries({
         'content_type': env.CTF_BLOG_POST_TYPE_ID,
-        'sys.createdAt[gt]': entries.items[0].sys.createdAt,
-        order: 'sys.createdAt',
+        'fields.publishDate[gt]': entries.items[0].fields.publishDate,
+        order: 'fields.publishDate',
         limit: 1
     })
 
@@ -209,7 +209,7 @@ export default {
       'content_type': env.CTF_BLOG_POST_TYPE_ID,
       'fields.category[in]': entries.items[0].fields.category,
       'fields.slug[ne]': params.slug,
-      order: '-sys.createdAt',
+      order: '-fields.publishDate',
       limit: 4
     })
 

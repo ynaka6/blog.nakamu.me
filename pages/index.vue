@@ -105,7 +105,7 @@ export default {
             }),
             client.getEntries({
                 'content_type': env.CTF_BLOG_POST_TYPE_ID,
-                order: '-sys.createdAt',
+                order: '-fields.publishDate',
                 limit: 6
             }),
             client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)

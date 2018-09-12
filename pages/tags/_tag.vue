@@ -77,7 +77,7 @@ export default {
         client.getEntries({
           'content_type': env.CTF_BLOG_POST_TYPE_ID,
           'fields.tags[in]': params.tag,
-          order: '-sys.createdAt'
+          order: '-fields.publishDate'
         }),
         client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
     ]).then(([entries, posts, postType]) => {

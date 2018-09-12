@@ -9,7 +9,7 @@
         </p>
         <div class="columns has-text-centered m-t-30">
           <div class="column">
-              <router-link to="/posts" class="button is-primary is-rounded is-large">
+              <router-link to="/" class="button is-primary is-rounded is-large">
                 トップページに戻る
               </router-link>
             </div>

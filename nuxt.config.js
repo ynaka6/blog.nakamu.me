@@ -28,10 +28,10 @@ module.exports = {
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
   },
-  /*
+ /*
   ** Headers of the page
   */
- head: {
+  head: {
     htmlAttrs: {
       lang: 'ja',
     },
@@ -44,6 +44,10 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+  transition: {
+    name: 'page',
+    mode: 'out-in'
   },
   plugins: [
     '~/plugins/buefy.js',

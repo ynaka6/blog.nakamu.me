@@ -44,6 +44,13 @@ body {
     background: #fafdff;
 }
 
+.page-enter-active, .page-leave-active {
+    transition: opacity .8s
+}
+.page-enter, .page-leave-active {
+    opacity: 0
+}
+
 .font-leckerli-one {
     font-family: 'Leckerli One', cursive;
 }

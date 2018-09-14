@@ -9,18 +9,20 @@
                   HOME
                 </router-link>
             </li>
-            <li>
+            <li v-if="post">
                 <nuxt-link
-                    :to="{ name: 'categories-category', params: { category: post.fields.category }}">{{ post.fields.category }}</nuxt-link>
+                    :to="{ name: 'categories-category', params: { category: post.fields.category }}">
+                    {{ post.fields.category }}
+                </nuxt-link>
             </li>
-            <li class="is-active">
+            <li class="is-active" v-if="post">
                 <a href="#" aria-current="page">{{ post.fields.title }}</a>
             </li>
         </ul>
       </div>
     </nav>
 
-    <section class="section">
+    <section class="section" v-if="post">
       <div class="columns">
         <div class="column is-8 is-offset-2">
           <div class="card article">
@@ -163,55 +165,36 @@ import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
+const initData = async ({ app, params }) => {
+    const [　entries, postType ] = await Promise.all([
+        client.getEntries({
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+          'fields.slug': params.slug
+        }),
+        client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+    ])
 
-export default {
-  head () {
-    return {
-        title: this.title,
-        meta: [
-            { name: 'description', content: this.description },
-
-            { name: 'twitter:card', content: 'summary_large_image' },
-            { name: 'twitter:site', content: this.person.fields.twitter },
-            { name: 'twitter:creator', content: this.person.fields.twitter },
-            { name: 'twitter:image', content: `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` },
-            { name: 'twitter:title', content: this.title },
-            { name: 'twitter:description', content: this.description },
-
-            { name: 'og:title', content: this.title },
-            { name: 'og:description', content: this.description },
-        ]
-    }
-  },
-  async asyncData ({ env, params }) {
-    const entries = await client.getEntries({
-      'content_type': env.CTF_BLOG_POST_TYPE_ID,
-      'fields.slug': params.slug
-    })
-
-    const prevEntries = await client.getEntries({
-        'content_type': env.CTF_BLOG_POST_TYPE_ID,
-        'fields.publishDate[lt]': entries.items[0].fields.publishDate,
-        order: '-fields.publishDate',
-        limit: 1
-    })
-
-    const nextEntries = await client.getEntries({
-        'content_type': env.CTF_BLOG_POST_TYPE_ID,
-        'fields.publishDate[gt]': entries.items[0].fields.publishDate,
-        order: 'fields.publishDate',
-        limit: 1
-    })
-
-    const postType = await client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-
-    const categories = await client.getEntries({
-      'content_type': env.CTF_BLOG_POST_TYPE_ID,
-      'fields.category[in]': entries.items[0].fields.category,
-      'fields.slug[ne]': params.slug,
-      order: '-fields.publishDate',
-      limit: 4
-    })
+    const [ prevEntries, nextEntries, categories ] = await Promise.all([
+        client.getEntries({
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+          'fields.publishDate[lt]': entries.items[0].fields.publishDate,
+          order: '-fields.publishDate',
+          limit: 1
+        }),
+        client.getEntries({
+            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+            'fields.publishDate[gt]': entries.items[0].fields.publishDate,
+            order: 'fields.publishDate',
+            limit: 1
+        }),
+        client.getEntries({
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+          'fields.category[in]': entries.items[0].fields.category,
+          'fields.slug[ne]': params.slug,
+          order: '-fields.publishDate',
+          limit: 4
+        })
+    ])
 
     return {
         post: entries.items[0],
@@ -225,6 +208,59 @@ export default {
         tocHtml: '',
         relatedPosts: categories.items
     }
+}
+export default {
+  head () {
+    return {
+        title: this.title,
+        meta: [
+            { name: 'description', content: this.description },
+
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:site', content: this.person ? this.person.fields.twitter : '' },
+            { name: 'twitter:creator', content: this.person ? this.person.fields.twitter : '' },
+            { name: 'twitter:image', content: this.post ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` : '' },
+            { name: 'twitter:title', content: this.title },
+            { name: 'twitter:description', content: this.description },
+
+            { name: 'og:title', content: this.title },
+            { name: 'og:description', content: this.description },
+        ]
+    }
+  },
+  async asyncData (context) {
+      if (process.browser) {
+          return {
+            post: null,
+            prevPost: null,
+            nextPost: null,
+            person: null,
+            tags: [],
+            title: null,
+            description: null,
+            toc: true,
+            tocHtml: '',
+            relatedPosts: []
+          }
+      }
+      return await initData(context);
+  },
+  async mounted () {
+      if (this.$store.getters.isFirstView) {
+          this.$store.dispatch('setFirstView', {
+              firstView: false
+          });
+      } else {
+          const { post, prevPost, nextPost, person, tags, relatedPosts, title, description } = await initData({ app: this, params: this.$route.params });
+          this.person = person;
+          this.post = post;
+          this.prevPost = prevPost;
+          this.nextPost = nextPost;
+          this.relatedPosts = relatedPosts;
+          this.title = title;
+          this.description = description;
+          this.tags = tags;
+      }
   },
   computed: {
     twitterShareUrl: function () {

@@ -2,9 +2,13 @@ import Vuex from 'vuex';
 
 const store = () => new Vuex.Store({
   state: {
+    firstView: null,
     contactModal: false,
   },
   mutations: {
+    setFirstView(state, context) {
+      state.firstView = context.firstView;
+    },
     toggleContactModal(state) {
       state.contactModal = !state.contactModal;
       document.querySelector('html').classList.toggle('is-clipped');
@@ -15,6 +19,12 @@ const store = () => new Vuex.Store({
     },
   },
   actions: {
+    setFirstView: (context, payload) => {
+      context.commit({
+        type: 'setFirstView',
+        firstView: payload.firstView
+      })
+    },
     toggleContactModal: ({ commit }) => {
       commit('toggleContactModal');
     },
@@ -23,6 +33,7 @@ const store = () => new Vuex.Store({
     },
   },
   getters: {
+    isFirstView: state => state.firstView,
     isContactModal: state => state.contactModal,
   },
 })

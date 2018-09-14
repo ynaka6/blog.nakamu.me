@@ -49,6 +49,7 @@ module.exports = {
     '~/plugins/buefy.js',
     '~/plugins/vue-scrollto.js',
     '~/plugins/vee-validate.js',
+    { src: '~/plugins/token.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.scss',

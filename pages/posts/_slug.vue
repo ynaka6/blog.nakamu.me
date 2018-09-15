@@ -1,6 +1,5 @@
 <template>
-  <main>
-    
+  <main v-if="post">
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
@@ -142,7 +141,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" v-if="relatedPosts.length">
         <div class="has-text-centered m-b-30">
             <h2 class="title is-underline font-quicksand">Rlated Articles</h2>
             <p class="subtitle has-text-grey is-6">関連記事</p>
@@ -156,9 +155,11 @@
 
     <Tags :tags="tags"/>
   </main>
+  <Loading v-else />
 </template>
 
 <script>
+import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import VueMarkdown from 'vue-markdown'
 import Tags from '~/components/Tags.vue'
@@ -283,6 +284,7 @@ export default {
     }
   },
   components: {
+    Loading,
     PostCard,
     VueMarkdown,
     Tags

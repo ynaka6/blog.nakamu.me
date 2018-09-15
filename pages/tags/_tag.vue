@@ -1,7 +1,5 @@
 <template>
-  <main>
-
-
+  <main v-if="posts.length">
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
@@ -27,7 +25,7 @@
       </div>
     </nav>
 
-    <section class="section">
+    <section class="section" v-if="posts.length">
         <div class="has-text-centered m-b-30">
             <h2 class="title is-underline font-quicksand">Articles</h2>
             <p class="subtitle has-text-grey is-6">記事一覧</p>
@@ -41,9 +39,11 @@
 
     <Tags :tags="tags"/>
   </main>
+  <Loading v-else />
 </template>
 
 <script>
+import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
@@ -117,6 +117,7 @@ export default {
         }
     },
     components: {
+        Loading,
         PostCard,
         Tags
     }

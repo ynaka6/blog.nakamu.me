@@ -35,8 +35,8 @@ module.exports = {
     htmlAttrs: {
       lang: 'ja',
     },
-    title: 'なかむ🇭🇰エンジニアブログ',
-    titleTemplate: '%s - なかむ🇭🇰エンジニアブログ',
+    title: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
+    titleTemplate: '%s | Nakamu🇭🇰Blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1' },
@@ -108,9 +108,9 @@ module.exports = {
     baseURL: process.env.API_URL,
   },
   manifest: {
-    name: "なかむ🇭🇰エンジニアブログ",
+    name: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
     lang: 'ja',
-    short_name: 'なかむ🇭🇰エンジニアブログ',
+    short_name: 'Nakamu🇭🇰Blog',
     theme_color: '#ffffff',
     background_color: '#ffffff'
   }

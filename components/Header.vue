@@ -6,7 +6,7 @@
           <div class="font-leckerli-one navbar-brand__title">
             Nakamu Blog
           </div>
-          <div class="subtitle is-size-7"> 世界を旅して暮らしたい放浪エンジニア</div>
+          <div class="subtitle is-size-7"> 自由な場所でエンジニアとして生きていくためのメディア</div>
         </router-link>
 
         <span class="navbar-burger burger" :class="{'is-active': drawer}" @click="drawer = !drawer">

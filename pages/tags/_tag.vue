@@ -110,10 +110,11 @@ export default {
                 firstView: false
             });
         } else {
-            const { person, posts, tags } = await initData({ app: this, params: this.$route.params });
+            const { person, posts, tags, tag } = await initData({ app: this, params: this.$route.params });
             this.person = person;
             this.posts = posts;
             this.tags = tags;
+            this.tag = tag;
         }
     },
     components: {

@@ -6621,6 +6621,10 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
+tiny-cookie@^2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/tiny-cookie/-/tiny-cookie-2.1.2.tgz#3c25689a07c76438f90209648c143976b0b52bef"
+
 tinycolor2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
@@ -6986,6 +6990,12 @@ vm-browserify@0.0.4:
 vue-analytics@^5.4.0:
   version "5.13.0"
   resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.13.0.tgz#eead4af80ae12120cab7ca61b66422d47f280ef8"
+
+vue-cookie-law@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/vue-cookie-law/-/vue-cookie-law-1.6.0.tgz#3a1e0dfa2a19e4ddd813a378b342c57dda7dba7a"
+  dependencies:
+    tiny-cookie "^2.1.1"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"

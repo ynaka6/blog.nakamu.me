@@ -45,16 +45,6 @@
         </a>
       </div>
     </div>
+    <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
   </footer>
 </template>
-
-<script>
-export default {
-  name: 'Footer',
-  props: {
-  },
-};
-</script>
-
-<style scoped>
-</style>

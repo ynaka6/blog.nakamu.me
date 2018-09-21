@@ -22,76 +22,115 @@
     </nav>
 
     <section class="section" v-if="post">
-      <div class="columns">
-        <div class="column is-8 is-offset-2">
-          <div class="card article">
-            <div class="card-content">
-              <div class="media">
-                  <div class="media-content">
-                      <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
-                      <h1 class="title article__title">
-                        {{ post.fields.title }}
-                      </h1>
-                      <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8">
+            <div class="card article">
+              <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
+                        <h1 class="title article__title">
+                          {{ post.fields.title }}
+                        </h1>
+                        <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
 
-                      <div class="tags m-t-5">
-                        <nuxt-link
-                            v-for="tag in post.fields.tags"
-                            :key="tag"
-                            :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
-                      </div>
+                        <div class="tags m-t-5">
+                          <nuxt-link
+                              v-for="tag in post.fields.tags"
+                              :key="tag"
+                              :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
+                        </div>
 
-                      <div style="position: relative;">
-                        <img class="thumbnail"
-                            :src="post.fields.heroImage.fields.file.url"
-                            :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
-                            v-if="post.fields.heroImage.fields.file.url"
-                        >
-                        <span class="image__category-label" v-text="post.fields.category"></span>
-                      </div>
+                        <div style="position: relative;">
+                          <img class="thumbnail"
+                              :src="post.fields.heroImage.fields.file.url"
+                              :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
+                              v-if="post.fields.heroImage.fields.file.url"
+                          >
+                          <span class="image__category-label" v-text="post.fields.category"></span>
+                        </div>
 
 
+                    </div>
+                </div>
+
+                <div class="content article__content">
+                  <div class="post-toc">
+                    <p class="post-toc__title">目次</p>
+                    <div v-html="tocHtml"></div>
                   </div>
+                  <vue-markdown :toc="toc" toc-id="toc" v-on:toc-rendered="tocAllRight">{{post.fields.body}}</vue-markdown>
+                </div>
+
+
+                <div class="social m-t-50">
+
+                  <div class="has-text-centered m-t-50 m-b-30">
+                      <p class="title is-underline font-leckerli-one">Share</p>
+                      <p class="subtitle has-text-grey is-7">SNSシェア</p>
+                  </div>
+                  <div class="button-group level is-mobile">
+                    <div class="level-item" style="margin: 0;">
+                      <a :href="twitterShareUrl" target="_blank" class="button is-fullwidth is-twitter is-medium">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </div>
+                    <div class="level-item" style="margin: 0;">
+                      <a :href=fbShareUrl target="_blank" class="button is-fullwidth is-facebook is-medium">
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                    </div>
+                    <div class="level-item" style="margin: 0;">
+                      <a :href="hatenaShareUrl" class="button is-hatena is-fullwidth is-medium" target="_blank">
+                        B!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="is-clearfix">
+                  <div v-if="prevPost" class="is-pulled-left">
+                    <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: prevPost.fields.slug }}">
+                      <i class="fas fa-angle-left"></i>
+                    </nuxt-link>
+                    <p class="is-size-7 m-t-5">
+                      前の記事
+                    </p>
+                  </div>
+                  <div v-if="nextPost" class="is-pulled-right">
+                    <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: nextPost.fields.slug }}">
+                      <i class="fas fa-angle-right"></i>
+                    </nuxt-link>
+                    <p class="is-size-7 m-t-5">
+                      次の記事
+                    </p>
+                  </div>
+                </div>
+
               </div>
+            </div>
+          </div>
 
-              <div class="content article__content">
-                <div class="post-toc">
-                  <p class="post-toc__title">目次</p>
-                  <div v-html="tocHtml"></div>
-                </div>
-                <vue-markdown :toc="toc" toc-id="toc" v-on:toc-rendered="tocAllRight">{{post.fields.body}}</vue-markdown>
-              </div>
+          <div class="column">
+            <div class="card article">
+              <div class="card-content">
 
-              <div class="m-t-50 columns is-multiple is-mobile">
-                <div class="column">
-                  <a :href="twitterShareUrl" class="button is-twitter is-block is-medium" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                  </a>
+                <div class="media is-block-mobile">
+                  <div class="media-content">
+                    <figure class="image is-profile-image is-circle">
+                        <img :src="post.fields.author.fields.image.fields.file.url" alt="Image">
+                    </figure>
+                    <p class="title is-5 is-profile-name">
+                      <a :href="post.fields.author.fields.url">{{ post.fields.author.fields.name }}</a>
+                    </p>
+                  </div>
                 </div>
-                <div class="column">
-                  <a :href="fbShareUrl" class="button is-facebook is-block is-medium" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                </div>
-                <div class="column">
-                  <a :href="hatenaShareUrl" class="button is-hatena is-block is-medium" target="_blank">
-                    B!
-                  </a>
-                </div>
-              </div>
 
-              <hr>
+                <div class="content">
 
-              <div class="media is-block-mobile">
-                <div class="media-left">
-                  <figure class="image is-profile-image is-circle">
-                      <img :src="post.fields.author.fields.image.fields.file.url" alt="Image">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">
-                    <a :href="post.fields.author.fields.url">@{{ post.fields.author.fields.name }}</a>
-                  </p>
                   <p class="subtitle is-6 m-b-10">
                     {{ post.fields.author.fields.shortBio }}
                   </p>
@@ -111,46 +150,56 @@
                       <i class="fab fa-github"></i>
                     </a>
                   </div>
+                  
                 </div>
+
               </div>
-
-              <hr>
-
-              <div class="is-clearfix">
-                <div v-if="prevPost" class="is-pulled-left">
-                  <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: prevPost.fields.slug }}">
-                    <i class="fas fa-angle-left"></i>
-                  </nuxt-link>
-                  <p class="is-size-7 m-t-5">
-                    前の記事
-                  </p>
-                </div>
-                <div v-if="nextPost" class="is-pulled-right">
-                  <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-slug', params: { slug: nextPost.fields.slug }}">
-                    <i class="fas fa-angle-right"></i>
-                  </nuxt-link>
-                  <p class="is-size-7 m-t-5">
-                    次の記事
-                  </p>
-                </div>
-              </div>
-
             </div>
+
+            <div class="card article m-t-30">
+              <div class="card-content">
+                <aside class="menu">
+                  <p class="menu-label">
+                    開発・メンター相談
+                  </p>
+                  <ul class="menu-list">
+                    <li>
+                      <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">
+                        コードメンターの活動について
+                      </nuxt-link>
+                    </li>
+                    <li>
+                      <a
+                        href="javascript:void(0)"
+                        class="navbar-item is-text-font-quicksand"
+                        @click="$store.dispatch('toggleContactModal')"
+                      >
+                        問い合わせ
+                      </a>
+                    </li>
+                  </ul>
+                </aside>
+              </div>
+            </div>
+
           </div>
+
         </div>
       </div>
     </section>
 
     <section class="section" v-if="relatedPosts.length">
+      <div class="container">
         <div class="has-text-centered m-b-30">
             <h2 class="title is-underline font-quicksand">Rlated Articles</h2>
             <p class="subtitle has-text-grey is-6">関連記事</p>
         </div>
         <div class="columns is-centered is-multiline is-tablet">
-          <div class="column is-flex is-6-tablet is-3-desktop" v-for="(post, index) in relatedPosts" :key="index">
+          <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in relatedPosts" :key="index">
               <PostCard :post="post"></PostCard>
           </div>
         </div>
+      </div>
     </section>
 
     <Tags :tags="tags"/>
@@ -193,7 +242,7 @@ const initData = async ({ app, params }) => {
           'fields.category[in]': entries.items[0].fields.category,
           'fields.slug[ne]': params.slug,
           order: '-fields.publishDate',
-          limit: 4
+          limit: 3
         })
     ])
 
@@ -324,8 +373,12 @@ export default {
     line-height: 1.6rem;
   }
   .image.is-profile-image {
-    width: 64px;
-    height: 64px;
+    width: auto;
+    height: auto;
+    padding: 0 5rem 2rem;
+  }
+  .is-profile-name {
+    text-align: center;
   }
 
   .socials {
@@ -337,14 +390,6 @@ export default {
       &:first-child {
         margin-left: 0;
       }
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .image.is-profile-image {
-      width: auto;
-      height: auto;
-      padding: 0 7rem 2rem;
     }
   }
 

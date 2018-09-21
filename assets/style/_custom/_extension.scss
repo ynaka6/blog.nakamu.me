@@ -31,6 +31,7 @@
     }
 }
 
+
 @keyframes navbarShow {
 	0% {
 		transform:translate(0, -10rem);
@@ -40,6 +41,12 @@
 		transform:translate(0, 0);
 		opacity:1;
 	}
+}
+
+// Card
+.card {
+    -webkit-box-shadow: 5px 5px 3px rgba(10, 10, 10, .2), 0 0 0 1px rgba(10, 10, 10, .2);
+    box-shadow: 5px 5px 3px rgba(10, 10, 10, .2), 0 0 0 1px rgba(10, 10, 10, .2);
 }
 
 // Image
@@ -64,12 +71,64 @@
 
 // button
 .button {
+    &:hover {
+        -webkit-transform: scale(1.02) translateY(-2px);
+        transform: scale(1.02) translateY(-2px);
+    }
+
+    
     &.is-circle {
         border-radius: 10rem;
         width: 2.25em;
         height: 2.25em;
     }
 }
+
+
+.button-group {
+    .button:not(.is-square) {
+        border-radius: 0;
+        margin: 0 1px;
+        &:first-child {
+            border-top-left-radius: $control-radius;
+            border-bottom-left-radius: $control-radius;
+            margin-left: 0;
+        }
+
+        &:last-child {
+            border-top-right-radius: $control-radius;
+            border-bottom-right-radius: $control-radius;
+            margin-right: 0;
+        }
+    }
+  
+    &.level {
+        .level-item {
+            .button:not(.is-square) {
+                border-radius: 0;
+                margin: 0 1px;
+            }
+    
+            &:first-child {
+                .button {
+                    border-top-left-radius: $control-radius;
+                    border-bottom-left-radius: $control-radius;
+                    margin-left: 0;
+                }
+            }
+    
+            &:last-child {
+                .button {
+                    border-top-right-radius: $control-radius;
+                    border-bottom-right-radius: $control-radius;
+                    margin-right: 0;
+            }
+            }
+        }
+    }
+}
+
+
 
 // tag
 $tag-colors: (

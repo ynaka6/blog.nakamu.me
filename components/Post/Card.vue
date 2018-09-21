@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .post__title {
   font-size: 1.2rem;
 }

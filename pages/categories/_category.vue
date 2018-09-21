@@ -40,14 +40,16 @@
     </nav>
 
     <section class="section" v-if="posts.length">
-        <div class="has-text-centered m-b-30">
-            <h2 class="title is-underline font-quicksand">Articles</h2>
-            <p class="subtitle has-text-grey is-6">記事一覧</p>
-        </div>
-        <div class="columns is-multiline is-tablet">
-          <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in posts" :key="index">
-              <PostCard :post="post"></PostCard>
-          </div>
+        <div class="container">
+            <div class="has-text-centered m-b-30">
+                <h2 class="title is-underline font-quicksand">Articles</h2>
+                <p class="subtitle has-text-grey is-6">記事一覧</p>
+            </div>
+            <div class="columns is-multiline is-tablet">
+                <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in posts" :key="index">
+                    <PostCard :post="post"></PostCard>
+                </div>
+            </div>
         </div>
     </section>
 

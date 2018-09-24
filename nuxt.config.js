@@ -3,7 +3,7 @@ const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
 const modules = [
-  ['@nuxtjs/pwa'],
+  // ['@nuxtjs/pwa'],
   ['@nuxtjs/moment', ['ja']],
   ['@nuxtjs/axios']
 ]
@@ -108,12 +108,12 @@ module.exports = {
   axios: {
     baseURL: process.env.API_URL,
   },
-  manifest: {
-    name: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
-    lang: 'ja',
-    short_name: 'Nakamu🇭🇰Blog',
-    theme_color: '#ffffff',
-    background_color: '#ffffff'
-  }
+  // manifest: {
+  //   name: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
+  //   lang: 'ja',
+  //   short_name: 'Nakamu🇭🇰Blog',
+  //   theme_color: '#ffffff',
+  //   background_color: '#ffffff'
+  // }
 }
 

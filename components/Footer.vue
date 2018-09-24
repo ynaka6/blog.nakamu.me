@@ -8,6 +8,11 @@
           </router-link>
         </li>
         <li>
+          <router-link to="/posts">
+            Posts
+          </router-link>
+        </li>
+        <li>
           <a
             href="javascript:void(0)"
             class=""
@@ -20,6 +25,14 @@
           <router-link to="/policy/privacy">
             Privacy
           </router-link>
+        </li>
+        <li>
+          <a
+            href="https://nakamu.life/"
+            target="_blank"
+          >
+            About me
+          </a>
         </li>
       </ul>
       <div class="buttons" style="justify-content: center;">
@@ -77,6 +90,7 @@ footer {
     & > li {
       display: inline-block;
       margin: auto 1rem;
+      margin-bottom: .5rem;
 
       & > a {
         color: whitesmoke;

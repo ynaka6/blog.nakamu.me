@@ -83,47 +83,6 @@ body {
       background-color: $white;
     }
 }
-  
-.suggest__content {
-    max-height: 10rem;
-    overflow-y: scroll;
-}
-
-.suggest__item__title {
-    font-size: 1.2rem;
-    margin-bottom: 0;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    em {
-        font-weight: bold;
-        color: $danger;
-        background: lighten($danger, 20%);
-        white-space: nowrap;
-        border-radius: 4px;
-        padding: 0 .2em;
-    }
-}
-
-.suggest__item__description {
-    font-size: 1rem;
-    margin-bottom: 0;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    em {
-        font-weight: bold;
-        color: $danger;
-        background: lighten($danger, 20%);
-        white-space: nowrap;
-        border-radius: 4px;
-        padding: 0 .2em;
-    }
-}
 
 .main-menu {
     font-weight: bold;

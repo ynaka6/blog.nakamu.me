@@ -1,6 +1,27 @@
 <template>
   <footer class="footer has-background-dark has-text-light">
     <div class="container is-fluid has-text-centered">
+      <ul class="footer__menu-list">
+        <li>
+          <router-link to="/">
+            HOME
+          </router-link>
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            class=""
+            @click="$store.dispatch('toggleContactModal')"
+          >
+            Contact
+          </a>
+        </li>
+        <li>
+          <router-link to="/policy/privacy">
+            Privacy
+          </router-link>
+        </li>
+      </ul>
       <div class="buttons" style="justify-content: center;">
         <a
           href="https://twitter.com/nakanakamu0828"
@@ -48,3 +69,23 @@
     <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
   </footer>
 </template>
+
+<style lang="scss" scoped>
+footer {
+  ul.footer__menu-list {
+    margin-bottom: 2rem;
+    & > li {
+      display: inline-block;
+      margin: auto 1rem;
+
+      & > a {
+        color: whitesmoke;
+
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
+}
+</style>

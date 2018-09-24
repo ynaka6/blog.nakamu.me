@@ -33,7 +33,7 @@
           <a
             href="javascript:void(0)"
             class="navbar-item is-text-font-quicksand"
-            @click="toggleContactModal"
+            @click="$store.dispatch('toggleContactModal')"
           >
             Contact
           </a>
@@ -59,9 +59,6 @@ export default {
   methods: {
     handleScroll() {
       this.scrollY = window.scrollY;
-    },
-    toggleContactModal() {
-      this.$store.dispatch('toggleContactModal');
     },
   },
 };

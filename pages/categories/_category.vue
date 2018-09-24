@@ -41,13 +41,20 @@
 
     <section class="section" v-if="posts.length">
         <div class="container">
-            <div class="has-text-centered m-b-30">
-                <h2 class="title is-underline font-quicksand">Articles</h2>
-                <p class="subtitle has-text-grey is-6">記事一覧</p>
-            </div>
-            <div class="columns is-multiline is-tablet">
-                <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in posts" :key="index">
-                    <PostCard :post="post"></PostCard>
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="has-text-centered m-b-30">
+                        <h2 class="title is-underline font-quicksand">Articles</h2>
+                        <p class="subtitle has-text-grey is-6">記事一覧</p>
+                    </div>
+                    <div class="columns is-multiline">
+                        <div class="column is-flex is-6" v-for="(post, index) in posts" :key="index">
+                            <PostCard :post="post"></PostCard>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <CardProfile :person="person" />
                 </div>
             </div>
         </div>
@@ -62,6 +69,7 @@
 import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import Tags from '~/components/Tags.vue'
+import CardProfile from '~/components/Card/Profile.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
@@ -140,7 +148,8 @@ export default {
     components: {
         Loading,
         PostCard,
-        Tags
+        Tags,
+        CardProfile
     }
 }
 </script>

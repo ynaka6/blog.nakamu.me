@@ -121,73 +121,7 @@
           </div>
 
           <div class="column">
-            <div class="card article">
-              <div class="card-content">
-
-                <div class="media is-block-mobile">
-                  <div class="media-content">
-                    <figure class="image is-profile-image is-circle">
-                        <img :src="post.fields.author.fields.image.fields.file.url" alt="Image">
-                    </figure>
-                    <p class="title is-5 is-profile-name">
-                      <a :href="post.fields.author.fields.url">{{ post.fields.author.fields.name }}</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="content">
-
-                  <p class="subtitle is-6 m-b-10">
-                    {{ post.fields.author.fields.shortBio }}
-                  </p>
-                  <div class="socials">
-                    <a
-                      :href="'https://twitter.com/' + post.fields.author.fields.twitter"
-                      target="_blank"
-                      style="color: #55acee;"
-                    >
-                      <i class="fab fa-twitter"></i>
-                    </a>
-                    <a
-                      :href="'https://github.com/' + post.fields.author.fields.github"
-                      target="_blank"
-                      style="color: #333;"
-                    >
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                  
-                </div>
-
-              </div>
-            </div>
-
-            <div class="card article m-t-30">
-              <div class="card-content">
-                <aside class="menu">
-                  <p class="menu-label">
-                    開発・メンター相談
-                  </p>
-                  <ul class="menu-list">
-                    <li>
-                      <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">
-                        コードメンターの活動について
-                      </nuxt-link>
-                    </li>
-                    <li>
-                      <a
-                        href="javascript:void(0)"
-                        class="navbar-item is-text-font-quicksand"
-                        @click="$store.dispatch('toggleContactModal')"
-                      >
-                        問い合わせ
-                      </a>
-                    </li>
-                  </ul>
-                </aside>
-              </div>
-            </div>
-
+            <CardProfile :person="person" />
           </div>
 
         </div>
@@ -216,6 +150,7 @@
 <script>
 import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
+import CardProfile from '~/components/Card/Profile.vue'
 import VueMarkdown from 'vue-markdown'
 import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
@@ -320,7 +255,6 @@ export default {
   },
   computed: {
     twitterShareUrl: function () {
-      console.log(this.$route.fullPath)
       const url = process.env.BASE_URL + this.$route.fullPath
       return `https://twitter.com/intent/tweet?text=${this.title}&url=${url}`
     },
@@ -342,7 +276,8 @@ export default {
     Loading,
     PostCard,
     VueMarkdown,
-    Tags
+    Tags,
+    CardProfile
   }
 }
 </script>
@@ -377,26 +312,6 @@ export default {
   .article__content {
     margin-top: 2rem;
     line-height: 1.6rem;
-  }
-  .image.is-profile-image {
-    width: auto;
-    height: auto;
-    padding: 0 5rem 2rem;
-  }
-  .is-profile-name {
-    text-align: center;
-  }
-
-  .socials {
-    & > a {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.5rem;
-
-      &:first-child {
-        margin-left: 0;
-      }
-    }
   }
 
   @media screen and (max-width: 1088px) {

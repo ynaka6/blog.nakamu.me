@@ -9,7 +9,7 @@
                     <img :src="person.fields.image.fields.file.url" alt="Image">
                 </figure>
                 <p class="title is-5 is-profile-name">
-                    <a :href="person.fields.url">{{ person.fields.name }}</a>
+                    <a :href="person.fields.url" target="_blank">{{ person.fields.name }}</a>
                 </p>
                 </div>
             </div>
@@ -31,6 +31,8 @@
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
+                <a :href="person.fields.url" class="is-pulled-right" target="_blank">プロフィール詳細はこちら <i class="fas fa-caret-right"></i></a>
+                <div class="is-clearfix"></div>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-dark is-medium" v-if="tags.length">
+  <section class="hero is-dark" v-if="tags.length">
     <div class="hero-body p-t-50">
       <div class="container">
         <div class="box">

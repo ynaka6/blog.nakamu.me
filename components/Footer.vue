@@ -79,7 +79,9 @@
         </a>
       </div>
     </div>
-    <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
+    <no-ssr>
+      <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
+    </no-ssr>
   </footer>
 </template>
 

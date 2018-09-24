@@ -12,7 +12,14 @@
         </nuxt-link>
     </div>
     <div class="card-content">
-        <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
+        <span class="tag is-rounded m-b-10">
+            <time :datetime="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD')"></time>
+            <span v-if="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD') < $moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')">
+                &nbsp;<i class="fas fa-sync-alt"></i>&nbsp;
+                <time :datetime="$moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.sys.updatedAt)).format('YYYY.MM.DD')"></time>
+            </span>
+        </span>
+
         <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
         <div class="content m-b-30">
               <div class="has-text-grey is-size-7" v-html="post.fields.description"></div>

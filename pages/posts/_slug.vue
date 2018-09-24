@@ -29,7 +29,13 @@
               <div class="card-content">
                 <div class="media">
                     <div class="media-content">
-                        <time class="tag is-rounded m-b-10">{{ $moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD') }}</time>
+                      <span class="tag is-rounded m-b-10">
+                        <time :datetime="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD')"></time>
+                        <span v-if="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD') < $moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')">
+                          &nbsp;<i class="fas fa-sync-alt"></i>&nbsp;
+                          <time :datetime="$moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.sys.updatedAt)).format('YYYY.MM.DD')"></time>
+                        </span>
+                      </span>
                         <h1 class="title article__title">
                           {{ post.fields.title }}
                         </h1>
@@ -256,7 +262,7 @@ const initData = async ({ app, params }) => {
         description: `${entries.items[0].fields.description}`,
         toc: true,
         tocHtml: '',
-        relatedPosts: categories.items
+        relatedPosts: categories.items,
     }
 }
 export default {

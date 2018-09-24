@@ -61,27 +61,6 @@ import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
-const initData = async ({ app, params }) => {
-    const [　entries, posts, postType ] = await Promise.all([
-        client.getEntries({
-            'sys.id': process.env.CTF_PERSON_ID
-        }),
-        client.getEntries({
-            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
-            order: '-fields.publishDate',
-        }),
-        client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-    ])
-
-    return {
-        person: entries.items[0],
-        posts: posts.items,
-        tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
-        title: `投稿一覧`,
-        description: `投稿一覧ページです。`
-    }
-}
-
 export default {
     head () {
         return {
@@ -102,27 +81,23 @@ export default {
         }
     },
     async asyncData (context) {
-        if (process.browser) {
-            return {
-                person: null,
-                posts: [],
-                tags: [],
-                title: `投稿一覧`,
-                description: `投稿一覧ページです。`
-            }
-        }
-        return await initData(context);
-    },
-    async mounted () {
-        if (this.$store.getters.isFirstView) {
-            this.$store.dispatch('setFirstView', {
-                firstView: false
-            });
-        } else {
-            const { person, posts, tags } = await initData({ app: this, params: this.$route.params });
-            this.person = person;
-            this.posts = posts;
-            this.tags = tags;
+        const [　entries, posts, postType ] = await Promise.all([
+            client.getEntries({
+                'sys.id': process.env.CTF_PERSON_ID
+            }),
+            client.getEntries({
+                'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+                order: '-fields.publishDate',
+            }),
+            client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+        ])
+
+        return {
+            person: entries.items[0],
+            posts: posts.items,
+            tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
+            title: `投稿一覧`,
+            description: `投稿一覧ページです。`
         }
     },
     components: {

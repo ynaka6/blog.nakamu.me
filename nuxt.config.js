@@ -75,8 +75,8 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend(config) {
-      if (process.server && process.browser) {
+    extend (config, { isDev, isClient }) {
+      if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

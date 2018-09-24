@@ -18,7 +18,6 @@
       <div class="navbar-menu" :class="{'is-active': drawer}">
         <div class="navbar-end">
           <div class="navbar-item">
-            <FormSearchBox />
           </div>
         </div>
       </div>
@@ -27,7 +26,7 @@
 </template>
 
 <script>
-import FormSearchBox from '~/components/Form/SearchBox.vue'
+// import FormSearchBox from '~/components/Form/SearchBox.vue'
 
 export default {
   name: 'Header',
@@ -46,7 +45,7 @@ export default {
     },
   },
   components: {
-    FormSearchBox,
+    // FormSearchBox,
   }
 };
 </script>

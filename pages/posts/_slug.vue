@@ -136,7 +136,7 @@
         </div>
         <div class="columns is-centered is-multiline is-tablet">
           <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in relatedPosts" :key="index">
-              <PostCard :post="post"></PostCard>
+              <CardPost :post="post"></CardPost>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import PostCard from '~/components/Post/Card.vue'
+import CardPost from '~/components/Card/Post.vue'
 import CardProfile from '~/components/Card/Profile.vue'
 import VueMarkdown from 'vue-markdown'
 import Tags from '~/components/Tags.vue'
@@ -237,7 +237,7 @@ export default {
     }
   },
   components: {
-    PostCard,
+    CardPost,
     VueMarkdown,
     Tags,
     CardProfile

@@ -35,7 +35,7 @@
                     </div>
                     <div class="columns is-multiline">
                         <div class="column is-flex is-6" v-for="(post, index) in posts" :key="index">
-                            <PostCard :post="post"></PostCard>
+                            <CardPost :post="post"></CardPost>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import PostCard from '~/components/Post/Card.vue'
+import CardPost from '~/components/Card/Post.vue'
 import Tags from '~/components/Tags.vue'
 import CardProfile from '~/components/Card/Profile.vue'
 import {createClient} from '~/plugins/contentful.js'
@@ -98,7 +98,7 @@ export default {
         }
     },
     components: {
-        PostCard,
+        CardPost,
         Tags,
         CardProfile
     }

@@ -1,52 +1,10 @@
 <template>
-  <main v-if="posts.length">
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="has-text-centered title is-size-1 font-leckerli-one">
-              Engineer Blog
-          </h1>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section" v-if="posts.length">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8">
-                    <div class="has-text-centered m-b-30">
-                        <h2 class="title is-underline font-quicksand">Latest Articles</h2>
-                        <p class="subtitle has-text-grey is-6">最新記事</p>
-                    </div>
-                    <div class="columns is-multiline">
-                        <div class="column is-flex is-6" v-for="(post, index) in posts" :key="index">
-                            <PostCard :post="post"></PostCard>
-                        </div>
-                    </div>
-
-                    <div class="columns has-text-centered m-t-30">
-                    <div class="column">
-                        <router-link to="/posts/" class="button is-primary is-outlined is-rounded is-large">
-                            もっとみる
-                        </router-link>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <CardProfile :person="person" />
-                </div>
-            </div>
-        </div>
-    </section>
-
+  <main>    
     <Tags :tags="tags"/>
   </main>
-  <Loading v-else />
 </template>
 
 <script>
-import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import Tags from '~/components/Tags.vue'
 import CardProfile from '~/components/Card/Profile.vue'
@@ -98,14 +56,10 @@ export default {
         }
     },
     components: {
-        Loading,
         PostCard,
         Tags,
         CardProfile
     },
 }
 </script>
-
-<style lang="scss" scoped>
-</style>
 

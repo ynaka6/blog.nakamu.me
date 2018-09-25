@@ -78,7 +78,9 @@
           <img src="https://bulma.io/images/made-with-bulma--white.png" alt="Made with Bulma" width="163" height="31">
         </a>
       </div>
-    </div>    
+    </div>
+
+    <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
   </footer>
 </template>
 

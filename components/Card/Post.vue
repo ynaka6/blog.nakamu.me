@@ -11,6 +11,18 @@
                 <span class="image__category-label" v-text="post.fields.category"></span>
             </nuxt-link>
         </div>
+        <div class="card-content">
+            <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
+            <div class="content">
+                <div class="has-text-grey is-size-7" v-html="post.fields.description"></div>
+                <div class="tags m-t-10">
+                    <nuxt-link
+                        v-for="tag in post.fields.tags"
+                        :key="tag"
+                        :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

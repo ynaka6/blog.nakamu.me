@@ -3,7 +3,9 @@
     <Header/>
     <nuxt/>
     <Footer/>
-    <ButtonPageTop />
+    <no-ssr>
+      <ButtonPageTop />
+    </no-ssr>
     <ModalContact />
   </div>
 </template>

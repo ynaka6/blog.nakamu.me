@@ -51,8 +51,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/buefy.js',
-    '~/plugins/vue-scrollto.js',
     '~/plugins/vee-validate.js',
+    { src: '~/plugins/vue-scrollto.js', ssr: false },
     { src: '~/plugins/token.js', ssr: false },
     { src: '~/plugins/vue-cookie-law.js', ssr: false }
   ],

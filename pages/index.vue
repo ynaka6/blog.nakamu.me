@@ -37,7 +37,7 @@
             </li>
             <li data-target="pane-1" id="1" v-for="(category, index) in categories" :key="index">
                 <nuxt-link
-                    :to="{ name: 'categories-category', params: { category: category }}">{{ category }}</nuxt-link>
+                    :to="`/categories/${category}/`">{{ category }}</nuxt-link>
             </li>
         </ul>
        </div>
@@ -60,7 +60,7 @@
 
                     <div class="columns has-text-centered m-t-30">
                     <div class="column">
-                        <router-link to="/posts" class="button is-primary is-outlined is-rounded is-large">
+                        <router-link to="/posts/" class="button is-primary is-outlined is-rounded is-large">
                             もっとみる
                         </router-link>
                         </div>

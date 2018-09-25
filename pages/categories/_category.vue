@@ -18,7 +18,7 @@
             </li>
             <li :class="{'is-active': c === category}" v-for="(c, index) in categories" :key="index">
                 <nuxt-link
-                    :to="{ name: 'categories-category', params: { category: c }}" class="is-active">{{ c }}</nuxt-link>
+                    :to="`/categories/${c}/`">{{ c }}</nuxt-link>
             </li>
         </ul>
        </div>

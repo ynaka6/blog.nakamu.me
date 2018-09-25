@@ -1,5 +1,5 @@
 <template>
-  <main v-if="post">
+  <main>
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
@@ -144,11 +144,9 @@
 
     <Tags :tags="tags"/>
   </main>
-  <Loading v-else />
 </template>
 
 <script>
-import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import CardProfile from '~/components/Card/Profile.vue'
 import VueMarkdown from 'vue-markdown'
@@ -239,7 +237,6 @@ export default {
     }
   },
   components: {
-    Loading,
     PostCard,
     VueMarkdown,
     Tags,

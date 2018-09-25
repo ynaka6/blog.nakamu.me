@@ -1,5 +1,5 @@
 <template>
-  <main v-if="posts.length">
+  <main>
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
@@ -48,11 +48,9 @@
 
     <Tags :tags="tags"/>
   </main>
-  <Loading v-else />
 </template>
 
 <script>
-import Loading from '~/components/Loading.vue'
 import PostCard from '~/components/Post/Card.vue'
 import Tags from '~/components/Tags.vue'
 import CardProfile from '~/components/Card/Profile.vue'
@@ -100,7 +98,6 @@ export default {
         }
     },
     components: {
-        Loading,
         PostCard,
         Tags,
         CardProfile

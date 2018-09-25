@@ -17,8 +17,27 @@
       </div>
       <div class="navbar-menu" :class="{'is-active': drawer}">
         <div class="navbar-end">
-          <div class="navbar-item">
-          </div>
+          <a
+            href="https://nakamu.life/"
+            class="navbar-item is-text-font-quicksand"
+            target="_blank"
+          >
+            About
+          </a>
+          <router-link
+            to="/"
+            class="navbar-item is-active is-text-font-quicksand"
+          >
+            Blog
+          </router-link>
+          <a
+            href="javascript:void(0)"
+            class="navbar-item is-text-font-quicksand"
+            @click="$store.dispatch('toggleContactModal')"
+          >
+            Contact
+          </a>
+
         </div>
       </div>
     </div>
@@ -26,8 +45,6 @@
 </template>
 
 <script>
-// import FormSearchBox from '~/components/Form/SearchBox.vue'
-
 export default {
   name: 'Header',
   props: {
@@ -44,9 +61,6 @@ export default {
       this.scrollY = window.scrollY;
     },
   },
-  components: {
-    // FormSearchBox,
-  }
 };
 </script>
 

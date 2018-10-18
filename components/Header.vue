@@ -9,11 +9,13 @@
           <div class="subtitle is-size-7"> 自由な場所でエンジニアとして生きていくためのメディア</div>
         </router-link>
 
+        <!--
         <span class="navbar-burger burger" :class="{'is-active': drawer}" @click="drawer = !drawer">
           <span></span>
           <span></span>
           <span></span>
         </span>
+        -->
       </div>
       <div class="navbar-menu" :class="{'is-active': drawer}">
         <div class="navbar-end">

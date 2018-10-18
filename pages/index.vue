@@ -1,18 +1,12 @@
 <template>
   <main>
     <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="has-text-centered title is-size-1 font-leckerli-one">
-              Engineer Blog
-          </h1>
-        </div>
-      </div>
       <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
-            <li class="is-active">
-                <nuxt-link
-                    to="/">ホーム</nuxt-link>
+            <li>
+                <router-link to="/posts">
+                  全て
+                </router-link>
             </li>
             <li data-target="pane-1" id="1" v-for="(category, index) in categories" :key="index">
                 <nuxt-link

@@ -1,16 +1,20 @@
 <template>
   <main>
-
     <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="has-text-centered title is-size-2">
-              投稿一覧 ({{ posts.length }})
-          </h1>
-        </div>
-      </div>
+      <div class="tabs is-boxed is-centered main-menu" id="nav">
+        <ul>
+            <li class="is-active">
+                <router-link to="/posts">
+                  全て
+                </router-link>
+            </li>
+            <li v-for="(c, index) in categories" :key="index">
+                <nuxt-link
+                    :to="`/categories/${c}/`">{{ c }}</nuxt-link>
+            </li>
+        </ul>
+       </div>
     </section>
-
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
@@ -20,7 +24,7 @@
                 </router-link>
             </li>
             <li class="is-active">
-                <a href="#" aria-current="page">投稿一覧</a>
+                <a href="#" aria-current="page">投稿一覧（{{ posts.length }}）</a>
             </li>
         </ul>
       </div>
@@ -31,7 +35,7 @@
             <div class="columns">
                 <div class="column is-8">
                     <div class="has-text-centered m-b-30">
-                        <h2 class="title is-underline font-quicksand">Articles</h2>
+                        <h1 class="title is-underline font-quicksand">投稿一覧（{{ posts.length }}）</h1>
                         <p class="subtitle has-text-grey is-6">記事一覧</p>
                     </div>
                     <div class="columns is-multiline">
@@ -95,7 +99,8 @@ export default {
             posts: posts.items,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: `投稿一覧`,
-            description: `投稿一覧ページです。`
+            description: `投稿一覧ページです。`,
+            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
         }
     },
     components: {

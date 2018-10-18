@@ -1,25 +1,30 @@
 <template>
   <main>
     <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="has-text-centered title is-size-2">
-              #{{ tag }}の投稿 ({{ posts.length }})
-          </h1>
-        </div>
-      </div>
+      <div class="tabs is-boxed is-centered main-menu" id="nav">
+        <ul>
+            <li>
+                <router-link to="/posts">
+                  全て
+                </router-link>
+            </li>
+            <li v-for="(c, index) in categories" :key="index">
+                <nuxt-link
+                    :to="`/categories/${c}/`">{{ c }}</nuxt-link>
+            </li>
+        </ul>
+       </div>
     </section>
-
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
             <li>
-                <router-link to="/">
-                  HOME
+                <router-link to="/posts">
+                  全て
                 </router-link>
             </li>
             <li class="is-active">
-                <a href="#" aria-current="page">#{{ tag }}の投稿</a>
+                <a href="#" aria-current="page">#{{ tag }}の投稿（{{ posts.length }}）</a>
             </li>
         </ul>
       </div>
@@ -30,7 +35,7 @@
             <div class="columns">
                 <div class="column is-8">
                     <div class="has-text-centered m-b-30">
-                        <h2 class="title is-underline font-quicksand">Articles</h2>
+                        <h2 class="title is-underline font-quicksand">#{{ tag }}の投稿（{{ posts.length }}）</h2>
                         <p class="subtitle has-text-grey is-6">記事一覧</p>
                     </div>
                     <div class="columns is-multiline">
@@ -94,7 +99,8 @@ export default {
             tag: params.tag,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: `#${params.tag}の投稿一覧`,
-            description: `#${params.tag}の投稿一覧ページです。`
+            description: `#${params.tag}の投稿一覧ページです。`,
+            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
         }
     },
     components: {

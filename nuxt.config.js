@@ -27,6 +27,8 @@ module.exports = {
     HTTP_SCHEMA: process.env.HTTP_SCHEMA,
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
+
+    PAGENATE_LIMIT: process.env.PAGENATE_LIMIT || 20,
   },
  /*
   ** Headers of the page
@@ -95,8 +97,11 @@ module.exports = {
         client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
       ])
       .then(([entries, postType]) => {
+        const total = entries.items.length
+        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
         return [
           '/posts',
+          ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
           ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
           ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`),
           ...['フロントエンド', 'バックエンド', 'プログラミング', 'その他'].map(category => `/categories/${category}`)

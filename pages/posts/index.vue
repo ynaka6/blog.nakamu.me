@@ -57,56 +57,6 @@
 </template>
 
 <script>
-import CardPost from '~/components/Card/Post.vue'
-import CardProfile from '~/components/Card/Profile.vue'
-import Tags from '~/components/Tags.vue'
-import {createClient} from '~/plugins/contentful.js'
-
-const client = createClient()
-export default {
-    head () {
-        return {
-            title: this.title,
-            meta: [
-                { name: 'description', content: this.description },
-
-                { name: 'twitter:card', content: 'summary' },
-                { name: 'twitter:site', content: this.person ? this.person.fields.twitter : '' },
-                { name: 'twitter:creator', content: this.person ? this.person.fields.twitter : '' },
-                { name: 'twitter:image', content: 'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill' },
-                { name: 'twitter:title', content: this.title },
-                { name: 'twitter:description', content: this.description },
-
-                { name: 'og:title', content: this.title },
-                { name: 'og:description', content: this.description },
-            ]
-        }
-    },
-    async asyncData (context) {
-        const [　entries, posts, postType ] = await Promise.all([
-            client.getEntries({
-                'sys.id': process.env.CTF_PERSON_ID
-            }),
-            client.getEntries({
-                'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
-                order: '-fields.publishDate',
-            }),
-            client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-        ])
-
-        return {
-            person: entries.items[0],
-            posts: posts.items,
-            tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
-            title: `投稿一覧`,
-            description: `投稿一覧ページです。`,
-            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
-        }
-    },
-    components: {
-        CardPost,
-        CardProfile,
-        Tags
-    }
-}
+import PostPage from '~/pages/posts/page/_page.vue'
+export default PostPage
 </script>

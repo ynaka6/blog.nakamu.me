@@ -43,9 +43,8 @@
                             <CardPost :post="post"></CardPost>
                         </div>
                     </div>
-
                     <div class="is-clearfix">
-                        <div v-if="prevPage" class="is-pulled-left">
+                        <div v-if="prevPage && prevPage < page" class="is-pulled-left">
                             <nuxt-link v-if="1 == prevPage" class="button is-large is-circle is-light" :to="{ name: 'posts' }">
                                 <i class="fas fa-angle-left"></i>
                             </nuxt-link>
@@ -56,7 +55,7 @@
                                 前のページ
                             </p>
                         </div>
-                        <div v-if="nextPage" class="is-pulled-right">
+                        <div v-if="nextPage && nextPage > page" class="is-pulled-right">
                             <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'posts-page-page', params: { page: nextPage }}">
                                 <i class="fas fa-angle-right"></i>
                             </nuxt-link>
@@ -108,8 +107,9 @@ export default {
         }
     },
     async asyncData ({ app, params }) {
-        const page = params.page || 1
-        const skip = (page - 1) * process.env.PAGENATE_LIMIT
+        const page = parseInt(params.page) || 1
+        const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
+        const skip = (page - 1) * limit
         const [　entries, posts, postType ] = await Promise.all([
             client.getEntries({
                 'sys.id': process.env.CTF_PERSON_ID
@@ -118,13 +118,13 @@ export default {
                 'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
                 order: '-fields.publishDate',
                 skip: skip,
-                limit: process.env.PAGENATE_LIMIT + 1
+                limit: limit + 1
             }),
             client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
         ])
 
         const prevPage = page > 1 ? page - 1 : null
-        const nextPage = posts.items.length == process.env.PAGENATE_LIMIT + 1 ? page + 1 : null
+        const nextPage = posts.items.length > limit ? page + 1 : null
         if (nextPage) {
             posts.items.pop()
         }
@@ -135,6 +135,7 @@ export default {
             title: `投稿一覧`,
             description: `投稿一覧ページです。`,
             categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
+            page: page,
             prevPage: prevPage,
             nextPage: nextPage
         }

@@ -89,6 +89,9 @@ export default {
         return !params.page || /^\d+$/.test(params.page)
     },
     head () {
+        const link = []
+        if (this.nextPage) link.push({ rel: 'next', href: `/posts/page/${this.nextPage}/` })
+        if (this.prevPage) link.push({ rel: 'prev', href: (1 == this.prevPage ? '/posts' : `/posts/page/${this.prevPage}/`) })
         return {
             title: this.title,
             meta: [
@@ -103,7 +106,8 @@ export default {
 
                 { name: 'og:title', content: this.title },
                 { name: 'og:description', content: this.description },
-            ]
+            ],
+            link: link,
         }
     },
     async asyncData ({ app, params }) {

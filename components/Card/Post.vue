@@ -8,7 +8,7 @@
                     sizes="(min-width: 1024px) 400px, 100vw"
                     v-if="post.fields.heroImage"
                 >
-                <span class="image__category-label" v-text="post.fields.category"></span>
+                <span class="image__category-label" v-text="post.fields.category[0]"></span>
             </nuxt-link>
         </div>
         <div class="card-content">

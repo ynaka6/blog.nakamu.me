@@ -122,13 +122,26 @@
                     border-top-right-radius: $control-radius;
                     border-bottom-right-radius: $control-radius;
                     margin-right: 0;
-            }
+                }
             }
         }
     }
 }
 
 
+.article__content {
+    & > :first-child + h3 {
+        text-align: center;
+
+        & + ul {
+            background-color: #F9F9F9;
+            border: 1px solid #AAAAAA;
+            margin-left: 0;
+            margin-bottom: 4rem;
+            padding: 1rem;
+        }
+    }
+}
 
 // tag
 $tag-colors: (

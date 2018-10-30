@@ -61,13 +61,7 @@
                     </div>
                 </div>
 
-                <div class="content article__content">
-                  <div class="post-toc">
-                    <p class="post-toc__title">目次</p>
-                    <div v-html="tocHtml"></div>
-                  </div>
-                  <vue-markdown :toc="toc" toc-id="toc" v-on:toc-rendered="tocAllRight">{{post.fields.body}}</vue-markdown>
-                </div>
+                <div class="content article__content" v-html="$md.render('@[toc](＜目次＞)\n' + post.fields.body)"></div>
 
 
                 <div class="social m-t-50">
@@ -149,7 +143,6 @@
 <script>
 import CardPost from '~/components/Card/Post.vue'
 import CardProfile from '~/components/Card/Profile.vue'
-import VueMarkdown from 'vue-markdown'
 import Tags from '~/components/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
@@ -212,8 +205,6 @@ export default {
         tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
         title: `${entries.items[0].fields.title}`,
         description: `${entries.items[0].fields.description}`,
-        toc: true,
-        tocHtml: '',
         relatedPosts: categories ? categories.items : [],
     }
   },
@@ -231,14 +222,8 @@ export default {
       return `https://b.hatena.ne.jp/add?mode=confirm&title=${this.title}&url=${url}`
     }
   },
-  methods: {
-    tocAllRight: function (tocHtmlStr) {
-      this.tocHtml = tocHtmlStr
-    }
-  },
   components: {
     CardPost,
-    VueMarkdown,
     Tags,
     CardProfile
   }
@@ -255,17 +240,6 @@ export default {
       color: #444444;
       font-weight: bold;
       font-size: .8rem;
-  }
-  .post-toc {
-    background-color: #F9F9F9;
-    border: 1px solid #AAAAAA;
-    margin-bottom: 4rem;
-    padding: 1rem;
-  }
-  .post-toc__title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2rem;
   }
 
   .article__title {

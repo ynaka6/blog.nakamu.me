@@ -5,7 +5,8 @@ const client = createClient()
 const modules = [
   ['@nuxtjs/pwa'],
   ['@nuxtjs/moment', ['ja']],
-  ['@nuxtjs/axios']
+  ['@nuxtjs/axios'],
+  ['@nuxtjs/markdownit'],
 ]
 if (process.env.NODE_ENV === 'production') {
   modules.push(['@nuxtjs/google-analytics', {
@@ -119,6 +120,17 @@ module.exports = {
     short_name: 'Nakamu🇭🇰Blog',
     theme_color: '#ffffff',
     background_color: '#ffffff'
+  },
+  markdownit: {
+    preset: 'default',
+    injected: true,
+    breaks: true,
+    html: true,
+    linkify: true,
+    typography: true,
+    use: [
+      'markdown-it-toc'
+    ]
   }
 }
 

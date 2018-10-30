@@ -94,9 +94,7 @@ export default {
         return {
             person: entries.items[0],
             posts: posts.items,
-            // TODO : APIから項目の一覧が取得できないので調査する
-            // categories: postType.fields.find(field => field.id === 'category').validations[0].in,
-            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
+            categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
             description: '香港在住のWebデベロッパー「なかむ」が今ままでのエンジニア経験を元にした技術ブログまとめます。',

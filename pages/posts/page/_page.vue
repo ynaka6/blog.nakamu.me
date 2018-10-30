@@ -138,7 +138,7 @@ export default {
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: `投稿一覧`,
             description: `投稿一覧ページです。`,
-            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
+            categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
             page: page,
             prevPage: prevPage,
             nextPage: nextPage

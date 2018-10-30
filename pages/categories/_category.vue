@@ -100,8 +100,7 @@ export default {
             person: entries.items[0],
             posts: posts.items,
             category: params.category,
-            // categories: postType.fields.find(field => field.id === 'category').validations[0].in,
-            categories: [ 'フロントエンド', 'バックエンド', 'プログラミング', 'その他' ],
+            categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: `#${params.category}の投稿一覧`,
             description: `#${params.category}の投稿一覧ページです。`

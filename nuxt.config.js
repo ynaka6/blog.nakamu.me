@@ -104,7 +104,7 @@ module.exports = {
           ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
           ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
           ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`),
-          ...['フロントエンド', 'バックエンド', 'プログラミング', 'その他'].map(category => `/categories/${category}`)
+          ...postType.fields.find(field => field.id === 'category').items.validations[0].in.map(category => `/categories/${category}`)
         ]
       })
     }

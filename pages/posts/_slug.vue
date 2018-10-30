@@ -10,8 +10,8 @@
             </li>
             <li v-if="post">
                 <nuxt-link
-                    :to="{ name: 'categories-category', params: { category: post.fields.category }}">
-                    {{ post.fields.category }}
+                    :to="{ name: 'categories-category', params: { category: post.fields.category[0] }}">
+                    {{ post.fields.category[0] }}
                 </nuxt-link>
             </li>
             <li class="is-active" v-if="post">
@@ -54,7 +54,7 @@
                               :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
                               v-if="post.fields.heroImage.fields.file.url"
                           >
-                          <span class="image__category-label" v-text="post.fields.category"></span>
+                          <span class="image__category-label" v-text="post.fields.category[0]"></span>
                         </div>
 
 
@@ -197,7 +197,7 @@ export default {
         }),
         client.getEntries({
           'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
-          'fields.category[in]': entries.items[0].fields.category,
+          'fields.category[in]': entries.items[0].fields.category[0],
           'fields.slug[ne]': params.slug,
           order: '-fields.publishDate',
           limit: 3
@@ -214,7 +214,7 @@ export default {
         description: `${entries.items[0].fields.description}`,
         toc: true,
         tocHtml: '',
-        relatedPosts: categories.items,
+        relatedPosts: categories ? categories.items : [],
     }
   },
   computed: {

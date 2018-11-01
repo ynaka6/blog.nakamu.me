@@ -30,10 +30,10 @@
                 <div class="media">
                     <div class="media-content">
                       <span class="tag is-rounded m-b-10">
-                        <time :datetime="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.fields.publishDate)).format('YYYY.MM.DD')"></time>
-                        <span v-if="$moment(new Date(post.fields.publishDate)).format('YYYY-MM-DD') < $moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')">
+                        <time :datetime="$dayjs(publishDate).format('YYYY/MM/DD')" v-text="$dayjs(publishDate).format('YYYY.MM.DD')"></time>
+                        <span v-if="$dayjs(publishDate).isBefore($dayjs(updateDate))">
                           &nbsp;<i class="fas fa-sync-alt"></i>&nbsp;
-                          <time :datetime="$moment(new Date(post.sys.updatedAt)).format('YYYY-MM-DD')" v-text="$moment(new Date(post.sys.updatedAt)).format('YYYY.MM.DD')"></time>
+                          <time :datetime="$dayjs(updateDate).format('YYYY/MM/DD')" v-text="$dayjs(updateDate).format('YYYY.MM.DD')"></time>
                         </span>
                       </span>
                         <h1 class="title article__title">
@@ -196,9 +196,9 @@ export default {
           limit: 3
         })
     ])
-
+    const post = entries.items[0]
     return {
-        post: entries.items[0],
+        post: post,
         prevPost: prevEntries.items.length ? prevEntries.items[0] : null,
         nextPost: nextEntries.items.length ? nextEntries.items[0] : null,
         person: entries.items[0].fields.author,
@@ -206,6 +206,8 @@ export default {
         title: `${entries.items[0].fields.title}`,
         description: `${entries.items[0].fields.description}`,
         relatedPosts: categories ? categories.items : [],
+        publishDate: app.$dayjs(post.fields.publishDate).format('YYYY-MM-DD'),
+        updateDate: app.$dayjs(post.sys.updatedAt).format('YYYY-MM-DD')
     }
   },
   computed: {

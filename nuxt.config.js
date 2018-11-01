@@ -4,7 +4,6 @@ const client = createClient()
 
 const modules = [
   ['@nuxtjs/pwa'],
-  ['@nuxtjs/moment', ['ja']],
   ['@nuxtjs/axios'],
   ['@nuxtjs/markdownit'],
 ]
@@ -55,8 +54,8 @@ module.exports = {
   plugins: [
     '~/plugins/buefy.js',
     '~/plugins/vee-validate.js',
+    '~/plugins/day.js',
     { src: '~/plugins/vue-scrollto.js', ssr: false },
-    { src: '~/plugins/token.js', ssr: false },
     { src: '~/plugins/vue-cookie-law.js', ssr: false }
   ],
   css: [

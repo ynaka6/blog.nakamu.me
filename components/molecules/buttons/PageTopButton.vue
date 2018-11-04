@@ -1,29 +1,22 @@
 <template>
-    <a
-      id="page-top"
-      class="button is-danger is-large is-circle"
-      :class="{'is-hidden': scrollY < 200}"
-      v-scroll-to="'body'"
-    >
-      <i class="fas fa-angle-up"></i>
-    </a>
+  <Button
+    id="page-top"
+    :classes="[ 'is-circle', 'is-large', 'is-danger', { 'is-hidden': scrollY < 200 } ]"
+    icon="fas fa-angle-up"
+  />
 </template>
 
 <script>
+import Button from '~/components/atoms/Button.vue'
+
 export default {
-  props: [],
-  data: () => ({
-    scrollY: 0,
-  }),
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      this.scrollY = window.scrollY;
-    }
-  },
-};
+  props: [
+    'scrollY'
+  ],
+  components: {
+      Button
+  }
+}
 </script>
 
 <style lang="scss" scoped>

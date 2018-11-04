@@ -36,34 +36,22 @@
         </li>
       </ul>
       <div class="buttons" style="justify-content: center;">
-        <a
+        <SocialButton
           href="https://twitter.com/nakanakamu0828"
-          target="_blank"
-          class="button is-circle is-medium"
-        >
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a
+          icon="fab fa-twitter"
+        />
+        <SocialButton
           href="https://github.com/nakanakamu0828"
-          target="_blank"
-          class="button is-circle is-medium"
-        >
-          <i class="fab fa-github"></i>
-        </a>
-        <a
+          icon="fab fa-github"
+        />
+        <SocialButton
           href="https://medium.com/@nakamu"
-          target="_blank"
-          class="button is-circle is-medium"
-        >
-          <i class="fab fa-medium-m"></i>
-        </a>
-        <a
+          icon="fab fa-medium-m"
+        />
+        <SocialButton
           href="mailto:yuuki.nakamura.0828@gmail.com"
-          target="_blank"
-          class="button is-circle is-medium"
-        >
-          <i class="far fa-envelope"></i>
-        </a>
+          icon="far fa-envelope"
+        />
       </div>
       <p>
         <small>
@@ -83,6 +71,16 @@
     <cookie-law theme="dark-lime--rounded" message="あなたがこのサイト上でベストな経験/体験ができるようにCookieを使用しています" buttonText="同意"></cookie-law>
   </footer>
 </template>
+
+<script>
+import SocialButton from '~/components/molecules/buttons/SocialButton.vue'
+
+export default {
+  components: {
+    SocialButton,
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 footer {

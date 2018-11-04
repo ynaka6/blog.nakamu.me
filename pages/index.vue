@@ -33,9 +33,10 @@
 
                         <div class="columns has-text-centered m-t-30">
                             <div class="column">
-                                <router-link to="/posts" class="button is-primary is-outlined is-rounded is-large">
-                                    もっとみる
-                                </router-link>
+                                <MoreButton 
+                                    href="/posts"
+                                    v-on:click="$router.push('/posts')"
+                                />
                             </div>
                         </div>
                     </div>
@@ -52,9 +53,12 @@
 </template>
 
 <script>
-import CardPost from '~/components/Card/Post.vue'
-import Tags from '~/components/Tags.vue'
-import CardProfile from '~/components/Card/Profile.vue'
+import CardPost from '~/components/organisms/cards/Post.vue'
+import Tags from '~/components/organisms/Tags.vue'
+import CardProfile from '~/components/organisms/cards/Profile.vue'
+
+import MoreButton from '~/components/molecules/buttons/MoreButton.vue'
+
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -103,8 +107,9 @@ export default {
     components: {
         CardPost,
         CardProfile,
-        Tags
-    },
+        Tags,
+        MoreButton
+    }
 }
 </script>
 

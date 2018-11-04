@@ -78,9 +78,9 @@
 </template>
 
 <script>
-import CardPost from '~/components/Card/Post.vue'
-import CardProfile from '~/components/Card/Profile.vue'
-import Tags from '~/components/Tags.vue'
+import CardPost from '~/components/organisms/cards/Post.vue'
+import CardProfile from '~/components/organisms/cards/Profile.vue'
+import Tags from '~/components/organisms/Tags.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()

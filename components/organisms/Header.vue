@@ -28,7 +28,7 @@
 </template>
 
 <script>
-// import FormSearchBox from '~/components/Form/SearchBox.vue'
+// import FormSearchBox from '~/components/molecules/forms/SearchBox.vue'
 
 export default {
   name: 'Header',

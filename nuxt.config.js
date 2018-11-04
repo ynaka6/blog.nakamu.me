@@ -6,11 +6,32 @@ const modules = [
   ['@nuxtjs/pwa'],
   ['@nuxtjs/axios'],
   ['@nuxtjs/markdownit'],
+  ['@nuxtjs/sitemap'],
 ]
 if (process.env.NODE_ENV === 'production') {
   modules.push(['@nuxtjs/google-analytics', {
     id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
   }])
+}
+
+const generateRoutes = () => {
+  return Promise.all([
+    client.getEntries({
+      'content_type': process.env.CTF_BLOG_POST_TYPE_ID
+    }),
+    client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+  ])
+  .then(([entries, postType]) => {
+    const total = entries.items.length
+    const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+    return [
+      '/posts',
+      ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
+      ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
+      ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`),
+      ...postType.fields.find(field => field.id === 'category').items.validations[0].in.map(category => `/categories/${category}`)
+    ]
+  })
 }
 
 module.exports = {
@@ -89,25 +110,7 @@ module.exports = {
     }
   },
   generate: {
-    routes () {
-      return Promise.all([
-        client.getEntries({
-          'content_type': process.env.CTF_BLOG_POST_TYPE_ID
-        }),
-        client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
-      ])
-      .then(([entries, postType]) => {
-        const total = entries.items.length
-        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-        return [
-          '/posts',
-          ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
-          ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
-          ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`),
-          ...postType.fields.find(field => field.id === 'category').items.validations[0].in.map(category => `/categories/${category}`)
-        ]
-      })
-    }
+    routes: generateRoutes,
   },
   modules: modules,
   axios: {
@@ -130,6 +133,17 @@ module.exports = {
     use: [
       'markdown-it-toc'
     ]
+  },
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: process.env.BASE_URL,
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    generate: true,
+    exclude: [
+      '/404*',
+    ],
+    routes: generateRoutes
   }
 }
 

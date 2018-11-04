@@ -14,3 +14,5 @@ dist
 
 sw.*
 functions/*
+
+static/sitemap.xml*

@@ -100,7 +100,7 @@ export default {
             posts: posts.items,
             categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
-            title: 'なかむ🇭🇰エンジニアブログ | 自由な場所でエンジニアとして生きていくためのメディア',
+            title: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ',
             description: '香港在住のWebデベロッパー「なかむ」が今ままでのエンジニア経験を元にした技術ブログまとめます。',
         }
     },

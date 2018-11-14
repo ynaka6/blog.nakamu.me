@@ -58,13 +58,13 @@
             <li>
                 <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'laravel-web' }}">
                     <i class="fas fa-caret-right"></i>
-                    Laravelを利用したWEB開発経歴
+                    Laravelを利用したWEB開発
                 </nuxt-link>
             </li>
             <li>
                 <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'rails-web' }}">
                     <i class="fas fa-caret-right"></i>
-                    Railsを利用したWEB開発経歴
+                    Railsを利用したWEB開発
                 </nuxt-link>
             </li>
             <li>

@@ -51,16 +51,29 @@
             <ul class="menu-list">
             <li>
                 <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">
-                コードメンターの活動について
+                    <i class="fas fa-caret-right"></i>
+                    コードメンターの活動について
+                </nuxt-link>
+            </li>
+            <li>
+                <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'laravel-web' }}">
+                    <i class="fas fa-caret-right"></i>
+                    Laravelを利用したWEB開発経歴
+                </nuxt-link>
+            </li>
+            <li>
+                <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'rails-web' }}">
+                    <i class="fas fa-caret-right"></i>
+                    Railsを利用したWEB開発経歴
                 </nuxt-link>
             </li>
             <li>
                 <a
                 href="javascript:void(0)"
-                class="navbar-item is-text-font-quicksand"
                 @click="$store.dispatch('toggleContactModal')"
                 >
-                問い合わせ
+                    <i class="fas fa-caret-right"></i>
+                    問い合わせ
                 </a>
             </li>
             </ul>
@@ -91,6 +104,15 @@ export default {
 
             &.is-size-1x2 {
                 font-size: 1.2rem;
+            }
+        }
+        .card-content {
+            .menu {
+                .menu-list {
+                    a {
+                        padding: .8rem .5rem;
+                    }
+                }
             }
         }
     }

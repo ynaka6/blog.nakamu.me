@@ -1,6 +1,9 @@
 <template>
 <div>
     <div class="card article">
+        <header class="card-header font-quicksand is-size-1x2">
+            プロフィール
+        </header>
         <div class="card-content">
 
             <div class="media is-block-mobile">
@@ -40,11 +43,11 @@
 
 
     <div class="card article m-t-30">
+        <header class="card-header font-quicksand">
+            開発・メンター相談
+        </header>
         <div class="card-content">
         <aside class="menu">
-            <p class="menu-label">
-            開発・メンター相談
-            </p>
             <ul class="menu-list">
             <li>
                 <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">
@@ -75,25 +78,41 @@ export default {
 
 
 <style lang="scss" scoped>
- 
-  .image.is-profile-image {
-    width: auto;
-    height: auto;
-    padding: 0 5rem 2rem;
-  }
-  .is-profile-name {
-    text-align: center;
-  }
+    @import "~assets/style/_custom/_variable.scss";
 
-  .socials {
-    & > a {
-      display: inline-block;
-      margin-left: .5rem;
-      font-size: 1.5rem;
+    .card {
+        border-radius: .8rem .8rem 0 0;
+        .card-header {
+            border-radius: .8rem .8rem 0 0;
+            background: $primary;
+            color: $white;
+            padding: .8rem 1rem;
+            font-weight: bold;
 
-      &:first-child {
-        margin-left: 0;
-      }
+            &.is-size-1x2 {
+                font-size: 1.2rem;
+            }
+        }
     }
-  }
+
+    .image.is-profile-image {
+        width: auto;
+        height: auto;
+        padding: 0 5rem 2rem;
+    }
+    .is-profile-name {
+        text-align: center;
+    }
+
+    .socials {
+        & > a {
+            display: inline-block;
+            margin-left: .5rem;
+            font-size: 1.2rem;
+
+            &:first-child {
+            margin-left: 0;
+            }
+        }
+    }
 </style>

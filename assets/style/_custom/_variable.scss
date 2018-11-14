@@ -1,0 +1,13 @@
+@import "~bulma/sass/utilities/_all";
+
+$variable-columns: false;
+$primary: #579fbf;
+$primary-invert: findColorInvert($primary);
+$danger: #ff5f5f;
+$danger-invert: findColorInvert($danger);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$facebook: #3B5998;
+$facebook-invert: findColorInvert($facebook);
+$hatena: #008fde;
+$hatena-invert: findColorInvert($hatena);

@@ -15,10 +15,43 @@
         </ul>
        </div>
     </section>
+    <div class="box">
+      <p class="has-text-centered">
+        訪問ありがとうございます！<a :href="person.fields.url" target="_blank">プロフィールサイト <i class="fas fa-external-link-alt"></i></a>も合わせてご確認ください🙇
+      </p>
+    </div>
     <section class="section">
         <div class="container">
             <div class="columns">
                 <div class="column is-8">
+                    <div class="has-text-centered m-b-30">
+                        <h2 class="title is-underline font-quicksand">Services</h2>
+                        <p class="subtitle has-text-grey is-6">本ブログについての説明</p>
+                    </div>
+                    <div class="columns m-b-20">
+                        <div class="column is-6 is-flex">
+                            <div class="card is-shady">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <h4 class="m-b-5"><span class="shadow is-primary">〜 本ブログの目的 〜</span></h4>
+                                        <p class="subtitle has-text-grey is-7">なぜ記事を書くのか？</p>
+                                        <p><span class="shadow is-danger">未来の自分に伝えたいこと</span>や<span class="shadow is-danger">メモ、記録として残しておきたいこと</span>などをメインに記事を投稿しています。エンジニアとして経験したことだけでなく、気になっていた技術、やってみたい技術など思っていることを履歴として残していきます。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-6 is-flex">
+                            <div class="card is-shady">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <h4 class="m-b-5"><span class="shadow is-primary">〜 伝えたい内容 〜</span></h4>
+                                        <p class="subtitle has-text-grey is-7">どんな人に読んでもらいたいのか？</p>
+                                        <p>目的でも述べた通り自分へのメッセージ性が強いブログではありますが、<span class="shadow is-danger">"エンジニアとしてスタートしたばかりの初学者"</span>や<span class="shadow is-danger">"エンジニアのキャリアに悩んでいる方などのサポート"</span>ができればと考えています。現時点では<nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">メンター活動</nuxt-link>がその一貫です。ブログ上でも貢献していきたいと考えています。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div v-if="posts.length">
                         <div class="has-text-centered m-b-30">

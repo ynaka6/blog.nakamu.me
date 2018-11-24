@@ -163,6 +163,16 @@ $tag-colors: (
     }
 }
 
+.shadow {
+    @each $key, $color in $tag-colors {
+        &.is-#{$key} {
+            -webkit-box-shadow: inset 0 -6px 0 rgba(map-get($tag-colors, $key),.2);
+            box-shadow: inset 0 -6px 0 rgba(map-get($tag-colors, $key),.2);
+        }
+    }
+}
+
+
 @media screen and (max-width: 768px) {
     .breadcrumb {
         ul {

@@ -16,3 +16,5 @@ sw.*
 functions/*
 
 static/sitemap.xml*
+
+.envrc

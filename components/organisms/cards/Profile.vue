@@ -34,7 +34,7 @@
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <a :href="person.fields.url" class="is-pulled-right" target="_blank">プロフィール詳細はこちら <i class="fas fa-caret-right"></i></a>
+                <a :href="person.fields.url" class="is-pulled-right" target="_blank">プロフィール詳細はこちら <i class="fas fa-external-link-alt"></i></a>
                 <div class="is-clearfix"></div>
             </div>
 

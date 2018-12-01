@@ -12,6 +12,10 @@
             </nuxt-link>
         </div>
         <div class="card-content">
+            <PostDate
+                :publishDate="$dayjs(post.fields.publishDate).format('YYYY-MM-DD')"
+                :updateDate="$dayjs(post.sys.updatedAt).format('YYYY-MM-DD')"
+            />
             <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
             <div class="content">
                 <div class="has-text-grey is-size-7" v-html="post.fields.description"></div>
@@ -27,8 +31,12 @@
 </template>
 
 <script>
+import PostDate from '~/components/molecules/tags/PostDate.vue'
 export default {
-  props: ['post']
+  props: ['post'],
+  components: {
+    PostDate
+  }
 };
 </script>
 

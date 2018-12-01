@@ -29,35 +29,27 @@
               <div class="card-content">
                 <div class="media">
                     <div class="media-content">
-                      <span class="tag is-rounded m-b-10">
-                        <time :datetime="$dayjs(publishDate).format('YYYY/MM/DD')" v-text="$dayjs(publishDate).format('YYYY.MM.DD')"></time>
-                        <span v-if="$dayjs(publishDate).isBefore($dayjs(updateDate))">
-                          &nbsp;<i class="fas fa-sync-alt"></i>&nbsp;
-                          <time :datetime="$dayjs(updateDate).format('YYYY/MM/DD')" v-text="$dayjs(updateDate).format('YYYY.MM.DD')"></time>
-                        </span>
-                      </span>
-                        <h1 class="title article__title">
-                          {{ post.fields.title }}
-                        </h1>
-                        <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
+                      <PostDate :publishDate="publishDate" :updateDate="updateDate" />
+                      <h1 class="title article__title">
+                        {{ post.fields.title }}
+                      </h1>
+                      <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
 
-                        <div class="tags m-t-5">
-                          <nuxt-link
-                              v-for="tag in post.fields.tags"
-                              :key="tag"
-                              :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
-                        </div>
+                      <div class="tags m-t-5">
+                        <nuxt-link
+                            v-for="tag in post.fields.tags"
+                            :key="tag"
+                            :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
+                      </div>
 
-                        <div style="position: relative;">
-                          <img class="thumbnail"
-                              :src="post.fields.heroImage.fields.file.url"
-                              :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
-                              v-if="post.fields.heroImage.fields.file.url"
-                          >
-                          <span class="image__category-label" v-text="post.fields.category[0]"></span>
-                        </div>
-
-
+                      <div style="position: relative;">
+                        <img class="thumbnail"
+                            :src="post.fields.heroImage.fields.file.url"
+                            :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
+                            v-if="post.fields.heroImage.fields.file.url"
+                        >
+                        <span class="image__category-label" v-text="post.fields.category[0]"></span>
+                      </div>
                     </div>
                 </div>
 
@@ -144,6 +136,7 @@
 import CardPost from '~/components/organisms/cards/Post.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
 import Tags from '~/components/organisms/Tags.vue'
+import PostDate from '~/components/molecules/tags/PostDate.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
@@ -227,7 +220,8 @@ export default {
   components: {
     CardPost,
     Tags,
-    CardProfile
+    CardProfile,
+    PostDate
   }
 }
 </script>

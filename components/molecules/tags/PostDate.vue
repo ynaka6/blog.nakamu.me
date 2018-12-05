@@ -1,9 +1,13 @@
 <template>
     <span class="tag is-rounded m-b-10">
-        <time :datetime="publishDate.format('YYYY/MM/DD')" v-text="publishDate.format('YYYY.MM.DD')"></time>
-        <span v-if="publishDate.isBefore(updateDate)">
-            &nbsp;<i class="fas fa-sync-alt"></i>&nbsp;
-            <time :datetime="updateDate.format('YYYY/MM/DD')" v-text="updateDate.format('YYYY.MM.DD')"></time>
+        <i class="far fa-calendar m-r-10"></i>
+        <time :datetime="publishDate.format('YYYY/MM/DD')">
+            {{ publishDate.format('YYYY.MM.DD') }}
+        </time>
+        <!-- 記事投稿から数日は内容を調整する為、1週間以内は調整期間として更新日は表示しない -->
+        <span v-if="publishDate.add(7, 'day').isBefore(updateDate)">
+            <i class="fas fa-sync-alt m-l-5 m-r-5"></i>
+            <time :datetime="updateDate.format('YYYY/MM/DD')" style="margin-left: -4px;" v-text="updateDate.format('YYYY.MM.DD')"></time>
         </span>
     </span>
 </template>

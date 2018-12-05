@@ -29,7 +29,7 @@
               <div class="card-content">
                 <div class="media">
                     <div class="media-content">
-                      <PostDate :publishDate="publishDate" :updateDate="updateDate" />
+                      <PostDate :publishTime="publishDate" :updateTime="updateDate" />
                       <h1 class="title article__title">
                         {{ post.fields.title }}
                       </h1>
@@ -199,8 +199,8 @@ export default {
         title: `${entries.items[0].fields.title}`,
         description: `${entries.items[0].fields.description}`,
         relatedPosts: categories ? categories.items : [],
-        publishDate: app.$dayjs(post.fields.publishDate).format('YYYY-MM-DD'),
-        updateDate: app.$dayjs(post.sys.updatedAt).format('YYYY-MM-DD')
+        publishDate: post.fields.publishDate,
+        updateDate: post.sys.updatedAt
     }
   },
   computed: {

@@ -13,8 +13,8 @@
         </div>
         <div class="card-content">
             <PostDate
-                :publishDate="$dayjs(post.fields.publishDate).format('YYYY-MM-DD')"
-                :updateDate="$dayjs(post.sys.updatedAt).format('YYYY-MM-DD')"
+                :publishTime="post.fields.publishDate"
+                :updateTime="post.sys.updatedAt"
             />
             <h4 class="m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
             <div class="content">

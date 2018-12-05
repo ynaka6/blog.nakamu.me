@@ -127,10 +127,24 @@ module.exports = {
     preset: 'default',
     injected: true,
     breaks: true,
-    html: true,
-    linkify: true,
-    typography: true,
     use: [
+      ['markdown-it-container', 'warning', {
+
+        validate: function(params) {
+          return params.trim().match(/^message\s+(.*)$/);
+        },
+      
+        render: function (tokens, idx) {
+          var m = tokens[idx].info.trim().match(/^message\s+(.*)$/);
+      
+          if (tokens[idx].nesting === 1) {
+            return '<div class="message ' + md.utils.escapeHtml(m[1]) + '"><div class="message-body">';
+      
+          } else {
+            return '</div></div>\n';
+          }
+        }
+      }],
       'markdown-it-toc'
     ]
   },

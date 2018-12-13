@@ -7,6 +7,7 @@ const modules = [
   ['@nuxtjs/axios'],
   ['@nuxtjs/markdownit'],
   ['@nuxtjs/sitemap'],
+  ['@nuxtjs/feed']
 ]
 if (process.env.NODE_ENV === 'production') {
   modules.push(['@nuxtjs/google-analytics', {
@@ -158,6 +159,44 @@ module.exports = {
       '/404*',
     ],
     routes: generateRoutes
-  }
+  },
+  feed: [
+    {
+      path: '/atom.xml',
+      async create (feed) {
+        feed.options = {
+          title: 'Nakamu🇭🇰Blog',
+          link: `${process.env.BASE_URL}/atom.xml`,
+          description: "This is Nakamu's personal feed!"
+        }
+
+        const posts = await client.getEntries({
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID
+        })
+
+        posts.items.forEach(post => {
+          feed.addItem({
+            title: post.fields.title,
+            id: post.fields.slug,
+            link: `${process.env.BASE_URL}/posts/${post.fields.slug}`,
+            description: post.fields.description,
+            content: post.fields.description,
+            date: new Date(post.fields.publishDate),
+            image: post.fields.heroImage.fields.file.url
+          })
+        })
+
+        feed.addCategory('Tech')
+
+        feed.addContributor({
+          name: 'Nakamu',
+          email: 'yuuki.nakamura.0828@gmail.com',
+          link: process.env.BASE_URL
+        })
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'atom1'
+    }
+  ],
 }
 

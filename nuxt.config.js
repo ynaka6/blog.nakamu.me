@@ -131,6 +131,9 @@ module.exports = {
     preset: 'default',
     injected: true,
     breaks: true,
+    html: true,
+    linkify: true,
+    typography: true,
     use: [
       ['markdown-it-container', 'warning', {
 

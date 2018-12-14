@@ -67,6 +67,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: '//cdn.embedly.com/widgets/platform.js' }
     ]
   },
   transition: {

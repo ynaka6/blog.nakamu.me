@@ -30,39 +30,44 @@
           <a
             href="https://nakamu.life/"
             target="_blank"
+            rel="noreferrer"
           >
             About me
           </a>
         </li>
       </ul>
-      <div class="buttons" style="justify-content: center;">
+      <div style="justify-content: center;">
         <SocialButton
           href="https://twitter.com/nakanakamu0828"
           icon="fab fa-twitter"
+          text="Twitter Of Nakamu"
         />
         <SocialButton
           href="https://github.com/nakanakamu0828"
           icon="fab fa-github"
+          text="Github Of Nakamu"
         />
         <SocialButton
           href="https://medium.com/@nakamu"
           icon="fab fa-medium-m"
+          text="Medium Of Nakamu"
         />
         <SocialButton
           href="mailto:yuuki.nakamura.0828@gmail.com"
           icon="far fa-envelope"
+          text="Email Of Nakamu"
         />
       </div>
       <p>
         <small>
           Copyright © 2018.<br>Made with
-          <a href="https://bulma.io/" target="_blank" class="has-text-light"><b>Bulma</b></a>,
-          <a href="https://jp.vuejs.org/" target="_blank" class="has-text-light"><b>Vue.js</b></a>,
-          and <a class="has-text-light" href="/madewith"><b>many more</b></a>.
+          <a href="https://bulma.io/" target="_blank" class="has-text-light" rel="noreferrer"><b>Bulma</b></a>,
+          <a href="https://jp.vuejs.org/" target="_blank" class="has-text-light" rel="noreferrer"><b>Vue.js</b></a>,
+          and <b>many more</b>.
         </small>
       </p>
       <div class="m-t-20">
-        <a href="https://bulma.io">
+        <a href="https://bulma.io" rel="noreferrer">
           <img src="https://bulma.io/images/made-with-bulma--white.png" alt="Made with Bulma" width="163" height="31">
         </a>
       </div>

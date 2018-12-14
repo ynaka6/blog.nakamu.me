@@ -8,7 +8,7 @@
                   全て
                 </router-link>
             </li>
-            <li data-target="pane-1" id="1" v-for="(category, index) in categories" :key="index">
+            <li data-target="pane-1" v-for="(category, index) in categories" :key="index">
                 <nuxt-link
                     :to="{ name: 'categories-category', params: { category: category }}">{{ category }}</nuxt-link>
             </li>
@@ -17,7 +17,7 @@
     </section>
     <div class="box">
       <p class="has-text-centered">
-        訪問ありがとうございます！<a :href="person.fields.url" target="_blank">プロフィールサイト <sup><i class="fas fa-external-link-alt"></i></sup></a>も合わせてご確認ください🙇
+        訪問ありがとうございます！<a :href="person.fields.url" target="_blank" rel="noreferrer">プロフィールサイト <sup><i class="fas fa-external-link-alt"></i></sup></a>も合わせてご確認ください🙇
       </p>
     </div>
     <section class="section">

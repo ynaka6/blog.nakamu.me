@@ -12,7 +12,7 @@
                     <img :src="person.fields.image.fields.file.url" alt="なかむプロフィール">
                 </figure>
                 <p class="title is-5 is-profile-name">
-                    <a :href="person.fields.url" target="_blank">{{ person.fields.name }}</a>
+                    <a :href="person.fields.url" target="_blank" rel="noreferrer">{{ person.fields.name }}</a>
                 </p>
                 </div>
             </div>
@@ -23,6 +23,7 @@
                         :href="'https://twitter.com/' + person.fields.twitter"
                         target="_blank"
                         style="color: #55acee;"
+                        rel="noreferrer"
                     >
                         <i class="fab fa-twitter"></i>
                     </a>
@@ -30,11 +31,12 @@
                         :href="'https://github.com/' + person.fields.github"
                         target="_blank"
                         style="color: #333;"
+                        rel="noreferrer"
                     >
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <a :href="person.fields.url" class="is-pulled-right" target="_blank">
+                <a :href="person.fields.url" class="is-pulled-right" target="_blank" rel="noreferrer">
                     プロフィール詳細はこちら <sup><i class="fas fa-external-link-alt"></i></sup>
                 </a>
                 <div class="is-clearfix"></div>

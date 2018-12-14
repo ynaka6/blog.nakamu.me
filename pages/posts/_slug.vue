@@ -65,17 +65,17 @@
                   </div>
                   <div class="button-group level is-mobile">
                     <div class="level-item" style="margin: 0;">
-                      <a :href="twitterShareUrl" target="_blank" class="button is-fullwidth is-twitter is-medium">
+                      <a :href="twitterShareUrl" target="_blank" rel="noreferrer" class="button is-fullwidth is-twitter is-medium">
                         <i class="fab fa-twitter"></i>
                       </a>
                     </div>
                     <div class="level-item" style="margin: 0;">
-                      <a :href=fbShareUrl target="_blank" class="button is-fullwidth is-facebook is-medium">
+                      <a :href=fbShareUrl target="_blank" rel="noreferrer" class="button is-fullwidth is-facebook is-medium">
                         <i class="fab fa-facebook"></i>
                       </a>
                     </div>
                     <div class="level-item" style="margin: 0;">
-                      <a :href="hatenaShareUrl" class="button is-hatena is-fullwidth is-medium" target="_blank">
+                      <a :href="hatenaShareUrl" class="button is-hatena is-fullwidth is-medium" target="_blank" rel="noreferrer">
                         B!
                       </a>
                     </div>

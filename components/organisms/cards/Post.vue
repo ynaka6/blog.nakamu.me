@@ -2,7 +2,8 @@
     <div class="card large">
         <div class="card-image">
             <nuxt-link class="image" :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}">
-            <img class="thumbnail"
+                <img class="thumbnail"
+                    :alt="post.fields.title"
                     :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'"
                     :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
                     sizes="(min-width: 1024px) 400px, 100vw"

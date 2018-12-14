@@ -44,6 +44,7 @@
 
                       <div style="position: relative;">
                         <img class="thumbnail"
+                            :alt="post.fields.title"
                             :src="post.fields.heroImage.fields.file.url"
                             :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
                             v-if="post.fields.heroImage.fields.file.url"

@@ -1,7 +1,7 @@
 <template>
   <main class="container">
     <section class="section has-text-centered">
-        <img src="~/assets/img/icon-broken-link-512.png" class="broken-link">
+        <img src="~/assets/img/icon-broken-link-512.png" alt="404 Image" class="broken-link">
         <h1 class="title is-1 m-t-50">４０４</h1>
         <p class="subtitle is-6 has-text-grey m-t-30">
             指定されたページが見つかりませんでした。<br>

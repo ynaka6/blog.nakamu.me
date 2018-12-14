@@ -9,7 +9,7 @@
             <div class="media is-block-mobile">
                 <div class="media-content">
                 <figure class="image is-profile-image is-circle">
-                    <img :src="person.fields.image.fields.file.url" alt="Image">
+                    <img :src="person.fields.image.fields.file.url" alt="なかむプロフィール">
                 </figure>
                 <p class="title is-5 is-profile-name">
                     <a :href="person.fields.url" target="_blank">{{ person.fields.name }}</a>

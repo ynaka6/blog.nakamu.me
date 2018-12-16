@@ -4,9 +4,9 @@
     target="_blank"
     class="button is-circle is-medium"
     rel="noreferrer"
+    :aria-label="text"
   >
     <i v-if="icon" :class="icon"></i>
-    <span class="is-invisible" v-if="text" v-text="text"></span>
   </a>
 </template>
 

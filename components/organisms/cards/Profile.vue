@@ -24,6 +24,7 @@
                         target="_blank"
                         style="color: #55acee;"
                         rel="noreferrer"
+                        aria-label="Twitter"
                     >
                         <i class="fab fa-twitter"></i>
                     </a>
@@ -32,6 +33,7 @@
                         target="_blank"
                         style="color: #333;"
                         rel="noreferrer"
+                        aria-label="Github"
                     >
                         <i class="fab fa-github"></i>
                     </a>

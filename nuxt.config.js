@@ -123,7 +123,7 @@ module.exports = {
   manifest: {
     name: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ',
     lang: 'ja',
-    short_name: 'Nakamu🇭🇰Blog',
+    short_name: 'N-Blog',
     theme_color: '#ffffff',
     background_color: '#ffffff'
   },

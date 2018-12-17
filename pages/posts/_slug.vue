@@ -39,7 +39,7 @@
                         <nuxt-link
                             v-for="tag in post.fields.tags"
                             :key="tag"
-                            :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger">{{ tag }}</nuxt-link>
+                            :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-rounded">#{{ tag }}</nuxt-link>
                       </div>
 
                       <div style="position: relative;">

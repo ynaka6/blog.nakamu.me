@@ -1,7 +1,7 @@
 <template>
   <Button
     id="page-top"
-    :classes="[ 'is-circle', 'is-large', 'is-danger', { 'is-hidden': scrollY < 200 } ]"
+    :classes="[ 'is-circle', 'is-large', 'is-primary', { 'is-hidden': scrollY < 200 } ]"
     icon="fas fa-angle-up"
   />
 </template>

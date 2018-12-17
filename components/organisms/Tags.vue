@@ -16,7 +16,7 @@
                   <nuxt-link
                       v-for="tag in tags"
                       :key="tag"
-                      :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-danger is-medium is-rounded">{{ tag }}</nuxt-link>
+                      :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-medium is-rounded">#{{ tag }}</nuxt-link>
               </div>
             </div>
           </div>

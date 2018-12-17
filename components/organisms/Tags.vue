@@ -7,7 +7,7 @@
               <h2 class="title has-text-dark is-underline is-text-font-quicksand">
               Tags
               </h2>
-              <p class="subtitle has-text-grey is-6">タグ</p>
+              <p class="subtitle has-text-dark is-6">タグ</p>
           </div>
 
           <div class="columns" style="margin-top: 1.5rem;">

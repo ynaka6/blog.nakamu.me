@@ -8,12 +8,14 @@
 
             <div class="media is-block-mobile">
                 <div class="media-content">
-                <figure class="image is-profile-image is-circle">
-                    <img :src="person.fields.image.fields.file.url" alt="なかむプロフィール">
-                </figure>
-                <p class="title is-5 is-profile-name">
-                    <a :href="person.fields.url" target="_blank" rel="noreferrer">{{ person.fields.name }}</a>
-                </p>
+                    <lazy-component>
+                        <figure class="image is-profile-image is-circle">
+                            <img :src="person.fields.image.fields.file.url" alt="なかむプロフィール">
+                        </figure>
+                    </lazy-component>
+                    <p class="title is-5 is-profile-name">
+                        <a :href="person.fields.url" target="_blank" rel="noreferrer">{{ person.fields.name }}</a>
+                    </p>
                 </div>
             </div>
             <div class="content">
@@ -91,7 +93,7 @@
 
 <script>
 export default {
-  props: ['person']
+    props: ['person']
 };
 </script>
 

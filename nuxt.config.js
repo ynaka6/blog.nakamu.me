@@ -81,7 +81,8 @@ module.exports = {
     '~/plugins/vee-validate.js',
     '~/plugins/day.js',
     { src: '~/plugins/vue-scrollto.js', ssr: false },
-    { src: '~/plugins/vue-cookie-law.js', ssr: false }
+    { src: '~/plugins/vue-cookie-law.js', ssr: false },
+    { src: '~/plugins/vue-lazyload.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.scss',

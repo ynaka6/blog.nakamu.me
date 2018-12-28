@@ -218,6 +218,9 @@ export default {
       return `https://b.hatena.ne.jp/add?mode=confirm&title=${this.title}&url=${url}`
     }
   },
+  mounted () {
+    this.$microlinkjs('.link-preview')
+  },
   components: {
     CardPost,
     Tags,

@@ -82,7 +82,8 @@ module.exports = {
     '~/plugins/day.js',
     { src: '~/plugins/vue-scrollto.js', ssr: false },
     { src: '~/plugins/vue-cookie-law.js', ssr: false },
-    { src: '~/plugins/vue-lazyload.js', ssr: false }
+    { src: '~/plugins/vue-lazyload.js', ssr: false },
+    { src: '~/plugins/microlink.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.scss',

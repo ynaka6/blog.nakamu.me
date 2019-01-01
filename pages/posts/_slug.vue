@@ -109,22 +109,14 @@
 
           <div class="column">
             <CardProfile :person="person" />
+            <PostList
+              v-if="relatedPosts.length"
+              title="Rlated Articles"
+              subtitle="関連記事"
+              :posts="relatedPosts"
+            />
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <section class="section" v-if="relatedPosts.length">
-      <div class="container">
-        <div class="has-text-centered m-b-30">
-            <h2 class="title is-underline font-quicksand">Rlated Articles</h2>
-            <p class="subtitle has-text-grey is-6">関連記事</p>
-        </div>
-        <div class="columns is-centered is-multiline is-tablet">
-          <div class="column is-flex is-6-tablet is-4-desktop" v-for="(post, index) in relatedPosts" :key="index">
-              <CardPost :post="post"></CardPost>
-          </div>
         </div>
       </div>
     </section>
@@ -135,6 +127,7 @@
 
 <script>
 import CardPost from '~/components/organisms/cards/Post.vue'
+import PostList from '~/components/organisms/lists/PostList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
 import Tags from '~/components/organisms/Tags.vue'
 import PostDate from '~/components/molecules/tags/PostDate.vue'
@@ -225,7 +218,8 @@ export default {
     CardPost,
     Tags,
     CardProfile,
-    PostDate
+    PostDate,
+    PostList
   }
 }
 </script>
@@ -244,6 +238,7 @@ export default {
 
   .article__title {
     font-size: 1.8rem;
+    margin-top: .5rem;
     margin-bottom: 1rem;
   }
   .article__content {

@@ -1,6 +1,5 @@
 <template>
-    <span class="tag is-rounded m-b-10">
-        <i class="far fa-calendar m-r-10"></i>
+    <span class="tag is-rounded">
         <time :datetime="publishDate.format('YYYY/MM/DD')">
             {{ publishDate.format('YYYY.MM.DD') }}
         </time>

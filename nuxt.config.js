@@ -69,7 +69,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '//cdn.embedly.com/widgets/platform.js', defer: true }
+      // { src: '//cdn.embedly.com/widgets/platform.js', defer: true }
     ]
   },
   transition: {
@@ -91,6 +91,7 @@ module.exports = {
     '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
     '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
     '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
+    { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' },
   ],
   /*
   ** Customize the progress bar color
@@ -154,8 +155,21 @@ module.exports = {
           }
         }
       }],
-      'markdown-it-toc'
-    ]
+      'markdown-it-toc',
+      // 'markdown-it-highlightjs',
+    ],
+    highlight: (str, lang) => {
+      const hljs = require('highlight.js');
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return '<pre class="hljs"><code>' +
+                 hljs.highlight(lang, str, true).value +
+                 '</code></pre>';
+        } catch (__) {}
+      }
+      // 言語設定がない場合、プレーンテキストとして表示する
+      return '<pre class="hljs"><code>' +  hljs.highlight('plaintext', str, true).value + '</code></pre>';
+    },
   },
   sitemap: {
     path: '/sitemap.xml',

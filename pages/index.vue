@@ -17,7 +17,7 @@
     </section>
     <div class="box">
       <p class="has-text-centered">
-        訪問ありがとうございます！<a :href="person.fields.url" target="_blank" rel="noreferrer">プロフィールサイト <sup><i class="fas fa-external-link-alt"></i></sup></a>も合わせてご確認ください🙇
+        訪問ありがとうございます！<a :href="person.fields.url" target="_blank" rel="noreferrer">プロフィールサイト <sup><i class="fas fa-external-link-alt"></i></sup></a>も合わせてご確認ください🙇🏻
       </p>
     </div>
     <section class="section">

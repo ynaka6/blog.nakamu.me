@@ -163,8 +163,8 @@ module.exports = {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return '<pre class="hljs"><code>' +
-                 hljs.highlight(lang, str, true).value +
-                 '</code></pre>';
+                  hljs.highlight(lang, str, true).value +
+                  '</code></pre>';
         } catch (__) {}
       }
       // 言語設定がない場合、プレーンテキストとして表示する

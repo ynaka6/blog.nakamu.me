@@ -14,7 +14,9 @@
                         </figure>
                     </lazy-component>
                     <p class="title is-5 is-profile-name">
-                        <a :href="person.fields.url" target="_blank" rel="noreferrer">{{ person.fields.name }}</a>
+                        <a :href="person.fields.url" target="_blank" rel="noreferrer">
+                            {{ person.fields.name }} <sup><i class="fas fa-external-link-alt"></i></sup>
+                        </a>
                     </p>
                 </div>
             </div>

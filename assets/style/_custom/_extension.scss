@@ -141,6 +141,18 @@
             padding: 1rem;
         }
     }
+
+
+    & > h2 {
+        padding: 1.2rem .75rem;
+        background-color: #f6f6f6;
+        border-left: 6px solid $primary;
+    }
+
+    & > :not(:first-child) + h3 {
+        padding: .5rem .75rem;
+        border-left: 6px solid $primary;
+    }
 }
 
 // tag
@@ -204,4 +216,14 @@ $tag-colors: (
             color: $white;
         }
     }
+
+    .article__content {
+        h2 {
+            font-size: 1.4rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+        }
+    }
+    
 }

@@ -20,7 +20,7 @@
 export default {
     props: {
         selected: {
-            type: Object,
+            type: String,
             required: false,
             useDefaultForNull: true
         },

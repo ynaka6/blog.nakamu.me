@@ -22,11 +22,8 @@
             <h4 class="m-t-5 m-b-5"><nuxt-link :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}" class="title post__title">{{ post.fields.title }}</nuxt-link></h4>
             <div class="content">
                 <div class="has-text-dark is-size-7" v-html="post.fields.description"></div>
-                <div class="tags m-t-10">
-                    <nuxt-link
-                        v-for="tag in post.fields.tags"
-                        :key="tag"
-                        :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-rounded">#{{ tag }}</nuxt-link>
+                <div class="buttons m-t-10">
+                    <Tag v-for="(tag, index) in post.fields.tags" :key="index" :tag="tag" size="is-small" />
                 </div>
             </div>
         </div>
@@ -35,10 +32,12 @@
 
 <script>
 import PostDate from '~/components/molecules/tags/PostDate.vue'
+import Tag from '~/components/atoms/Tag.vue'
 export default {
     props: ['post'],
     components: {
-        PostDate
+        PostDate,
+        Tag
     }
 };
 </script>

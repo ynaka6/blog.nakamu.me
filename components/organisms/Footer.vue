@@ -89,6 +89,7 @@ export default {
 
 <style lang="scss" scoped>
 footer {
+  padding: 6rem 1.5rem;
   ul.footer__menu-list {
     margin-bottom: 2rem;
     & > li {

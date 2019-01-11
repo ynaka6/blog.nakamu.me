@@ -68,19 +68,23 @@
 
                 <div class="column">
                     <CardProfile :person="person" />
+                    <TagList
+                        v-if="tags.length"
+                        title="Tags"
+                        subtitle="タグ"
+                        :tags="tags"
+                    />
                 </div>
             </div>
         </div>
     </section>
-
-    <Tags :tags="tags"/>
   </main>
 </template>
 
 <script>
 import CardPost from '~/components/organisms/cards/Post.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
-import Tags from '~/components/organisms/Tags.vue'
+import TagList from '~/components/organisms/lists/TagList.vue'
 import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
@@ -147,7 +151,7 @@ export default {
     components: {
         CardPost,
         CardProfile,
-        Tags
+        TagList
     }
 }
 </script>

@@ -35,11 +35,8 @@
                       </h1>
                       <p class="subtitle is-6 has-text-gray m-t-5" v-html="post.fields.description"></p>
 
-                      <div class="tags m-t-5">
-                        <nuxt-link
-                            v-for="tag in post.fields.tags"
-                            :key="tag"
-                            :to="{ name: 'tags-tag', params: { tag: tag }}" class="tag is-rounded">#{{ tag }}</nuxt-link>
+                      <div class="buttons m-t-5">
+                        <Tag v-for="(tag, index) in post.fields.tags" :key="index" :tag="tag" size="is-small" />
                       </div>
 
                       <div style="position: relative;">
@@ -115,13 +112,17 @@
               subtitle="関連記事"
               :posts="relatedPosts"
             />
+            <TagList
+                v-if="tags.length"
+                title="Tags"
+                subtitle="タグ"
+                :tags="tags"
+            />
           </div>
 
         </div>
       </div>
     </section>
-
-    <Tags :tags="tags"/>
   </main>
 </template>
 
@@ -129,7 +130,8 @@
 import CardPost from '~/components/organisms/cards/Post.vue'
 import PostList from '~/components/organisms/lists/PostList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
-import Tags from '~/components/organisms/Tags.vue'
+import TagList from '~/components/organisms/lists/TagList.vue'
+import Tag from '~/components/atoms/Tag.vue'
 import PostDate from '~/components/molecules/tags/PostDate.vue'
 import {createClient} from '~/plugins/contentful.js'
 
@@ -216,10 +218,11 @@ export default {
   },
   components: {
     CardPost,
-    Tags,
+    TagList,
     CardProfile,
     PostDate,
-    PostList
+    PostList,
+    Tag
   }
 }
 </script>

@@ -1,22 +1,10 @@
 <template>
 
   <main>
-    <section class="hero is-primary">
-      <div class="tabs is-boxed is-centered main-menu" id="nav">
-        <ul>
-            <li>
-                <router-link to="/posts">
-                  全て
-                </router-link>
-            </li>
-            <li :class="{'is-active': c === category}" v-for="(c, index) in categories" :key="index">
-                <nuxt-link
-                    :to="`/categories/${c}/`">{{ c }}</nuxt-link>
-            </li>
-        </ul>
-       </div>
-    </section>
-
+    <CategoryMenu
+        :selected="category"
+        :categories="categories"
+    />
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
@@ -62,6 +50,7 @@
 </template>
 
 <script>
+import CategoryMenu from '~/components/molecules/tabs/CategoryMenu.vue'
 import CardPost from '~/components/organisms/cards/Post.vue'
 import TagList from '~/components/organisms/lists/TagList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
@@ -111,6 +100,7 @@ export default {
         }
     },
     components: {
+        CategoryMenu,
         CardPost,
         TagList,
         CardProfile

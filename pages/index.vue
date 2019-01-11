@@ -1,20 +1,9 @@
 <template>
   <main>
-    <section class="hero is-primary">
-      <div class="tabs is-boxed is-centered main-menu" id="nav">
-        <ul>
-            <li>
-                <router-link to="/posts">
-                  全て
-                </router-link>
-            </li>
-            <li data-target="pane-1" v-for="(category, index) in categories" :key="index">
-                <nuxt-link
-                    :to="{ name: 'categories-category', params: { category: category }}">{{ category }}</nuxt-link>
-            </li>
-        </ul>
-       </div>
-    </section>
+    <CategoryMenu
+        :selected="null"
+        :categories="categories"
+    />
     <div class="box">
       <p class="has-text-centered">
         訪問ありがとうございます！<a :href="person.fields.url" target="_blank" rel="noreferrer">プロフィールサイト <sup><i class="fas fa-external-link-alt"></i></sup></a>も合わせてご確認ください🙇🏻
@@ -91,6 +80,7 @@
 </template>
 
 <script>
+import CategoryMenu from '~/components/molecules/tabs/CategoryMenu.vue'
 import CardPost from '~/components/organisms/cards/Post.vue'
 import TagList from '~/components/organisms/lists/TagList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
@@ -143,6 +133,7 @@ export default {
         }
     },
     components: {
+        CategoryMenu,
         CardPost,
         CardProfile,
         TagList,

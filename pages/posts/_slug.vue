@@ -1,5 +1,9 @@
 <template>
   <main>
+    <CategoryMenu
+        :selected="post.fields.category[0]"
+        :categories="categories"
+    />
     <nav class="breadcrumb is-bg-white has-succeeds-separator has-shadow" aria-label="breadcrumbs">
       <div class="container">
         <ul>
@@ -127,6 +131,7 @@
 </template>
 
 <script>
+import CategoryMenu from '~/components/molecules/tabs/CategoryMenu.vue'
 import CardPost from '~/components/organisms/cards/Post.vue'
 import PostList from '~/components/organisms/lists/PostList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
@@ -192,6 +197,7 @@ export default {
         nextPost: nextEntries.items.length ? nextEntries.items[0] : null,
         person: entries.items[0].fields.author,
         tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
+        categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
         title: `${entries.items[0].fields.title}`,
         description: `${entries.items[0].fields.description}`,
         relatedPosts: categories ? categories.items : [],
@@ -217,6 +223,7 @@ export default {
     this.$microlinkjs('.link-preview')
   },
   components: {
+    CategoryMenu,
     CardPost,
     TagList,
     CardProfile,

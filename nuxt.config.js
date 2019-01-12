@@ -24,13 +24,14 @@ const generateRoutes = () => {
   ])
   .then(([entries, postType]) => {
 
-    const categoryUrl = postType.fields.find(field => field.id === 'category').items.validations[0].in.map((category) => {
+    const categoryUrl = []
+    postType.fields.find(field => field.id === 'category').items.validations[0].in.each((category) => {
       const total = entries.items.filter(entry => entry.fields.category[0] === category).length
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-      return [
+      categoryUrl.push(...[
         `/categories/${category}`,
         ...[...Array(pageCount).keys()].map(i =>  `/categories/${category}/page/` + ++i)
-      ]
+      ])
     })
     console.log(categoryUrl)
     const total = entries.items.length

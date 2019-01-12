@@ -32,6 +32,7 @@ const generateRoutes = () => {
         ...[...Array(pageCount).keys()].map(i =>  `/categories/${category}/page/` + ++i)
       ]
     })
+    console.log(categoryUrl)
     const total = entries.items.length
     const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
     return [

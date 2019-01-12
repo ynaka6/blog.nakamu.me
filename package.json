@@ -29,6 +29,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sitemap": "^0.1.1",
     "algoliasearch": "^3.30.0",
+    "array-flatten": "^2.1.2",
     "buefy": "^0.6.6",
     "contentful": "^7.0.0",
     "contentful-management": "^5.3.2",

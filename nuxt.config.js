@@ -23,13 +23,22 @@ const generateRoutes = () => {
     client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
   ])
   .then(([entries, postType]) => {
+
+    const categoryUrl = postType.fields.find(field => field.id === 'category').items.validations[0].in.map((category) => {
+      const total = entries.items.filter(entry => entry.fields.category[0] === category).length
+      const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+      return [
+        `/categories/${category}`,
+        ...[...Array(pageCount).keys()].map(i =>  `/categories/${category}/page/` + ++i)
+      ]
+    })
     const total = entries.items.length
     const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
     return [
       '/posts',
       ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
       ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
-      ...postType.fields.find(field => field.id === 'tags').items.validations[0].in.map(tag => `/tags/${tag}`),
+      ...categoryUrl,
       ...postType.fields.find(field => field.id === 'category').items.validations[0].in.map(category => `/categories/${category}`)
     ]
   })

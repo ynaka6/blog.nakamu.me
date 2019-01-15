@@ -34,6 +34,18 @@ const generateRoutes = () => {
       ]
     }))
     console.log(categoryUrl)
+
+
+    const tagUrl = flatten(postType.fields.find(field => field.id === 'tags').items.validations[0].in.map((tag) => {
+      const total = entries.items.filter(entry => entry.fields.tags && entry.fields.tags.includes(tag)).length
+      const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+      return [
+        `/tags/${tag}`,
+        ...[...Array(pageCount).keys()].map(i =>  `/tags/${tag}/page/` + ++i)
+      ]
+    }))
+    console.log(tagUrl)
+
     const total = entries.items.length
     const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
     return [
@@ -41,7 +53,7 @@ const generateRoutes = () => {
       ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
       ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
       ...categoryUrl,
-      ...postType.fields.find(field => field.id === 'category').items.validations[0].in.map(category => `/categories/${category}`)
+      ...tagUrl,
     ]
   })
 }

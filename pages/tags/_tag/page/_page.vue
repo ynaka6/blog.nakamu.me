@@ -32,6 +32,27 @@
                             <CardPost :post="post"></CardPost>
                         </div>
                     </div>
+                    <div class="is-clearfix">
+                        <div v-if="prevPage && prevPage < page" class="is-pulled-left">
+                            <nuxt-link v-if="1 == prevPage" class="button is-large is-circle is-light" :to="{ name: 'tags-tag', params: { tag: tag, page: null }}">
+                                <i class="fas fa-angle-left"></i>
+                            </nuxt-link>
+                            <nuxt-link v-else class="button is-large is-circle is-light" :to="{ name: 'tags-tag-page-page', params: { tag: tag, page: prevPage }}">
+                                <i class="fas fa-angle-left"></i>
+                            </nuxt-link>
+                            <p class="is-size-7 m-t-5">
+                                前のページ
+                            </p>
+                        </div>
+                        <div v-if="nextPage && nextPage > page" class="is-pulled-right">
+                            <nuxt-link class="button is-large is-circle is-light" :to="{ name: 'tags-tag-page-page', params: { tag: tag, page: nextPage }}">
+                                <i class="fas fa-angle-right"></i>
+                            </nuxt-link>
+                            <p class="is-size-7 m-t-5">
+                                次のページ
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="column">
                     <CardProfile :person="person" />
@@ -57,7 +78,13 @@ import {createClient} from '~/plugins/contentful.js'
 
 const client = createClient()
 export default {
+    validate({ params, query, store }) {
+        return !params.page || /^\d+$/.test(params.page)
+    },
     head () {
+        const link = []
+        if (this.nextPage) link.push({ rel: 'next', href: `/tags/${this.tag}/page/${this.nextPage}/` })
+        if (this.prevPage) link.push({ rel: 'prev', href: (1 == this.prevPage ? `/tags/${this.tag}` : `/tags/${this.tag}/page/${this.prevPage}/`) })
         return {
             title: this.title ,
             meta: [
@@ -72,21 +99,33 @@ export default {
 
                 { name: 'og:title', content: this.title },
                 { name: 'og:description', content: this.description },
-            ]
+            ],
+            link: link,
         }
     },
     async asyncData ({ app, params }) {
+        const page = parseInt(params.page) || 1
+        const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
+        const skip = (page - 1) * limit
         const [　entries, posts, postType ] = await Promise.all([
             client.getEntries({
                 'sys.id': process.env.CTF_PERSON_ID
             }),
             client.getEntries({
-            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
-            'fields.tags[in]': params.tag,
-            order: '-fields.publishDate'
+                'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+                'fields.tags[in]': params.tag,
+                order: '-fields.publishDate',
+                skip: skip,
+                limit: limit + 1
             }),
             client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
         ])
+
+        const prevPage = page > 1 ? page - 1 : null
+        const nextPage = posts.items.length > limit ? page + 1 : null
+        if (nextPage) {
+            posts.items.pop()
+        }
         return {
             person: entries.items[0],
             posts: posts.items,
@@ -95,6 +134,9 @@ export default {
             title: `#${params.tag}の投稿一覧`,
             description: `#${params.tag}の投稿一覧ページです。`,
             categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
+            page: page,
+            prevPage: prevPage,
+            nextPage: nextPage
         }
     },
     components: {

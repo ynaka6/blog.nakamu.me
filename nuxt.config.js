@@ -128,6 +128,7 @@ module.exports = {
     }
   },
   generate: {
+    interval: 1000,
     routes: generateRoutes,
   },
   modules: modules,

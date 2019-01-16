@@ -6,7 +6,7 @@
     rel="noreferrer"
     :aria-label="text"
   >
-    <i v-if="icon" :class="icon"></i>
+    <slot />
   </a>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 <style lang="scss" scoped>
 a {
   justify-content: start;
-  padding-left: calc(0.625em - 1px);
-  padding-right: calc(0.625em - 1px);
+  padding-left: calc(0.625em - 1px) !important;
+  padding-right: calc(0.625em - 1px) !important;
 }
 </style>

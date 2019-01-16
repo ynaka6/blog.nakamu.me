@@ -110,10 +110,6 @@ module.exports = {
   ],
   css: [
     '~/assets/style/app.scss',
-    '@fortawesome/fontawesome-free-webfonts',
-    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
-    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
-    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
     { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' },
   ],
   /*

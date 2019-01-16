@@ -1,10 +1,11 @@
 <template>
   <Button
     :href="href"
-    text="もっと見る"
     :classes="[ 'is-rounded', 'is-large', 'is-primary' ]"
     v-on:click="$emit('click', event)"
-  />
+  >
+    もっと見る
+  </Button>
 </template>
 
 <script>

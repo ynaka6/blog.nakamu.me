@@ -685,10 +685,6 @@
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
 
-"@fortawesome/fontawesome-free-webfonts@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.9.tgz#72f2c10453422aba0d338fa6a9cb761b50ba24d5"
-
 "@jimp/bmp@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.5.3.tgz#7f1a854dc47666072bbea285d61ff38941c2e38a"

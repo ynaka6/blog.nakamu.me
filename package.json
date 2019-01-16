@@ -20,7 +20,6 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "@microlink/vanilla": "^3.0.5",
     "@nuxtjs/axios": "^5.3.3",
     "@nuxtjs/feed": "^0.2.0",

@@ -7,8 +7,7 @@
       :class="classes"
       @click="click"
     >
-      <i v-if="icon" :class="icon"></i>
-      <span v-if="text" v-text="text"></span>
+      <slot />
     </a>
 </template>
 

@@ -17,7 +17,7 @@
                         @click.native="clearKeyword"
                     >
                         <p class="suggest__item__title" v-html="algoliaResult._highlightResult.title.value"></p>
-                        <p class="suggest__item__description has-text-grey" v-html="algoliaResult._highlightResult.description.value"></p>
+                        <p class="suggest__item__description has-text-dark" v-html="algoliaResult._highlightResult.description.value"></p>
                     </nuxt-link>
                 </div>
             </div>

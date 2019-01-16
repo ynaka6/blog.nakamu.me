@@ -25,7 +25,7 @@
                 <div class="column is-8">
                     <div class="has-text-centered m-b-30">
                         <h1 class="title is-underline font-quicksand">投稿一覧（{{ posts.length }}）</h1>
-                        <p class="subtitle has-text-grey is-6">記事一覧</p>
+                        <p class="subtitle has-text-dark is-6">記事一覧</p>
                     </div>
                     <div class="columns is-multiline">
                         <div class="column is-flex is-6" v-for="(post, index) in posts" :key="index">

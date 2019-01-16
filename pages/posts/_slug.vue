@@ -62,7 +62,7 @@
 
                   <div class="has-text-centered m-t-50 m-b-30">
                       <p class="title is-underline font-leckerli-one">Share</p>
-                      <p class="subtitle has-text-grey is-7">SNSシェア</p>
+                      <p class="subtitle has-text-dark is-7">SNSシェア</p>
                   </div>
                   <div class="button-group level is-mobile">
                     <div class="level-item" style="margin: 0;">

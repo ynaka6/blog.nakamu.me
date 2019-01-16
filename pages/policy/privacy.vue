@@ -23,7 +23,7 @@
                         <div class="card-content">
                             <div class="has-text-centered m-b-30">
                                 <h2 class="title is-underline font-quicksand">Privacy Policy</h2>
-                                <p class="subtitle has-text-grey is-6">プライバシーポリシー</p>
+                                <p class="subtitle has-text-dark is-6">プライバシーポリシー</p>
                             </div>
 
 

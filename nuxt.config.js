@@ -84,12 +84,22 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=1' },
+
+      { hid: 'description', name: 'description', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます'},
+      
+      { hid: 'og:title', name: 'og:title', content: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ'},
+      { hid: 'og:decription', name: 'og:decription', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます'},
+
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:site', name: 'twitter:site', content: 'なかむ🇭🇰エンジニアブログ' },
+      { hid: 'twitter:creator', name: 'twitter:creator', content: 'nakanakamu0828' },
+      { hid: 'twitter:image', name: 'twitter:image', content: '' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ' },
+      { hid: 'twitter:description', name: 'twitter:description', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます' },
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    script: [
-      // { src: '//cdn.embedly.com/widgets/platform.js', defer: true }
     ]
   },
   transition: {

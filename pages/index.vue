@@ -59,15 +59,6 @@
                                 <CardPost :post="post"></CardPost>
                             </div>
                         </div>
-
-                        <div class="columns has-text-centered m-t-30">
-                            <div class="column">
-                                <MoreButton 
-                                    href="/posts"
-                                    v-on:click="$router.push('/posts')"
-                                />
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -92,8 +83,6 @@ import CardPost from '~/components/organisms/cards/Post.vue'
 import TagList from '~/components/organisms/lists/TagList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
 
-import MoreButton from '~/components/molecules/buttons/MoreButton.vue'
-
 import {createClient} from '~/plugins/contentful.js'
 const client = createClient()
 
@@ -103,17 +92,16 @@ export default {
             title: this.title,
             titleTemplate: '%s',
             meta: [
-                { name: 'description', content: this.description },
+                { hid: 'description', name: 'description', content: this.description },
 
-                { name: 'twitter:card', content: 'summary_large_image' },
-                { name: 'twitter:site', content: this.person ? this.person.fields.twitter : '' },
-                { name: 'twitter:creator', content: this.person ? this.person.fields.twitter : '' },
-                { name: 'twitter:image', content: 'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill' },
-                { name: 'twitter:title', content: this.title },
-                { name: 'twitter:description', content: this.description },
+                { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+                { hid: 'twitter:creator', name: 'twitter:creator', content: this.person ? this.person.fields.twitter : '' },
+                { hid: 'twitter:image', name: 'twitter:image', content: 'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill' },
+                { hid: 'twitter:title', name: 'twitter:title', content: this.title },
+                { hid: 'twitter:description', name: 'twitter:description', content: this.description },
 
-                { name: 'og:title', content: this.title },
-                { name: 'og:description', content: this.description },
+                { hid: 'og:title', name: 'og:title', content: this.title },
+                { hid: 'og:description', name: 'og:description', content: this.description },
             ]
         }
     },
@@ -143,8 +131,7 @@ export default {
         CategoryMenu,
         CardPost,
         CardProfile,
-        TagList,
-        MoreButton
+        TagList
     }
 }
 </script>

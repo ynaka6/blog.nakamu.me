@@ -146,17 +146,15 @@ export default {
     return {
         title: this.title,
         meta: [
-            { name: 'description', content: this.description },
+            { hid: 'description', name: 'description', content: this.description },
 
-            { name: 'twitter:card', content: 'summary_large_image' },
-            { name: 'twitter:site', content: this.person ? this.person.fields.twitter : '' },
-            { name: 'twitter:creator', content: this.person ? this.person.fields.twitter : '' },
-            { name: 'twitter:image', content: this.post ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` : '' },
-            { name: 'twitter:title', content: this.title },
-            { name: 'twitter:description', content: this.description },
+            { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+            { hid: 'twitter:image', name: 'twitter:image', content: this.post ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` : '' },
+            { hid: 'twitter:title', name: 'twitter:title', content: this.title },
+            { hid: 'twitter:description', name: 'twitter:description', content: this.description },
 
-            { name: 'og:title', content: this.title },
-            { name: 'og:description', content: this.description },
+            { hid: 'og:title', name: 'og:title', content: this.title },
+            { hid: 'og:description', name: 'og:description', content: this.description },
         ]
     }
   },

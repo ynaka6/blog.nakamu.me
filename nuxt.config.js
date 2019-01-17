@@ -88,7 +88,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます'},
       
       { hid: 'og:title', name: 'og:title', content: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ'},
-      { hid: 'og:decription', name: 'og:decription', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます'},
+      { hid: 'og:description', name: 'og:description', content: '香港在住エンジニアのなかむが技術情報を発信するためのメディア。世界を旅して暮らすことを目標として日々技術に着目していきます'},
 
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:site', name: 'twitter:site', content: 'なかむ🇭🇰エンジニアブログ' },

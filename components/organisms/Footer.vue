@@ -23,7 +23,7 @@
         </li>
         <li>
           <router-link to="/policy/privacy">
-            Privacy
+            Privacy Policy
           </router-link>
         </li>
         <li>

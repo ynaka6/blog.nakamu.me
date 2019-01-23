@@ -102,8 +102,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { type: 'text/javascript', src: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', async: true },
-      { type: 'text/javascript', innerHTML: '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-9693505561732401", enable_page_level_ads: true});' },
+      { type: 'text/javascript', src: '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', async: true},
+      { type: 'text/javascript', innerHTML: '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: \'ca-pub-9693505561732401\', enable_page_level_ads: true});' },
     ],
   },
   transition: {

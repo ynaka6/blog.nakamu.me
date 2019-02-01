@@ -122,6 +122,12 @@
                 subtitle="タグ"
                 :tags="tags"
             />
+            <PostList
+              v-if="newlyPosts.length"
+              title="Latest Articles"
+              subtitle="新着記事"
+              :posts="newlyPosts"
+            />
           </div>
 
         </div>
@@ -167,7 +173,7 @@ export default {
         client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
     ])
 
-    const [ prevEntries, nextEntries, categories ] = await Promise.all([
+    const [ prevEntries, nextEntries, categories, newlyPosts ] = await Promise.all([
         client.getEntries({
           'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
           'fields.publishDate[lt]': entries.items[0].fields.publishDate,
@@ -186,7 +192,12 @@ export default {
           'fields.slug[ne]': params.slug,
           order: '-fields.publishDate',
           limit: 3
-        })
+        }),
+        client.getEntries({
+            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+            order: '-fields.publishDate',
+            limit: 5
+        }),
     ])
     const post = entries.items[0]
     return {
@@ -200,7 +211,8 @@ export default {
         description: `${entries.items[0].fields.description}`,
         relatedPosts: categories ? categories.items : [],
         publishDate: post.fields.publishDate,
-        updateDate: post.sys.updatedAt
+        updateDate: post.sys.updatedAt,
+        newlyPosts: newlyPosts.items,
     }
   },
   computed: {

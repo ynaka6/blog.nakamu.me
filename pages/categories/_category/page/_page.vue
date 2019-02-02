@@ -63,6 +63,12 @@
                         subtitle="タグ"
                         :tags="tags"
                     />
+                    <PostList
+                        v-if="newlyPosts.length"
+                        title="Latest Articles"
+                        subtitle="新着記事"
+                        :posts="newlyPosts"
+                    />
                 </div>
             </div>
         </div>
@@ -74,6 +80,7 @@
 import CategoryMenu from '~/components/molecules/tabs/CategoryMenu.vue'
 import CardPost from '~/components/organisms/cards/Post.vue'
 import TagList from '~/components/organisms/lists/TagList.vue'
+import PostList from '~/components/organisms/lists/PostList.vue'
 import CardProfile from '~/components/organisms/cards/Profile.vue'
 import {createClient} from '~/plugins/contentful.js'
 
@@ -108,7 +115,7 @@ export default {
         const page = parseInt(params.page) || 1
         const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
         const skip = (page - 1) * limit
-        const [　entries, posts, postType ] = await Promise.all([
+        const [　entries, posts, postType, newlyPosts ] = await Promise.all([
             client.getEntries({
                 'sys.id': process.env.CTF_PERSON_ID
             }),
@@ -119,7 +126,12 @@ export default {
                 skip: skip,
                 limit: limit + 1
             }),
-            client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
+            client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID),
+            client.getEntries({
+                'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+                order: '-fields.publishDate',
+                limit: 5
+            }),
         ])
 
         const prevPage = page > 1 ? page - 1 : null
@@ -137,14 +149,16 @@ export default {
             description: `#${params.category}の投稿一覧ページです。`,
             page: page,
             prevPage: prevPage,
-            nextPage: nextPage
+            nextPage: nextPage,
+            newlyPosts: newlyPosts.items,
         }
     },
     components: {
         CategoryMenu,
         CardPost,
         TagList,
-        CardProfile
+        CardProfile,
+        PostList
     }
 }
 </script>

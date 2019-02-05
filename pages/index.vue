@@ -49,13 +49,31 @@
                         </div>
                     </div>
 
-                    <div v-if="posts.length">
+                    <div
+                        class="m-b-40"
+                        v-if="posts.length"
+                    >
                         <div class="has-text-centered m-b-30">
-                            <h2 class="title is-underline font-quicksand">Latest Articles</h2>
-                            <p class="subtitle has-text-dark is-6">最新記事</p>
+                            <h2 class="title is-underline font-quicksand">Tech Articles</h2>
+                            <p class="subtitle has-text-dark is-6">技術 - 最新記事</p>
                         </div>
                         <div class="columns is-multiline">
                             <div class="column is-flex is-6" v-for="(post, index) in posts" :key="index">
+                                <CardPost :post="post"></CardPost>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="m-b-40"
+                        v-if="lifePosts.length"
+                    >
+                        <div class="has-text-centered m-b-30">
+                            <h2 class="title is-underline font-quicksand">Life Articles</h2>
+                            <p class="subtitle has-text-dark is-6">生活 - 最新記事</p>
+                        </div>
+                        <div class="columns is-multiline">
+                            <div class="column is-flex is-6" v-for="(post, index) in lifePosts" :key="index">
                                 <CardPost :post="post"></CardPost>
                             </div>
                         </div>
@@ -106,12 +124,19 @@ export default {
         }
     },
     async asyncData (context) {
-        const [　entries, posts, postType ] = await Promise.all([
+        const [　entries, posts, lifePosts, postType ] = await Promise.all([
             client.getEntries({
                 'sys.id': process.env.CTF_PERSON_ID
             }),
             client.getEntries({
                 'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+                'fields.category[nin]': '海外生活',
+                order: '-fields.publishDate',
+                limit: 6
+            }),
+            client.getEntries({
+                'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+                'fields.category[in]': '海外生活',
                 order: '-fields.publishDate',
                 limit: 6
             }),
@@ -121,6 +146,7 @@ export default {
         return {
             person: entries.items[0],
             posts: posts.items,
+            lifePosts: lifePosts.items,
             categories: postType.fields.find(field => field.id === 'category').items.validations[0].in,
             tags: postType.fields.find(field => field.id === 'tags').items.validations[0].in,
             title: 'なかむ🇭🇰エンジニアブログ | 世界を旅して暮らしたい放浪エンジニアブログ',

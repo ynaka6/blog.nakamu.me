@@ -193,6 +193,15 @@ module.exports = {
         vine: { width: 600, height: 600, embed: 'simple' },
         prezi: { width: 550, height: 400 }
       }],
+      'markdown-it-mark',
+      ['markdown-it-link-attributes', {
+        pattern: /^http(s):/,
+        attrs: {
+          target: '_blank',
+          rel: 'noopener'
+        }
+      }],
+      'markdown-it-attrs'
       // 'markdown-it-highlightjs',
     ],
     highlight: (str, lang) => {

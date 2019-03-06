@@ -2,7 +2,7 @@
     <div class="card">
         <article class="media">
             <figure class="media-left">
-                <nuxt-link class="image" :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}">
+                <nuxt-link class="image" :to="`/posts/${post.fields.slug}/`">
                     <lazy-component>
                         <img class=""
                             :alt="post.fields.title"
@@ -20,7 +20,7 @@
                     :updateTime="post.sys.updatedAt"
                 />
                 <div class="content m-t-5">
-                    <nuxt-link class="has-text-dark has-text-weight-semibold" :to="{ name: 'posts-slug', params: { slug: post.fields.slug }}">{{ post.fields.title }}</nuxt-link>
+                    <nuxt-link class="has-text-dark has-text-weight-semibold" :to="`/posts/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
                 </div>
             </div>
         </article>

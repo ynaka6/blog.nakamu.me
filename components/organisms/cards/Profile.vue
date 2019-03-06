@@ -84,19 +84,19 @@
             <aside class="menu">
                 <ul class="menu-list">
                     <li>
-                        <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">
+                        <nuxt-link to="/posts/i-am-programming-mentor/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1792 1792" fill="currentColor"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg>
                             コードメンターの活動について
                         </nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'laravel-web' }}">
+                        <nuxt-link to="/posts/laravel-web/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1792 1792" fill="currentColor"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg>
                             Laravelを利用したWEB開発
                         </nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link :to="{ name: 'posts-slug', params: { slug: 'rails-web' }}">
+                        <nuxt-link to="/posts/rails-web/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1792 1792" fill="currentColor"><path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg>
                             Railsを利用したWEB開発
                         </nuxt-link>

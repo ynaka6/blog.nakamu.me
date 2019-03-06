@@ -3,7 +3,7 @@
       <div class="tabs is-boxed is-centered main-menu" id="nav">
         <ul>
             <li>
-                <router-link to="/posts">
+                <router-link to="/posts/">
                   全て
                 </router-link>
             </li>

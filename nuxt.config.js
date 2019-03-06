@@ -38,7 +38,7 @@ const generateRoutes = () => {
       const total = entries.items.filter(entry => entry.fields.tags && entry.fields.tags.includes(tag)).length
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
       return [
-        `/tags/${tag}`,
+        `/tags/${tag}/`,
         ...[...Array(pageCount).keys()].map(i =>  `/tags/${tag}/page/` + ++i)
       ]
     }))
@@ -48,7 +48,7 @@ const generateRoutes = () => {
     return [
       '/posts',
       ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
-      ...entries.items.map(entry => `/posts/${entry.fields.slug}`),
+      ...entries.items.map(entry => `/posts/${entry.fields.slug}/`),
       ...categoryUrl,
       ...tagUrl,
     ]
@@ -246,7 +246,7 @@ module.exports = {
           feed.addItem({
             title: post.fields.title,
             id: post.fields.slug,
-            link: `${process.env.BASE_URL}/posts/${post.fields.slug}`,
+            link: `${process.env.BASE_URL}/posts/${post.fields.slug}/`,
             description: post.fields.description,
             content: post.fields.description,
             date: new Date(post.fields.publishDate),

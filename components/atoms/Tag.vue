@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-      :to="{ name: 'tags-tag', params: { tag: tag }}"
+      :to="`/tags/${tag}/`"
       class="button is-rounded"
       :class="size"
   >

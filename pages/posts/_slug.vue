@@ -66,17 +66,35 @@
                   </div>
                   <div class="button-group level is-mobile">
                     <div class="level-item" style="margin: 0;">
-                      <a :href="twitterShareUrl" target="_blank" rel="noreferrer" class="button is-fullwidth is-twitter is-medium">
+                      <a
+                        :href="twitterShareUrl"
+                        target="_blank"
+                        rel="noreferrer"
+                        class="button is-fullwidth is-twitter is-medium"
+                        aria-label="Twitter"
+                      >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1792 1792" fill="currentColor"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg>
                       </a>
                     </div>
                     <div class="level-item" style="margin: 0;">
-                      <a :href=fbShareUrl target="_blank" rel="noreferrer" class="button is-fullwidth is-facebook is-medium">
+                      <a
+                        :href=fbShareUrl
+                        target="_blank"
+                        rel="noreferrer"
+                        class="button is-fullwidth is-facebook is-medium"
+                        aria-label="Facebook"
+                      >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1792 1792" fill="currentColor"><path d="M1376 128q119 0 203.5 84.5t84.5 203.5v960q0 119-84.5 203.5t-203.5 84.5h-188v-595h199l30-232h-229v-148q0-56 23.5-84t91.5-28l122-1v-207q-63-9-178-9-136 0-217.5 80t-81.5 226v171h-200v232h200v595h-532q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960z"/></svg>
                       </a>
                     </div>
                     <div class="level-item" style="margin: 0;">
-                      <a :href="hatenaShareUrl" class="button is-hatena is-fullwidth is-medium" target="_blank" rel="noreferrer">
+                      <a
+                        :href="hatenaShareUrl"
+                        class="button is-hatena is-fullwidth is-medium"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="はてなブックマーク"
+                      >
                         B!
                       </a>
                     </div>

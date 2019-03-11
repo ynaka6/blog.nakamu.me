@@ -19,7 +19,9 @@ if (process.env.NODE_ENV === 'production') {
 const generateRoutes = () => {
   return Promise.all([
     client.getEntries({
-      'content_type': process.env.CTF_BLOG_POST_TYPE_ID
+      'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+      order: '-fields.publishDate',
+      limit: 1000,
     }),
     client.getContentType(process.env.CTF_BLOG_POST_TYPE_ID)
   ])
@@ -29,7 +31,7 @@ const generateRoutes = () => {
       const total = entries.items.filter(entry => entry.fields.category[0] === category).length
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
       return [
-        `/categories/${category}`,
+        `/categories/${category}/`,
         ...[...Array(pageCount).keys()].map(i =>  `/categories/${category}/page/` + ++i)
       ]
     }))
@@ -45,6 +47,7 @@ const generateRoutes = () => {
 
     const total = entries.items.length
     const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+
     return [
       '/posts',
       ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
@@ -147,7 +150,7 @@ module.exports = {
     }
   },
   generate: {
-    interval: 1000,
+    interval: 500,
     routes: generateRoutes,
   },
   modules: modules,
@@ -239,7 +242,9 @@ module.exports = {
         }
 
         const posts = await client.getEntries({
-          'content_type': process.env.CTF_BLOG_POST_TYPE_ID
+          'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+          order: '-fields.publishDate',
+          limit: 1000,
         })
 
         posts.items.forEach(post => {

@@ -155,6 +155,28 @@
         padding: .5rem .75rem;
         border-left: 6px solid $primary;
     }
+
+    table {
+        border: 1px solid #dee2e6;
+
+        & > thead, & > tbody {
+            & > tr {
+                & > th {
+                    color: #495057;
+                    background-color: #e9ecef;
+                    border-width: 1px;
+                }
+            }
+        }
+
+        & > tbody {
+            & > tr {
+                & > td {
+                    border-width: 1px;
+                }
+            }
+        }
+    }
 }
 
 // tag
@@ -219,7 +241,10 @@ $tag-colors: (
     }
 }
 
-
+.Cookie__button {
+    color: $dark;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 768px) {
     .breadcrumb {

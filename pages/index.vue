@@ -42,7 +42,7 @@
                                     <div class="content">
                                         <h4 class="m-b-5"><span class="shadow is-primary">〜 伝えたい内容 〜</span></h4>
                                         <p class="subtitle has-text-dark is-7">どんな人に読んでもらいたいのか？</p>
-                                        <p>目的でも述べた通り自分へのメッセージ性が強いブログではありますが、<span class="shadow is-danger">"エンジニアとしてスタートしたばかりの初学者"</span>や<span class="shadow is-danger">"エンジニアのキャリアに悩んでいる方などのサポート"</span>ができればと考えています。現時点では<nuxt-link :to="{ name: 'posts-slug', params: { slug: 'i-am-programming-mentor' }}">メンター活動</nuxt-link>がその一貫です。ブログ上でも貢献していきたいと考えています。</p>
+                                        <p>目的でも述べた通り自分へのメッセージ性が強いブログではありますが、<span class="shadow is-danger">"エンジニアとしてスタートしたばかりの初学者"</span>や<span class="shadow is-danger">"エンジニアのキャリアに悩んでいる方などのサポート"</span>ができればと考えています。現時点では<nuxt-link to="/posts/i-am-programming-mentor/">メンター活動</nuxt-link>がその一貫です。ブログ上でも貢献していきたいと考えています。</p>
                                     </div>
                                 </div>
                             </div>

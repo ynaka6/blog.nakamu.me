@@ -18,6 +18,30 @@
   </main>
 </template>
 
+
+<script>
+import CategoryMenu from '~/components/molecules/tabs/CategoryMenu.vue'
+import CardPost from '~/components/organisms/cards/Post.vue'
+import TagList from '~/components/organisms/lists/TagList.vue'
+import PostList from '~/components/organisms/lists/PostList.vue'
+import CardProfile from '~/components/organisms/cards/Profile.vue'
+import {createClient} from '~/plugins/contentful.js'
+
+const client = createClient()
+export default {
+    head () {
+        return {
+            title: '404 - Page Not Found',
+            meta: [
+                { hid: 'description', name: 'description', content: '404 - Page Not Found' },
+                { hid: 'robots', name: 'robots', content: 'noindex, nofollow' },
+            ]
+        }
+    }
+}
+</script>
+
+
 <style lang="scss" scoped>
 .broken-link {
     width: 10rem;

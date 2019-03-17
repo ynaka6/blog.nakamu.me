@@ -19,3 +19,4 @@ static/sitemap.xml*
 static/atom.xml
 
 .envrc
+.env

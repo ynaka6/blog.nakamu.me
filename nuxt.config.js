@@ -1,5 +1,6 @@
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+
 const flatten = require('array-flatten')
-const config = require('./.contentful.json')
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
@@ -60,11 +61,11 @@ const generateRoutes = () => {
 
 module.exports = {
   env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID || process.env.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN || process.env.CTF_CDA_ACCESS_TOKEN,
-    CTF_CMA_ACCESS_TOKEN: config.CTF_CMA_ACCESS_TOKEN || process.env.CTF_CMA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID || process.env.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID || process.env.CTF_BLOG_POST_TYPE_ID,
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    CTF_CMA_ACCESS_TOKEN: process.env.CTF_CMA_ACCESS_TOKEN,
+    CTF_PERSON_ID: process.env.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID,
     
     ALGOLIA_APPLICATION_ID: process.env.ALGOLIA_APPLICATION_ID,
     ALGOLIA_SEARCH_API_KEY: process.env.ALGOLIA_SEARCH_API_KEY,

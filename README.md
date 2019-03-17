@@ -1,6 +1,9 @@
 # myblog
 
-> Nakamu Engneer Blog
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf529e87-8a15-41e2-ba14-55960a8d18cd/deploy-status)](https://app.netlify.com/sites/nakamublog/deploys)
+
+> Personal Blog - **なかむ エンジニアブログ**
+
 
 ## Build Setup
 
@@ -19,5 +22,13 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## environment
 
+```
+BASE_URL=
+CTF_BLOG_POST_TYPE_ID=
+CTF_CDA_ACCESS_TOKEN=
+CTF_PERSON_ID=
+CTF_SPACE_ID=
+GOOGLE_ANALYTICS_TRACKING_ID=
+```

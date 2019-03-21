@@ -33,29 +33,30 @@ const generateRoutes = () => {
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
       return [
         `/categories/${category}/`,
-        ...[...Array(pageCount).keys()].map(i =>  `/categories/${category}/page/` + ++i)
+        ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i =>  `/categories/${category}/page/` + (i + 2))
       ]
     }))
 
     const tagUrl = flatten(postType.fields.find(field => field.id === 'tags').items.validations[0].in.map((tag) => {
       const total = entries.items.filter(entry => entry.fields.tags && entry.fields.tags.includes(tag)).length
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+      console.log('tag pageCount :' + pageCount)
       return [
         `/tags/${tag}/`,
-        ...[...Array(pageCount).keys()].map(i =>  `/tags/${tag}/page/` + ++i)
+        ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i =>  `/tags/${tag}/page/` + (i + 2))
       ]
     }))
 
     const total = entries.items.length
     const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-
     return [
       '/posts',
-      ...[...Array(pageCount).keys()].map(i => '/posts/page/' + ++i),
+      ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => '/posts/page/' + (i + 2)),
       ...entries.items.map(entry => `/posts/${entry.fields.slug}/`),
       ...categoryUrl,
       ...tagUrl,
     ]
+    
   })
 }
 

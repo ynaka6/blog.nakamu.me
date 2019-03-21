@@ -40,7 +40,6 @@ const generateRoutes = () => {
     const tagUrl = flatten(postType.fields.find(field => field.id === 'tags').items.validations[0].in.map((tag) => {
       const total = entries.items.filter(entry => entry.fields.tags && entry.fields.tags.includes(tag)).length
       const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-      console.log('tag pageCount :' + pageCount)
       return [
         `/tags/${tag}/`,
         ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i =>  `/tags/${tag}/page/` + (i + 2))
@@ -56,7 +55,7 @@ const generateRoutes = () => {
       ...categoryUrl,
       ...tagUrl,
     ]
-    
+
   })
 }
 

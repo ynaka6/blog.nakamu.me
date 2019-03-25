@@ -5,7 +5,7 @@
       <n-image
         class="p-6 block w-48 h-48 mx-auto rounded-full"
         :alt="author.fields.name"
-        :src="author.fields.image.fields.file.url"
+        :src="`${author.fields.image.fields.file.url}`"
       />
       <p class="text-center">
         <n-link
@@ -18,38 +18,38 @@
       <p class="py-4 text-grey-darkest" v-text="author.fields.shortBio"></p>
       <div class="py-2">
         <a
-            :href="'https://twitter.com/' + author.fields.twitter"
-            target="_blank"
-            style="color: #55acee;"
-            rel="noreferrer"
-            aria-label="Twitter"
+          :href="'https://twitter.com/' + author.fields.twitter"
+          target="_blank"
+          style="color: #55acee;"
+          rel="noreferrer"
+          aria-label="Twitter"
         >
           <n-icon icon="twitter" size="6" />
         </a>
         <a
-            :href="'https://github.com/' + author.fields.github"
-            target="_blank"
-            style="color: #333;"
-            rel="noreferrer"
-            aria-label="Github"
+          :href="'https://github.com/' + author.fields.github"
+          target="_blank"
+          style="color: #333;"
+          rel="noreferrer"
+          aria-label="Github"
         >
           <n-icon icon="github" size="6" />
         </a>
         <a
-            :href="'https://gitlab.com/' + author.fields.gitlab"
-            target="_blank"
-            style="color: #fa6d34;"
-            rel="noreferrer"
-            aria-label="Gitlab"
+          :href="'https://gitlab.com/' + author.fields.gitlab"
+          target="_blank"
+          style="color: #fa6d34;"
+          rel="noreferrer"
+          aria-label="Gitlab"
         >
           <n-icon icon="gitlab" size="6" />
         </a>
         <a
-            :href="'https://www.instagram.com/' + author.fields.instagram"
-            target="_blank"
-            style="color: #d93177;"
-            rel="noreferrer"
-            aria-label="instagram"
+          :href="'https://www.instagram.com/' + author.fields.instagram"
+          target="_blank"
+          style="color: #d93177;"
+          rel="noreferrer"
+          aria-label="instagram"
         >
           <n-icon icon="instagram" size="6" />
         </a>

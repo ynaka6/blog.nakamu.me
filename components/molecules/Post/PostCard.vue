@@ -4,7 +4,8 @@
       <n-image
         class="block h-auto w-full"
         :alt="post.fields.title"
-        :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'"
+        :src="`${post.fields.heroImage.fields.file.url}?w=10`"
+        :placeholder="post.fields.heroImage.fields.file.url"
         :srcset="
           `
           ${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w,
@@ -18,8 +19,7 @@
     <div class="p-2 md:px-4">
       <p class="my-1 text-sm text-grey-darker">
         <span class="text-grey-darker text-sm">
-          2019/01/01
-          <svg
+          2019/01/01<svg
             class="h-3 w-3"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1792 1792"

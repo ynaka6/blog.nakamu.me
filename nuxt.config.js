@@ -104,19 +104,23 @@ export default {
     routes: () => {
       return Promise.all([
         client.getEntries({
+          'sys.id': process.env.CTF_PERSON_ID
+        }),
+        client.getEntries({
           content_type: process.env.CTF_BLOG_POST_TYPE_ID,
           order: '-fields.publishDate',
           limit: 1000
         })
-      ]).then(([entries]) => {
-        const total = entries.items.length
+      ]).then(([person, posts]) => {
+        const total = posts.items.length
         const limit = parseInt(process.env.PAGENATE_LIMIT)
         const pageCount = Math.floor((total - 1) / limit) + 1
         const route = [
           {
             route: '/posts',
             payload: {
-              posts: entries.items.splice(0, limit),
+              author: person.items[0],
+              posts: posts.items.splice(0, limit),
               page: 1,
               prevPage: null,
               nextPage: pageCount > 1 ? 2 : null
@@ -127,7 +131,8 @@ export default {
             return {
               route: '/posts/page/' + page,
               payload: {
-                posts: entries.items.splice(
+                author: person.items[0],
+                posts: posts.items.splice(
                   process.env.PAGENATE_LIMIT * page,
                   limit
                 ),
@@ -137,7 +142,7 @@ export default {
               }
             }
           })
-          // ...entries.items.map(entry => `/posts/${entry.fields.slug}/`)
+          // ...posts.items.map(entry => `/posts/${entry.fields.slug}/`)
         ]
         // // eslint-disable-next-line no-console
         // console.log('***** payload *****')

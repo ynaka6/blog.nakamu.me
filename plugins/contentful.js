@@ -7,7 +7,7 @@ const config = {
 }
 // export `createClient` to use it in page components
 module.exports = {
-  createClient () {
+  createClient() {
     return contentful.createClient(config)
   }
 }

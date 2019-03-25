@@ -1,0 +1,150 @@
+[
+    {
+        "name": "Algolia",
+        "slug": "algolia"
+    },
+    {
+        "name": "Bulma",
+        "slug": "bulma"
+    },
+    {
+        "name": "CircleCI",
+        "slug": "circleci"
+    },
+    {
+        "name": "Cloudinary",
+        "slug": "cloudinary"
+    },
+    {
+        "name": "Contentful",
+        "slug": "contentful"
+    },
+    {
+        "name": "Git",
+        "slug": "git"
+    },
+    {
+        "name": "Github",
+        "slug": "github"
+    },
+    {
+        "name": "Gridsome",
+        "slug": "gridsome"
+    },
+    {
+        "name": "Heroku",
+        "slug": "heroku"
+    },
+    {
+        "name": "Kotlin",
+        "slug": "kotlin"
+    },
+    {
+        "name": "Javascript",
+        "slug": "javascript"
+    },
+    {
+        "name": "Jekyll",
+        "slug": "jekyll"
+    },
+    {
+        "name": "Laravel",
+        "slug": "laravel"
+    },
+    {
+        "name": "MongoDB",
+        "slug": "mongodb"
+    },
+    {
+        "name": "Netlify",
+        "slug": "netlify"
+    },
+    {
+        "name": "ngrok",
+        "slug": "ngrok"
+    },
+    {
+        "name": "Node.js",
+        "slug": "nodejs"
+    },
+    {
+        "name": "PHP",
+        "slug": "php"
+    },
+    {
+        "name": "Python",
+        "slug": "python"
+    },
+    {
+        "name": "Python",
+        "slug": "python"
+    },
+    {
+        "name": "Ruby",
+        "slug": "ruby"
+    },
+    {
+        "name": "RubyOnRails",
+        "slug": "ruby-on-rails"
+    },
+    {
+        "name": "Sentry",
+        "slug": "sentry"
+    },
+    {
+        "name": "SEO",
+        "slug": "seo"
+    },
+    {
+        "name": "Scrapy",
+        "slug": "scrapy"
+    },
+    {
+        "name": "TailwindCSS",
+        "slug": "tailwindcss"
+    },
+    {
+        "name": "TypeScript",
+        "slug": "typeScript"
+    },
+    {
+        "name": "Vue.js",
+        "slug": "vuejs"
+    },
+    {
+        "name": "VuePress",
+        "slug": "vuePress"
+    },
+    {
+        "name": "Vuetify",
+        "slug": "vuetify"
+    },
+    {
+        "name": "振り返り",
+        "slug": "review"
+    },
+    {
+        "name": "メンター",
+        "slug": "mentor"
+    },
+    {
+        "name": "中国IT事情",
+        "slug": "chaina-it"
+    },
+    {
+        "name": "香港生活",
+        "slug": "hongkong-life"
+    },
+    {
+        "name": "目標",
+        "slug": "gole"
+    },
+    {
+        "name": "技術メモ",
+        "slug": "tech-memo"
+    },
+    {
+        "name": "ポエム",
+        "slug": "poem"
+    }
+]

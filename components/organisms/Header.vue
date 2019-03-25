@@ -1,56 +1,35 @@
 <template>
-  <nav class="navbar is-primary" :class="{'is-fixed-top is-fadein': scrollY > 100}">
-    <div class="container">
-      <div class="navbar-brand">
-        <router-link to="/" class="navbar-item is-block">
-          <div class="font-leckerli-one navbar-brand__title">
-            Nakamu Blog
-          </div>
-          <div class="subtitle is-size-7"> 世界を旅して暮らしたい放浪エンジニアブログ</div>
-        </router-link>
-
-        <!--
-        <span class="navbar-burger burger" :class="{'is-active': drawer}" @click="drawer = !drawer">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-        -->
-      </div>
-      <div class="navbar-menu" :class="{'is-active': drawer}">
-        <div class="navbar-end">
-          <div class="navbar-item">
-          </div>
-        </div>
-      </div>
+  <header
+    class="flex justify-between bg-blue-dark border-b border-grey-lighter py-5 px-2 lg:px-5"
+  >
+    <div class="text-center"></div>
+    <div class="text-center text-white mr-6">
+      <h1 class="my-1">
+        <n-logo :label="title" color="text-white" />
+      </h1>
+      <p class="text-xs" v-text="subtitle" />
     </div>
-  </nav>
+    <div></div>
+  </header>
 </template>
 
 <script>
-// import FormSearchBox from '~/components/molecules/forms/SearchBox.vue'
+import NLogo from '~/components/atoms/links/NLogo'
 
 export default {
-  name: 'Header',
-  props: {
-  },
+  components: { NLogo },
   data: () => ({
-    drawer: false,
-    scrollY: 0,
+    title: process.env.APP_TITLE,
+    subtitle: process.env.APP_SUBTITLE,
+    scrollY: null
   }),
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
     handleScroll() {
-      this.scrollY = window.scrollY;
-    },
-  },
-  components: {
-    // FormSearchBox,
+      this.scrollY = window.scrollY
+    }
   }
-};
+}
 </script>
-
-<style lang="scss" scoped>
-</style>

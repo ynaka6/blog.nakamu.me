@@ -1,4 +1,3 @@
 [build]
-  Command = "netlify-lambda build lambda && yarn generate"
-  functions = "functions"
+  Command = "yarn generate"
   publish = "dist"

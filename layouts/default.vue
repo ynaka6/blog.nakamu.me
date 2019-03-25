@@ -1,46 +1,22 @@
 <template>
-  <div>
-    <Header/>
-    <nuxt/>
-    <Footer/>
-    <no-ssr>
-      <PageTopButton
-        :scrollY="scrollY"
-        v-scroll-to="'body'"
-      />
-    </no-ssr>
-    <ModalContact />
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header />
+    <div class="flex-grow">
+      <nuxt />
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from '~/components/organisms/Header.vue'
 import Footer from '~/components/organisms/Footer.vue'
-import PageTopButton from '~/components/molecules/buttons/PageTopButton.vue'
-import ModalContact from '~/components/organisms/modals/Contact.vue'
-
+// import Loading from '~/components/atoms/loading'
 
 export default {
-  data: () => ({
-    scrollY: 0,
-  }),
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      this.scrollY = window.scrollY;
-    }
-  },
-  components: {
-    Header,
-    Footer,
-    PageTopButton,
-    ModalContact,
-  }
+  components: { Header, Footer },
+  data: () => ({})
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
-
+<style></style>

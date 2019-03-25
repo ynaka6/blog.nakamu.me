@@ -1,4 +1,0 @@
-User-Agent:*
-Disallow:  /archives/year/:year/
-Disallow:  /categories/%E3%83%90%E3%83%83%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%89/plugins/contentful
-

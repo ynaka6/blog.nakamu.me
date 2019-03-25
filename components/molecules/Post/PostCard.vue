@@ -1,7 +1,7 @@
 <template>
   <article class="overflow-hidden rounded-lg bg-white hover:shadow-lg">
     <nuxt-link to="/">
-      <img
+      <n-image
         class="block h-auto w-full"
         :alt="post.fields.title"
         :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'"
@@ -60,9 +60,10 @@
 
 <script>
 import NTag from '~/components/atoms/links/NTag'
+import NImage from '~/components/atoms/NImage'
 
 export default {
-  components: { NTag },
+  components: { NTag, NImage },
   props: {
     post: { type: Object, required: true }
   }

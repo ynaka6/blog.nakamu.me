@@ -2,7 +2,7 @@
   <div>
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
-        <div class="lg:w-3/4 p-4">
+        <div class="lg:w-2/3 p-4">
           <n-title label="Posts" />
           <div class="flex flex-wrap justify-center">
             <div
@@ -83,7 +83,9 @@
             </div>
           </div>
         </div>
-        <div class="lg:w-1/4 p-4"></div>
+        <div class="lg:w-1/3 p-4">
+          <profile-card :author="$store.getters['author/author']" />
+        </div>
       </div>
     </section>
   </div>
@@ -92,9 +94,10 @@
 <script>
 import NTitle from '~/components/atoms/titles/NTitle'
 import PostCard from '~/components/molecules/Post/PostCard'
+import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 
 export default {
-  components: { NTitle, PostCard },
+  components: { NTitle, PostCard, ProfileCard },
   data: () => ({})
 }
 </script>

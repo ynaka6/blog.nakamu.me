@@ -8,7 +8,7 @@
         <n-link
           :to="profile_site_url"
           label="プロフィールサイト"
-          link-class="text-blue hover:text-blue-darker"
+          class="text-blue hover:text-blue-darker"
           :target-blank="true"
         />
         も合わせてご確認ください🙇🏻
@@ -16,7 +16,7 @@
     </section>
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
-        <div class="lg:w-3/4 p-4">
+        <div class="lg:w-2/3 p-4">
           <n-title label="Latest Posts" />
           <div class="flex flex-wrap justify-center">
             <div
@@ -29,7 +29,9 @@
             </div>
           </div>
         </div>
-        <div class="lg:w-1/4 p-4"></div>
+        <div class="lg:w-1/3 p-4">
+          <profile-card :author="$store.getters['author/author']" />
+        </div>
       </div>
     </section>
   </div>
@@ -39,9 +41,10 @@
 import NTitle from '~/components/atoms/titles/NTitle'
 import NLink from '~/components/atoms/links/NLink'
 import PostCard from '~/components/molecules/Post/PostCard'
+import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 
 export default {
-  components: { NTitle, NLink, PostCard },
+  components: { NTitle, NLink, PostCard, ProfileCard },
   data: () => ({
     profile_site_url: process.env.PROFILE_SITE_URL
   })

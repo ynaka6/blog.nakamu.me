@@ -11,10 +11,18 @@ export default {
     return !params.page || /^\d+$/.test(params.page)
   },
   async asyncData({ store, params, payload }) {
-    if (payload && payload.posts) {
-      store.dispatch('post/setPosts', payload)
+    if (payload) {
+      if (payload.author) {
+        store.dispatch('author/setAuthor', payload)
+      }
+      if (payload.posts) {
+        store.dispatch('post/setPosts', payload)
+      }
     } else {
-      await store.dispatch('post/loadPosts', parseInt(params.page) || 1)
+      await Promise.all([
+        store.dispatch('author/loadAuthor'),
+        store.dispatch('post/loadPosts', parseInt(params.page) || 1)
+      ])
     }
   }
 }

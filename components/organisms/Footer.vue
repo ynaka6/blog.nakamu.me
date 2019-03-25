@@ -20,14 +20,14 @@
                   <n-link
                     to="/"
                     label="Home"
-                    link-class="text-white hover:text-grey-dark"
+                    class="text-white hover:text-grey-dark"
                   />
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
                   <n-link
                     to="/posts"
                     label="Posts"
-                    link-class="text-white hover:text-grey-dark"
+                    class="text-white hover:text-grey-dark"
                   />
                 </li>
               </ul>
@@ -41,7 +41,7 @@
                   <n-link
                     :to="profile_site_url"
                     label="Profile"
-                    link-class="text-white hover:text-grey"
+                    class="text-white hover:text-grey"
                     :target-blank="true"
                   />
                 </li>
@@ -49,14 +49,14 @@
                   <n-link
                     to="/policy/privacy"
                     label="Privacy"
-                    link-class="text-white hover:text-grey-dark"
+                    class="text-white hover:text-grey-dark"
                   />
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
                   <n-link
                     to="/"
                     label="Contact"
-                    link-class="text-white hover:text-grey-dark"
+                    class="text-white hover:text-grey-dark"
                   />
                 </li>
               </ul>

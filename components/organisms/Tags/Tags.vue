@@ -4,11 +4,13 @@
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
           <n-title>
-            Posts
+            <n-icon icon="tag" size="5" />
+            {{ $store.getters['tag/tag'].name }}
           </n-title>
+
           <div class="flex flex-wrap justify-center">
             <div
-              v-for="(post, index) in $store.getters['post/posts']"
+              v-for="(post, index) in $store.getters['tag/posts']"
               :key="index"
               :to="`/posts/${post.slug}/`"
               class="flex my-4 px-1 w-full md:w-1/2"
@@ -18,10 +20,10 @@
           </div>
           <div class="flex justify-between">
             <div>
-              <div v-if="$store.getters['post/isPrevPage']">
+              <div v-if="$store.getters['tag/isPrevPage']">
                 <nuxt-link
-                  v-if="1 == $store.getters['post/prevPage']"
-                  :to="{ name: 'posts' }"
+                  v-if="1 == $store.getters['tag/prevPage']"
+                  :to="`/tags/${$store.getters['tag/tag']}`"
                   class="button is-large is-circle is-light"
                   aria-label="前のページ"
                 >
@@ -40,10 +42,13 @@
                 <nuxt-link
                   v-else
                   class="button is-large is-circle is-light"
-                  :to="{
-                    name: 'posts-page-page',
-                    params: { page: $store.getters['post/prevPage'] }
-                  }"
+                  :to="
+                    `
+                      /tags/${$store.getters['tag/tag']}/page/${
+                      $store.getters['tag/prevPage']
+                    }
+                    `
+                  "
                   aria-label="前のページ"
                 >
                   <svg
@@ -62,11 +67,14 @@
             </div>
             <div>
               <nuxt-link
-                v-if="$store.getters['post/isNextPage']"
-                :to="{
-                  name: 'posts-page-page',
-                  params: { page: $store.getters['post/nextPage'] }
-                }"
+                v-if="$store.getters['tag/isNextPage']"
+                :to="
+                  `
+                    /tags/${$store.getters['tag/tag']}/page/${
+                    $store.getters['tag/nextPage']
+                  }
+                  `
+                "
                 class="button is-large is-circle is-light"
                 aria-label="次のページ"
               >
@@ -95,11 +103,12 @@
 
 <script>
 import NTitle from '~/components/atoms/titles/NTitle'
+import NIcon from '~/components/atoms/NIcon'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 
 export default {
-  components: { NTitle, PostCard, ProfileCard },
+  components: { NTitle, NIcon, PostCard, ProfileCard },
   data: () => ({})
 }
 </script>

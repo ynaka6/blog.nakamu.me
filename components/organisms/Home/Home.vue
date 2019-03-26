@@ -17,7 +17,9 @@
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
-          <n-title label="Latest Posts" />
+          <n-title>
+            Latest Posts
+          </n-title>
           <div class="flex flex-wrap justify-center">
             <div
               v-for="(post, index) in $store.getters['post/latestPosts']"

@@ -3,8 +3,9 @@
     <section class="container mx-auto py-10">
       <div class="flex justify-center">
         <div class="w-4/5 rounded-lg bg-white border p-6">
-          <n-title label="Privacy Policy" />
-
+          <n-title>
+            Privacy Policy
+          </n-title>
           <div class="mt-20">
             <h3 class="mb-4">
               <strong>個人情報の利用目的</strong>

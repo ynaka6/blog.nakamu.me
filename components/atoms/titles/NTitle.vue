@@ -1,12 +1,12 @@
 <template>
-  <h2 class="text-center title-underline">{{ label }}</h2>
+  <h2 class="text-center title-underline">
+    <slot />
+  </h2>
 </template>
 
 <script>
 export default {
-  props: {
-    label: { type: String, required: true }
-  }
+  props: {}
 }
 </script>
 

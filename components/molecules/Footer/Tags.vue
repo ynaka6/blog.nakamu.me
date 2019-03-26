@@ -3,12 +3,14 @@
     <div
       class="text-center bg-white opacity-90 p-6 border-b border-grey-lighter"
     >
-      <n-title label="Tags" />
+      <n-title>
+        Tags
+      </n-title>
       <div>
         <n-tag
           v-for="(tag, index) in tags"
           :key="index"
-          :to="`/tags/${tag.slug}/`"
+          :to="`/tags/${tag.slug}`"
           :label="tag.name"
         />
       </div>

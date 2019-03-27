@@ -26,6 +26,7 @@
     "contentful-management": "^5.7.0",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
+    "flatten": "^1.0.2",
     "nuxt": "^2.4.0"
   },
   "devDependencies": {

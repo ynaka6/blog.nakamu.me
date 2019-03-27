@@ -1,5 +1,7 @@
 /* eslint-disable nuxt/no-cjs-in-config */
 import pkg from './package'
+import tags from './assets/json/tags.json'
+import flatten from 'flatten'
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const { createClient } = require('./plugins/contentful')
@@ -112,6 +114,46 @@ export default {
           limit: 1000
         })
       ]).then(([person, posts]) => {
+        const tagRoutes = flatten(tags
+          .map(tag => {
+            const tagPosts = posts.items.filter(post => post.fields.tags && post.fields.tags.includes(tag.name))
+            const total = tagPosts.length
+            const limit = parseInt(process.env.PAGENATE_LIMIT)
+            const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+
+            if (total == 0) return null
+
+            return [
+              {
+                route: `/tags/${tag.slug}`,
+                payload: {
+                  author: person.items[0],
+                  posts: tagPosts.splice(0, limit),
+                  page: 1,
+                  prevPage: null,
+                  nextPage: pageCount > 1 ? 2 : null
+                }
+              },
+              ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
+                const page = i + 2
+                return {
+                  route: `/tags/${tag.slug}/page/${page}`,
+                  payload: {
+                    author: person.items[0],
+                    posts: tagPosts.splice(
+                      process.env.PAGENATE_LIMIT * page,
+                      limit
+                    ),
+                    page: page,
+                    prevPage: page,
+                    nextPage: pageCount > page ? page + 1 : null
+                  }
+                }
+              })
+            ]
+          })
+          .filter(r => r != null))
+
         const total = posts.items.length
         const limit = parseInt(process.env.PAGENATE_LIMIT)
         const pageCount = Math.floor((total - 1) / limit) + 1
@@ -141,15 +183,11 @@ export default {
                 nextPage: pageCount > page ? page + 1 : null
               }
             }
-          })
+          }),
+          ...tagRoutes,
+
           // ...posts.items.map(entry => `/posts/${entry.fields.slug}/`)
         ]
-        // // eslint-disable-next-line no-console
-        // console.log('***** payload *****')
-        // // eslint-disable-next-line no-console
-        // console.log(route)
-        // // eslint-disable-next-line no-console
-        // console.log('***** payload *****')
         return route
       })
     }

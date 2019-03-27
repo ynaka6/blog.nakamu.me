@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <Tags />
+    <tags :tags="tags" />
     <section class="bg-gradient-blue py-8 w-full">
       <div class="container mx-auto px-4 lg:px-8">
         <div class="flex flex-col lg:flex-row">
@@ -12,7 +12,7 @@
           </div>
           <div class="lg:w-1/3 flex">
             <div class="w-1/2">
-              <p class="uppercase text-white text-sm sm:mb-6">
+              <p class="uppercase text-white text-sm sm:mb-3">
                 Contents
               </p>
               <ul class="list-reset text-xs mb-6">
@@ -30,21 +30,6 @@
                     class="text-white hover:text-grey-dark"
                   />
                 </li>
-              </ul>
-            </div>
-            <div class="w-1/2">
-              <p class="uppercase text-white text-sm sm:mb-6">
-                ABOUT
-              </p>
-              <ul class="list-reset text-xs mb-6">
-                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link
-                    :to="profile_site_url"
-                    label="Profile"
-                    class="text-white hover:text-grey"
-                    :target-blank="true"
-                  />
-                </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
                   <n-link
                     to="/policy/privacy"
@@ -57,6 +42,37 @@
                     to="/"
                     label="Contact"
                     class="text-white hover:text-grey-dark"
+                  />
+                </li>
+              </ul>
+            </div>
+            <div class="w-1/2">
+              <p class="uppercase text-white text-sm sm:mb-3">
+                ABOUT
+              </p>
+              <ul class="list-reset text-xs mb-8">
+                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                  <n-link
+                    :to="profile_site_url"
+                    label="Profile"
+                    class="text-white hover:text-grey"
+                    :target-blank="true"
+                  />
+                </li>
+              </ul>
+              <p class="uppercase text-white text-sm sm:mb-3">
+                CATEGORY
+              </p>
+              <ul class="list-reset text-xs mb-6">
+                <li
+                  v-for="(category, index) in categories"
+                  :key="index"
+                  class="mt-2 inline-block mr-2 sm:block sm:mr-0"
+                >
+                  <n-link
+                    :to="`/categories/${category.slug}`"
+                    :label="category.name"
+                    class="text-white hover:text-grey"
                   />
                 </li>
               </ul>
@@ -127,7 +143,15 @@ export default {
     title: process.env.APP_TITLE,
     explain: process.env.APP_DESCRIPTION,
     profile_site_url: process.env.PROFILE_SITE_URL
-  })
+  }),
+  computed: {
+    categories() {
+      return this.$store.getters['category/categories']
+    },
+    tags() {
+      return this.$store.getters['tag/tags']
+    }
+  }
 }
 </script>
 

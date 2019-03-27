@@ -4,28 +4,27 @@
       :list="[
         { link: '/', label: 'Home' },
         { link: '/posts', label: '記事一覧' },
-        { link: null, label: $store.getters['tag/tag'].name }
+        { link: null, label: $store.getters['category/category'].name }
       ]"
     />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
           <n-title>
-            <n-icon icon="tag" size="5" />
-            {{ $store.getters['tag/tag'].name }}
+            {{ $store.getters['category/category'].name }}
           </n-title>
           <information-box>
             <p
-              v-if="$store.getters['tag/tag'].description"
+              v-if="$store.getters['category/category'].description"
               class="text-sm text-grey-darker"
-              v-text="$store.getters['tag/tag'].description"
+              v-text="$store.getters['category/category'].description"
             ></p>
             <p
               v-else
               class="text-sm text-grey-darker"
               v-text="
                 `
-                ${$store.getters['tag/tag'].name}
+                ${$store.getters['category/category'].name}
                 に関する技術情報をまとめ記事になります
                 `
               "
@@ -34,7 +33,7 @@
 
           <div class="flex flex-wrap justify-center">
             <div
-              v-for="(post, index) in $store.getters['tag/posts']"
+              v-for="(post, index) in $store.getters['category/posts']"
               :key="index"
               :to="`/posts/${post.slug}/`"
               class="flex my-4 px-1 w-full md:w-1/2"
@@ -44,10 +43,14 @@
           </div>
           <div class="flex justify-between">
             <div>
-              <div v-if="$store.getters['tag/isPrevPage']">
+              <div v-if="$store.getters['category/isPrevPage']">
                 <nuxt-link
-                  v-if="1 == $store.getters['tag/prevPage']"
-                  :to="`/tags/${$store.getters['tag/tag'].slug}`"
+                  v-if="1 == $store.getters['category/prevPage']"
+                  :to="
+                    `
+                      /categories/${$store.getters['category/category'].slug}
+                    `
+                  "
                   class="button is-large is-circle is-light"
                   aria-label="前のページ"
                 >
@@ -68,9 +71,9 @@
                   class="button is-large is-circle is-light"
                   :to="
                     `
-                      /tags/${$store.getters['tag/tag'].slug}/page/${
-                      $store.getters['tag/prevPage']
-                    }
+                      /categories/${
+                        $store.getters['category/category'].slug
+                      }/page/${$store.getters['category/prevPage']}
                     `
                   "
                   aria-label="前のページ"
@@ -91,11 +94,11 @@
             </div>
             <div>
               <nuxt-link
-                v-if="$store.getters['tag/isNextPage']"
+                v-if="$store.getters['category/isNextPage']"
                 :to="
-                  `/tags/${$store.getters['tag/tag'].slug}/page/${
-                    $store.getters['tag/nextPage']
-                  }`
+                  `/categories/${
+                    $store.getters['category/category'].slug
+                  }/page/${$store.getters['category/nextPage']}`
                 "
                 class="button is-large is-circle is-light"
                 aria-label="次のページ"
@@ -133,7 +136,6 @@
 <script>
 import NLink from '~/components/atoms/links/NLink'
 import NTitle from '~/components/atoms/titles/NTitle'
-import NIcon from '~/components/atoms/NIcon'
 import Breadcrumb from '~/components/molecules/Breadcrumb'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
@@ -143,7 +145,6 @@ export default {
   components: {
     NLink,
     NTitle,
-    NIcon,
     Breadcrumb,
     PostCard,
     ProfileCard,

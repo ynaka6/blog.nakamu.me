@@ -24,10 +24,8 @@ import NTitle from '~/components/atoms/titles/NTitle'
 
 export default {
   components: { NTag, NTitle },
-  computed: {
-    tags() {
-      return this.$store.getters['tag/tags']
-    }
+  props: {
+    tags: { type: Array, required: true }
   }
 }
 </script>

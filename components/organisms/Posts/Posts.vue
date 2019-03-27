@@ -1,13 +1,13 @@
 <template>
   <div>
     <breadcrumb
-      :list="[{ link: '/', label: 'Home' }, { link: null, label: 'Posts' }]"
+      :list="[{ link: '/', label: 'Home' }, { link: null, label: '記事一覧' }]"
     />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
           <n-title>
-            Posts
+            記事一覧
           </n-title>
           <div class="flex flex-wrap justify-center">
             <div

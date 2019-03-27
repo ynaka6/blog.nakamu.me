@@ -7,6 +7,23 @@
             <n-icon icon="tag" size="5" />
             {{ $store.getters['tag/tag'].name }}
           </n-title>
+          <information-box>
+            <p
+              v-if="$store.getters['tag/tag'].description"
+              class="text-sm text-grey-darker"
+              v-text="$store.getters['tag/tag'].description"
+            ></p>
+            <p
+              v-else
+              class="text-sm text-grey-darker"
+              v-text="
+                `
+                ${$store.getters['tag/tag'].name}
+                に関する技術情報をまとめ記事になります
+                `
+              "
+            ></p>
+          </information-box>
 
           <div class="flex flex-wrap justify-center">
             <div
@@ -23,7 +40,7 @@
               <div v-if="$store.getters['tag/isPrevPage']">
                 <nuxt-link
                   v-if="1 == $store.getters['tag/prevPage']"
-                  :to="`/tags/${$store.getters['tag/tag']}`"
+                  :to="`/tags/${$store.getters['tag/tag'].slug}`"
                   class="button is-large is-circle is-light"
                   aria-label="前のページ"
                 >
@@ -44,7 +61,7 @@
                   class="button is-large is-circle is-light"
                   :to="
                     `
-                      /tags/${$store.getters['tag/tag']}/page/${
+                      /tags/${$store.getters['tag/tag'].slug}/page/${
                       $store.getters['tag/prevPage']
                     }
                     `
@@ -69,11 +86,9 @@
               <nuxt-link
                 v-if="$store.getters['tag/isNextPage']"
                 :to="
-                  `
-                    /tags/${$store.getters['tag/tag']}/page/${
+                  `/tags/${$store.getters['tag/tag'].slug}/page/${
                     $store.getters['tag/nextPage']
-                  }
-                  `
+                  }`
                 "
                 class="button is-large is-circle is-light"
                 aria-label="次のページ"
@@ -106,9 +121,10 @@ import NTitle from '~/components/atoms/titles/NTitle'
 import NIcon from '~/components/atoms/NIcon'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
+import InformationBox from '~/components/molecules/Message/InformationBox'
 
 export default {
-  components: { NTitle, NIcon, PostCard, ProfileCard },
+  components: { NTitle, NIcon, PostCard, ProfileCard, InformationBox },
   data: () => ({})
 }
 </script>

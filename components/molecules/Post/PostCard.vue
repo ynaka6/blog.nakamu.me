@@ -47,10 +47,10 @@
       />
       <div class="my-1">
         <n-tag
-          v-for="(tag, index) in post.fields.tags"
+          v-for="(tag, index) in tags"
           :key="index"
-          :to="`/`"
-          :label="tag"
+          :to="`/tags/${tag.slug}`"
+          :label="tag.name"
           size="small"
         />
       </div>
@@ -66,6 +66,13 @@ export default {
   components: { NTag, NImage },
   props: {
     post: { type: Object, required: true }
+  },
+  computed: {
+    tags: function() {
+      return this.post.fields.tags
+        .map(t => this.$store.getters['tag/tagOfName'](t))
+        .filter(t => t != null)
+    }
   }
 }
 </script>

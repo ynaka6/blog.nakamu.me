@@ -23,6 +23,9 @@ export const getters = {
   },
   isNextPage: ({ page, nextPage }) => {
     return nextPage && nextPage > page
+  },
+  tagOfName: state => name => {
+    return state.tags.find(tag => tag.name === name)
   }
 }
 

@@ -1,150 +1,187 @@
 [
     {
         "name": "Algolia",
-        "slug": "algolia"
+        "slug": "algolia",
+        "description": ""
     },
     {
         "name": "Bulma",
-        "slug": "bulma"
+        "slug": "bulma",
+        "description": ""
     },
     {
         "name": "CircleCI",
-        "slug": "circleci"
+        "slug": "circleci",
+        "description": ""
     },
     {
         "name": "Cloudinary",
-        "slug": "cloudinary"
+        "slug": "cloudinary",
+        "description": ""
     },
     {
         "name": "Contentful",
-        "slug": "contentful"
+        "slug": "contentful",
+        "description": ""
     },
     {
         "name": "Git",
-        "slug": "git"
+        "slug": "git",
+        "description": ""
     },
     {
         "name": "Github",
-        "slug": "github"
+        "slug": "github",
+        "description": ""
     },
     {
         "name": "Gridsome",
-        "slug": "gridsome"
+        "slug": "gridsome",
+        "description": ""
     },
     {
         "name": "Heroku",
-        "slug": "heroku"
+        "slug": "heroku",
+        "description": ""
     },
     {
         "name": "Kotlin",
-        "slug": "kotlin"
+        "slug": "kotlin",
+        "description": ""
     },
     {
         "name": "Javascript",
-        "slug": "javascript"
+        "slug": "javascript",
+        "description": ""
     },
     {
         "name": "Jekyll",
-        "slug": "jekyll"
+        "slug": "jekyll",
+        "description": ""
     },
     {
         "name": "Laravel",
-        "slug": "laravel"
+        "slug": "laravel",
+        "description": ""
     },
     {
         "name": "MongoDB",
-        "slug": "mongodb"
+        "slug": "mongodb",
+        "description": ""
     },
     {
         "name": "Netlify",
-        "slug": "netlify"
+        "slug": "netlify",
+        "description": ""
     },
     {
         "name": "ngrok",
-        "slug": "ngrok"
+        "slug": "ngrok",
+        "description": ""
     },
     {
         "name": "Node.js",
-        "slug": "nodejs"
+        "slug": "nodejs",
+        "description": ""
+    },
+    {
+        "name": "Nuxt.js",
+        "slug": "nuxtjs",
+        "description": ""
     },
     {
         "name": "PHP",
-        "slug": "php"
+        "slug": "php",
+        "description": ""
     },
     {
         "name": "Python",
-        "slug": "python"
-    },
-    {
-        "name": "Python",
-        "slug": "python"
+        "slug": "python",
+        "description": ""
     },
     {
         "name": "Ruby",
-        "slug": "ruby"
+        "slug": "ruby",
+        "description": ""
     },
     {
         "name": "RubyOnRails",
-        "slug": "ruby-on-rails"
+        "slug": "ruby-on-rails",
+        "description": ""
     },
     {
         "name": "Sentry",
-        "slug": "sentry"
+        "slug": "sentry",
+        "description": ""
     },
     {
         "name": "SEO",
-        "slug": "seo"
+        "slug": "seo",
+        "description": ""
     },
     {
         "name": "Scrapy",
-        "slug": "scrapy"
+        "slug": "scrapy",
+        "description": ""
     },
     {
         "name": "TailwindCSS",
-        "slug": "tailwindcss"
+        "slug": "tailwindcss",
+        "description": ""
     },
     {
         "name": "TypeScript",
-        "slug": "typeScript"
+        "slug": "typeScript",
+        "description": ""
     },
     {
         "name": "Vue.js",
-        "slug": "vuejs"
+        "slug": "vuejs",
+        "description": ""
     },
     {
         "name": "VuePress",
-        "slug": "vuePress"
+        "slug": "vuePress",
+        "description": ""
     },
     {
         "name": "Vuetify",
-        "slug": "vuetify"
+        "slug": "vuetify",
+        "description": ""
     },
     {
         "name": "振り返り",
-        "slug": "review"
+        "slug": "review",
+        "description": "ブログや一年のエンジニア経験を振り返る記事になります。"
     },
     {
         "name": "メンター",
-        "slug": "mentor"
+        "slug": "mentor",
+        "description": "初学者向けに行ってきたメンター活動のまとめ記事になります。"
     },
     {
         "name": "中国IT事情",
-        "slug": "chaina-it"
+        "slug": "chaina-it",
+        "description": "定期的に中国に出かけていますので、その際に気づいたIT情報などをまとめた記事になります。"
     },
     {
         "name": "香港生活",
-        "slug": "hongkong-life"
+        "slug": "hongkong-life",
+        "description": "筆者が生活拠点にしている香港の生活や観光情報などをまとめた記事になります。"
     },
     {
         "name": "目標",
-        "slug": "gole"
+        "slug": "gole",
+        "description": "技術的な目標やブログの目標をまとめた記事になります。"
     },
     {
         "name": "技術メモ",
-        "slug": "tech-memo"
+        "slug": "tech-memo",
+        "description": "気になる技術や忘れないようにログとして残しておきたい内容を技術メモとして記事にまとめています。"
     },
     {
         "name": "ポエム",
-        "slug": "poem"
+        "slug": "poem",
+        "description": "エンジニアとしての経験をポエムとしてまとめた記事になります。技術をピックアップした記事ではなく個人のエンジニア経験から主観的に思ったことをまとめた記事です。"
     }
 ]

@@ -1,5 +1,11 @@
 <template>
   <div>
+    <breadcrumb
+      :list="[
+        { link: '/', label: 'Home' },
+        { link: null, label: 'Privacy Policy' }
+      ]"
+    />
     <section class="container mx-auto py-10">
       <div class="flex justify-center">
         <div class="w-4/5 rounded-lg bg-white border p-6">
@@ -75,9 +81,10 @@
 
 <script>
 import NTitle from '~/components/atoms/titles/NTitle'
+import Breadcrumb from '~/components/molecules/Breadcrumb'
 
 export default {
-  components: { NTitle }
+  components: { NTitle, Breadcrumb }
 }
 </script>
 

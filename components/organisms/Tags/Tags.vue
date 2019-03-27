@@ -1,5 +1,12 @@
 <template>
   <div>
+    <breadcrumb
+      :list="[
+        { link: '/', label: 'Home' },
+        { link: '/posts', label: 'Posts' },
+        { link: null, label: $store.getters['tag/tag'].name }
+      ]"
+    />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
@@ -119,12 +126,20 @@
 <script>
 import NTitle from '~/components/atoms/titles/NTitle'
 import NIcon from '~/components/atoms/NIcon'
+import Breadcrumb from '~/components/molecules/Breadcrumb'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import InformationBox from '~/components/molecules/Message/InformationBox'
 
 export default {
-  components: { NTitle, NIcon, PostCard, ProfileCard, InformationBox },
+  components: {
+    NTitle,
+    NIcon,
+    Breadcrumb,
+    PostCard,
+    ProfileCard,
+    InformationBox
+  },
   data: () => ({})
 }
 </script>

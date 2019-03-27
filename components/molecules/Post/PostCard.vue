@@ -69,6 +69,7 @@ export default {
   },
   computed: {
     tags: function() {
+      if (!this.post.fields.tags) return []
       return this.post.fields.tags
         .map(t => this.$store.getters['tag/tagOfName'](t))
         .filter(t => t != null)

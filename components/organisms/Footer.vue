@@ -67,7 +67,7 @@
     </section>
     <section class="bg-grey-darkest text-white">
       <div class="p-6 container mx-auto px-4">
-        <div class="flex flex-wrap">
+        <div class="flex items-center flex-wrap">
           <div class="w-full md:w-1/5 mb-4 lg:mb-0" />
           <div
             class="w-full md:w-3/5 mb-4 lg:mb-0 text-xs sm:text-sm text-center"

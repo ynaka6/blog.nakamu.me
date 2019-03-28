@@ -58,7 +58,11 @@ export default {
     } else {
       await Promise.all([
         store.dispatch('author/loadAuthor'),
-        store.dispatch('post/loadPost', params.slug)
+        store.dispatch('post/loadPost', params.slug),
+        store.dispatch('post/loadLatestPosts', {
+          order: '-fields.publishDate',
+          limit: 6
+        })
       ])
     }
 

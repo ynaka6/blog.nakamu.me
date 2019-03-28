@@ -125,8 +125,16 @@
             />
           </p>
         </div>
-        <div class="lg:w-1/3 p-4">
-          <profile-card :author="$store.getters['author/author']" />
+        <div class="lg:w-1/3 lg:p-4">
+          <profile-card
+            :author="$store.getters['author/author']"
+            class="m-4 lg:m-0"
+          />
+          <post-list
+            label="Latest Posts"
+            :posts="latestPosts"
+            class="mt-10 mb-10"
+          />
         </div>
       </div>
     </section>
@@ -140,6 +148,7 @@ import Breadcrumb from '~/components/molecules/Breadcrumb'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import InformationBox from '~/components/molecules/Message/InformationBox'
+import PostList from '~/components/molecules/Post/PostList'
 
 export default {
   components: {
@@ -148,8 +157,14 @@ export default {
     Breadcrumb,
     PostCard,
     ProfileCard,
-    InformationBox
+    InformationBox,
+    PostList
   },
-  data: () => ({})
+  data: () => ({}),
+  computed: {
+    latestPosts: function() {
+      return this.$store.getters['post/latestPosts']
+    }
+  }
 }
 </script>

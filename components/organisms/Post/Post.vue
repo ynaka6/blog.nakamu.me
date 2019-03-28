@@ -58,8 +58,16 @@
             <post-content :content="post.fields.body" />
           </article>
         </div>
-        <div class="lg:w-1/3 p-4">
-          <profile-card :author="$store.getters['author/author']" />
+        <div class="lg:w-1/3 lg:p-4">
+          <profile-card
+            :author="$store.getters['author/author']"
+            class="m-4 lg:m-0"
+          />
+          <post-list
+            label="Latest Posts"
+            :posts="latestPosts"
+            class="mt-10 mb-10"
+          />
         </div>
       </div>
     </section>
@@ -71,11 +79,20 @@ import NTag from '~/components/atoms/links/NTag'
 import NImage from '~/components/atoms/NImage'
 import Breadcrumb from '~/components/molecules/Breadcrumb'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
-import PostContent from '~/components/molecules/Post/PostContent'
 import PostDate from '~/components/molecules/Post/PostDate'
+import PostContent from '~/components/molecules/Post/PostContent'
+import PostList from '~/components/molecules/Post/PostList'
 
 export default {
-  components: { NTag, NImage, Breadcrumb, ProfileCard, PostContent, PostDate },
+  components: {
+    NTag,
+    NImage,
+    Breadcrumb,
+    ProfileCard,
+    PostContent,
+    PostDate,
+    PostList
+  },
   data: () => ({}),
   computed: {
     post() {
@@ -91,6 +108,9 @@ export default {
       return this.$store.getters['post/post'].fields.tags
         .map(t => this.$store.getters['tag/tagOfName'](t))
         .filter(t => t != null)
+    },
+    latestPosts: function() {
+      return this.$store.getters['post/latestPosts']
     }
   }
 }

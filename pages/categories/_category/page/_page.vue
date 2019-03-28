@@ -75,7 +75,11 @@ export default {
     } else {
       await Promise.all([
         store.dispatch('author/loadAuthor'),
-        store.dispatch('category/loadPosts', parseInt(params.page) || 1)
+        store.dispatch('category/loadPosts', parseInt(params.page) || 1),
+        store.dispatch('post/loadLatestPosts', {
+          order: '-fields.publishDate',
+          limit: 6
+        })
       ])
     }
 

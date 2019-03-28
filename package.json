@@ -27,6 +27,7 @@
     "contentful": "^7.5.0",
     "contentful-management": "^5.7.0",
     "cross-env": "^5.2.0",
+    "dayjs": "^1.8.11",
     "dotenv": "^7.0.0",
     "flatten": "^1.0.2",
     "markdown-it-attrs": "^2.3.2",

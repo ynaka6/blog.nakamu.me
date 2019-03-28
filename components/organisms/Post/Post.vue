@@ -14,6 +14,10 @@
           <article
             class="border-b lg:border bg-white shadow-sm px-2 lg:px-6 py-6"
           >
+            <post-date
+              :publish-time="post.fields.publishDate"
+              :update-time="post.sys.updatedAt"
+            />
             <h1 class="my-2 text-2xl lg:text-3xl leading-tight">
               {{ post.fields.title }}
             </h1>
@@ -68,9 +72,10 @@ import NImage from '~/components/atoms/NImage'
 import Breadcrumb from '~/components/molecules/Breadcrumb'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import PostContent from '~/components/molecules/Post/PostContent'
+import PostDate from '~/components/molecules/Post/PostDate'
 
 export default {
-  components: { NTag, NImage, Breadcrumb, ProfileCard, PostContent },
+  components: { NTag, NImage, Breadcrumb, ProfileCard, PostContent, PostDate },
   data: () => ({}),
   computed: {
     post() {

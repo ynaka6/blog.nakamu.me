@@ -11,7 +11,7 @@
         <n-link
           :to="author.fields.url"
           :label="author.fields.name"
-          class="text-blue hover:text-blue-darker no-underline hover:underline"
+          class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
           :target-blank="true"
         />
       </p>
@@ -58,7 +58,7 @@
         <n-link
           :to="author.fields.url"
           label="プロフィール詳細はこちら"
-          class="text-blue hover:text-blue-darker no-underline hover:underline"
+          class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
           :target-blank="true"
         />
       </p>

@@ -121,7 +121,7 @@
             <n-link
               to="/posts"
               label="記事一覧に戻る"
-              class="text-blue hover:text-blue-darker no-underline hover:underline"
+              class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
             />
           </p>
         </div>

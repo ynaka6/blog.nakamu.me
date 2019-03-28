@@ -96,6 +96,7 @@
               :href="'https://twitter.com/' + author.fields.twitter"
               target="_blank"
               rel="noopener"
+              aria-label="twitter"
             >
               <n-icon icon="twitter" size="5" />
             </a>
@@ -104,6 +105,7 @@
               :href="'https://github.com/' + author.fields.github"
               target="_blank"
               rel="noopener"
+              aria-label="github"
             >
               <n-icon icon="github" size="5" />
             </a>

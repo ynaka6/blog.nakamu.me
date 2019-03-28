@@ -88,42 +88,24 @@
           <div
             class="w-full md:w-3/5 mb-4 lg:mb-0 text-xs sm:text-sm text-center"
           >
-            Copyright © 2018.
+            Copyright © nnn All Rights Reserved.
           </div>
           <div class="w-full md:w-1/5 mb-4 lg:mb-0 flex justify-center">
             <a
-              class="bg-white w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
-              href="https://github.com/manniL/lichter.io"
+              class="bg-white text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
+              :href="'https://twitter.com/' + author.fields.twitter"
               target="_blank"
               rel="noopener"
             >
-              <svg
-                class="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <title>Twitter</title>
-                <path
-                  d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"
-                ></path>
-              </svg>
+              <n-icon icon="twitter" size="5" />
             </a>
             <a
-              class="bg-white w-10 h-10 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
-              href="https://github.com/manniL/lichter.io"
+              class="bg-white text-grey-darkest w-10 h-10 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
+              :href="'https://github.com/' + author.fields.github"
               target="_blank"
               rel="noopener"
             >
-              <svg
-                class="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <title>Twitter</title>
-                <path
-                  d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"
-                ></path>
-              </svg>
+              <n-icon icon="github" size="5" />
             </a>
           </div>
         </div>
@@ -135,10 +117,11 @@
 <script>
 import NLogo from '~/components/atoms/links/NLogo'
 import NLink from '~/components/atoms/links/NLink'
+import NIcon from '~/components/atoms/NIcon'
 import Tags from '~/components/molecules/Footer/Tags'
 
 export default {
-  components: { NLogo, NLink, Tags },
+  components: { NLogo, NLink, NIcon, Tags },
   data: () => ({
     title: process.env.APP_TITLE,
     explain: process.env.APP_DESCRIPTION,
@@ -150,6 +133,9 @@ export default {
     },
     tags() {
       return this.$store.getters['tag/tags']
+    },
+    author() {
+      return this.$store.getters['author/author']
     }
   }
 }

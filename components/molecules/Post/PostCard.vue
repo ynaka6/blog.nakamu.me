@@ -1,6 +1,6 @@
 <template>
   <article class="overflow-hidden rounded-lg bg-white hover:shadow-lg">
-    <nuxt-link to="/">
+    <nuxt-link :to="`/posts/${post.fields.slug}`">
       <n-image
         class="block h-auto w-full"
         :alt="post.fields.title"
@@ -35,7 +35,7 @@
 
       <h3 class="my-3 text-lg">
         <nuxt-link
-          to="/"
+          :to="`/posts/${post.fields.slug}`"
           class="no-underline text-black font-bold text-xl py-1"
         >
           {{ post.fields.title }}

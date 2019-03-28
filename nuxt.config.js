@@ -59,12 +59,17 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/css/tailwind.css'],
+  css: [
+    '~/assets/css/tailwind.css',
+    { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' },
+  ],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/microlink.js', ssr: false }
+  ],
 
   /*
    ** Nuxt.js modules
@@ -72,7 +77,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/markdownit'
   ],
   /*
    ** Axios module configuration
@@ -190,6 +196,61 @@ export default {
         ]
         return route
       })
+    }
+  },
+  markdownit: {
+    preset: 'default',
+    injected: true,
+    breaks: true,
+    html: true,
+    linkify: true,
+    typography: true,
+    use: [
+      ['markdown-it-container', 'warning', {
+
+        validate: function(params) {
+          return params.trim().match(/^message\s+(.*)$/);
+        },
+      
+        render: function (tokens, idx) {
+          var m = tokens[idx].info.trim().match(/^message\s+(.*)$/);
+      
+          if (tokens[idx].nesting === 1) {
+            return '<div class="message ' + md.utils.escapeHtml(m[1]) + '">';
+      
+          } else {
+            return '</div>\n';
+          }
+        }
+      }],
+      'markdown-it-toc',
+      ['markdown-it-video', {
+        youtube: { width: 640, height: 390 },
+        vimeo: { width: 500, height: 281 },
+        vine: { width: 600, height: 600, embed: 'simple' },
+        prezi: { width: 550, height: 400 }
+      }],
+      'markdown-it-mark',
+      ['markdown-it-link-attributes', {
+        pattern: /^http(s):/,
+        attrs: {
+          target: '_blank',
+          rel: 'noopener'
+        }
+      }],
+      'markdown-it-attrs'
+    ],
+    highlight: (str, lang) => {
+      const hljs = require('highlight.js');
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return '<pre class="hljs"><code>' +
+                  hljs.highlight(lang, str, true).value +
+                  '</code></pre>';
+        } catch (__) {}
+      }
+      // 言語設定がない場合、プレーンテキストとして表示する
+      return '<pre class="hljs"><code>' +  hljs.highlight('plaintext', str, true).value + '</code></pre>';
     }
   }
 }

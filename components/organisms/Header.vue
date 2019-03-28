@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex justify-between bg-blue-dark border-b border-grey-lighter py-5 px-2 lg:px-5"
+    class="flex justify-between bg-gradient-blue border-b border-grey-lighter py-5 px-2 lg:px-5"
   >
     <div class="text-center"></div>
     <div class="text-center text-white mr-6">

@@ -154,13 +154,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.bg-gradient-blue {
-  background-image: linear-gradient(
-    to top,
-    #51daf5,
-    config('colors.blue-dark')
-  );
-}
-</style>

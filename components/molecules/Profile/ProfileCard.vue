@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-2 md:px-4">
+  <div class="border bg-white shadow-sm p-2 md:px-4">
     <h3>Profile</h3>
     <div>
       <n-image

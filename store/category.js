@@ -48,8 +48,6 @@ export const actions = {
     const p = parseInt(page) || 1
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit
-
-    console.log(state.category.name)
     const posts = await client.getEntries({
       content_type: process.env.CTF_BLOG_POST_TYPE_ID,
       'fields.category[in]': state.category.name,

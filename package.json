@@ -20,13 +20,21 @@
     "test": "jest"
   },
   "dependencies": {
+    "@microlink/vanilla": "^3.0.5",
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/markdownit": "^1.2.3",
     "@nuxtjs/pwa": "^2.6.0",
     "contentful": "^7.5.0",
     "contentful-management": "^5.7.0",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
     "flatten": "^1.0.2",
+    "markdown-it-attrs": "^2.3.2",
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-link-attributes": "^2.1.0",
+    "markdown-it-mark": "^2.0.0",
+    "markdown-it-toc": "^1.1.0",
+    "markdown-it-video": "^0.6.3",
     "nuxt": "^2.4.0"
   },
   "devDependencies": {

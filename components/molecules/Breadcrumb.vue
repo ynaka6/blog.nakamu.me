@@ -8,9 +8,9 @@
               v-if="data.link"
               :to="data.link"
               :label="data.label"
-              class="text-blue font-bold"
+              class="text-blue-dark font-bold no-underline hover:underline"
             />
-            <span v-else v-text="data.label" />
+            <span v-else class="text-grey-darkest" v-text="data.label" />
           </li>
         </ol>
       </nav>
@@ -30,7 +30,7 @@ export default {
 
 <style scoped lang="postcss">
 ol.breadcrumb {
-  @apply list-reset flex text-grey-dark p-4;
+  @apply list-reset flex text-grey-dark p-4 overflow-x-scroll whitespace-no-wrap;
 }
 ol.breadcrumb > li {
   @apply flex items-center;

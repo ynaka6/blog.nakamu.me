@@ -6,7 +6,8 @@ export const state = () => ({
   posts: [],
   page: null,
   prevPage: null,
-  nextPage: null
+  nextPage: null,
+  post: null
 })
 
 export const getters = {
@@ -15,6 +16,7 @@ export const getters = {
   page: ({ page }) => page,
   prevPage: ({ prevPage }) => prevPage,
   nextPage: ({ nextPage }) => nextPage,
+  post: ({ post }) => post,
   isPrevPage: ({ page, prevPage }) => {
     return prevPage && page > prevPage
   },
@@ -25,7 +27,7 @@ export const getters = {
 
 export const actions = {
   setLatestPosts({ commit }, payload) {
-    commit('SET_LATEST_POST', payload.loadLatestPosts)
+    commit('SET_LATEST_POSTS', payload.loadLatestPosts)
   },
   async loadLatestPosts({ commit }, attributes) {
     const posts = await client.getEntries(
@@ -34,12 +36,12 @@ export const actions = {
         attributes
       )
     )
-    commit('SET_LATEST_POST', posts.items)
+    commit('SET_LATEST_POSTS', posts.items)
   },
   setPosts({ commit }, payload) {
     const { posts, page, prevPage, nextPage } = payload
 
-    commit('SET_POST', posts)
+    commit('SET_POSTS', posts)
     commit('SET_PAGE', parseInt(page) || 1)
     commit('SET_PREV_PAGE', parseInt(prevPage))
     commit('SET_NEXT_PAGE', parseInt(nextPage))
@@ -48,19 +50,12 @@ export const actions = {
     const p = parseInt(page) || 1
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit
-
-    const posts = await client.getEntries(
-      Object.assign(
-        {
-          content_type: process.env.CTF_BLOG_POST_TYPE_ID,
-          order: '-fields.publishDate'
-        },
-        {
-          skip: skip,
-          limit: limit + 1
-        }
-      )
-    )
+    const posts = await client.getEntries({
+      content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+      order: '-fields.publishDate',
+      skip: skip,
+      limit: limit + 1
+    })
 
     const prevPage = p > 1 ? p - 1 : null
     const nextPage = posts.items.length > limit ? p + 1 : null
@@ -68,18 +63,28 @@ export const actions = {
       posts.items.pop()
     }
 
-    commit('SET_POST', posts.items)
+    commit('SET_POSTS', posts.items)
     commit('SET_PAGE', p)
     commit('SET_PREV_PAGE', prevPage)
     commit('SET_NEXT_PAGE', nextPage)
+  },
+  setPost({ commit }, payload) {
+    commit('SET_POST', payload.post)
+  },
+  async loadPost({ commit }, slug) {
+    const posts = await client.getEntries({
+      content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+      'fields.slug': slug
+    })
+    commit('SET_POST', posts.items[0])
   }
 }
 
 export const mutations = {
-  SET_LATEST_POST: (state, posts) => {
+  SET_LATEST_POSTS: (state, posts) => {
     state.latestPosts = posts
   },
-  SET_POST: (state, posts) => {
+  SET_POSTS: (state, posts) => {
     state.posts = posts
   },
   SET_PAGE: (state, page) => {
@@ -90,5 +95,8 @@ export const mutations = {
   },
   SET_NEXT_PAGE: (state, nextPage) => {
     state.nextPage = nextPage
+  },
+  SET_POST: (state, post) => {
+    state.post = post
   }
 }

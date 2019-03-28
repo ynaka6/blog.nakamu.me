@@ -21,7 +21,10 @@ import NIcon from '~/components/atoms/NIcon'
 
 export default {
   components: { NIcon },
-  props: ['publishTime', 'updateTime'],
+  props: {
+    publishTime: { type: String, required: true },
+    updateTime: { type: String, required: true }
+  },
   computed: {
     publishDate: function() {
       return this.$dayjs(this.publishTime, { timeZone: 'Asia/Tokyo' })

@@ -41,88 +41,15 @@
               <post-card :post="post" />
             </div>
           </div>
-          <div class="flex justify-between">
-            <div>
-              <div v-if="$store.getters['category/isPrevPage']">
-                <nuxt-link
-                  v-if="1 == $store.getters['category/prevPage']"
-                  :to="
-                    `
-                      /categories/${$store.getters['category/category'].slug}
-                    `
-                  "
-                  class="button is-large is-circle is-light"
-                  aria-label="前のページ"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 1792 1792"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"
-                    />
-                  </svg>
-                </nuxt-link>
-                <nuxt-link
-                  v-else
-                  class="button is-large is-circle is-light"
-                  :to="
-                    `
-                      /categories/${
-                        $store.getters['category/category'].slug
-                      }/page/${$store.getters['category/prevPage']}
-                    `
-                  "
-                  aria-label="前のページ"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 1792 1792"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z"
-                    />
-                  </svg>
-                </nuxt-link>
-              </div>
-            </div>
-            <div>
-              <nuxt-link
-                v-if="$store.getters['category/isNextPage']"
-                :to="
-                  `/categories/${
-                    $store.getters['category/category'].slug
-                  }/page/${$store.getters['category/nextPage']}`
-                "
-                class="button is-large is-circle is-light"
-                aria-label="次のページ"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 1792 1792"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z"
-                  />
-                </svg>
-              </nuxt-link>
-            </div>
-          </div>
-          <p class="py-2">
+          <pagination :prev-url="prevUrl" :next-url="nextUrl" />
+          <p class="pt-10">
             <n-link
               to="/posts"
-              label="記事一覧に戻る"
               class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
-            />
+            >
+              <n-icon icon="undo" size="3" />
+              記事一覧に戻る
+            </n-link>
           </p>
         </div>
         <div class="lg:w-1/3 lg:p-4">
@@ -142,6 +69,7 @@
 </template>
 
 <script>
+import NIcon from '~/components/atoms/NIcon'
 import NLink from '~/components/atoms/links/NLink'
 import NTitle from '~/components/atoms/titles/NTitle'
 import Breadcrumb from '~/components/molecules/Breadcrumb'
@@ -149,21 +77,43 @@ import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import InformationBox from '~/components/molecules/Message/InformationBox'
 import PostList from '~/components/molecules/Post/PostList'
+import Pagination from '~/components/molecules/Pagination'
 
 export default {
   components: {
+    NIcon,
     NLink,
     NTitle,
     Breadcrumb,
     PostCard,
     ProfileCard,
     InformationBox,
-    PostList
+    PostList,
+    Pagination
   },
   data: () => ({}),
   computed: {
+    category: function() {
+      return this.$store.getters['category/category']
+    },
     latestPosts: function() {
       return this.$store.getters['post/latestPosts']
+    },
+    prevUrl: function() {
+      if (!this.$store.getters['category/isPrevPage']) return null
+      const prevPage = this.$store.getters['category/prevPage']
+      if (prevPage === 1) {
+        return `/categories/${this.category.slug}`
+      }
+      return `/categories/${this.category.slug}/page/${prevPage}`
+    },
+    nextUrl: function() {
+      if (!this.$store.getters['category/isNextPage']) return null
+      const nextPage = this.$store.getters['category/nextPage']
+      if (nextPage === 1) {
+        return `/categories/${this.category.slug}`
+      }
+      return `/categories/${this.category.slug}/page/${nextPage}`
     }
   }
 }

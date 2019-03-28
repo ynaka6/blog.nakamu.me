@@ -21,9 +21,10 @@
             <h1 class="my-2 text-2xl lg:text-3xl leading-tight">
               {{ post.fields.title }}
             </h1>
-            <p class="text-sm text-grey-darker mb-4">
-              {{ post.fields.description }}
-            </p>
+            <p
+              class="text-sm text-grey-darker mb-4"
+              v-html="post.fields.description"
+            />
             <div>
               <n-tag
                 v-for="(tag, index) in tags"

@@ -10,10 +10,11 @@
       <p class="text-center">
         <n-link
           :to="author.fields.url"
-          :label="author.fields.name"
           class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
           :target-blank="true"
-        />
+        >
+          {{ author.fields.name }}
+        </n-link>
       </p>
       <p class="py-4 text-grey-darkest" v-text="author.fields.shortBio"></p>
       <div class="py-2">
@@ -57,10 +58,11 @@
       <p class="py-2 text-right">
         <n-link
           :to="author.fields.url"
-          label="プロフィール詳細はこちら"
           class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
           :target-blank="true"
-        />
+        >
+          プロフィール詳細はこちら
+        </n-link>
       </p>
     </div>
   </div>

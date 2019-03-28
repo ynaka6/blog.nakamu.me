@@ -1,6 +1,6 @@
 <template>
   <a v-if="targetBlank" :href="to" target="_blank" rel="noopener noreferrer">
-    {{ label }}
+    <slot />
     <sup>
       <svg
         v-if="externalIcon"
@@ -17,7 +17,7 @@
     </sup>
   </a>
   <nuxt-link v-else :to="to">
-    {{ label }}
+    <slot />
   </nuxt-link>
 </template>
 
@@ -25,7 +25,6 @@
 export default {
   props: {
     to: { type: String, required: true },
-    label: { type: String, required: true },
     targetBlank: { type: Boolean, required: false, default: false },
     externalIcon: { type: Boolean, required: false, default: true }
   }

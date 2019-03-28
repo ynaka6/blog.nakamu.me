@@ -7,10 +7,11 @@
         訪問ありがとうございます！
         <n-link
           :to="profile_site_url"
-          label="プロフィールサイト"
           class="text-blue hover:text-blue-darker"
           :target-blank="true"
-        />
+        >
+          プロフィールサイト
+        </n-link>
         も合わせてご確認ください🙇🏻
       </div>
     </section>

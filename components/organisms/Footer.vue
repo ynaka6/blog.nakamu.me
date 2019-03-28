@@ -17,32 +17,27 @@
               </p>
               <ul class="list-reset text-xs mb-6">
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link
-                    to="/"
-                    label="Home"
-                    class="text-white hover:text-grey-dark"
-                  />
+                  <n-link to="/" class="text-white hover:text-grey-dark">
+                    Home
+                  </n-link>
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link
-                    to="/posts"
-                    label="Posts"
-                    class="text-white hover:text-grey-dark"
-                  />
+                  <n-link to="/posts" class="text-white hover:text-grey-dark">
+                    記事一覧
+                  </n-link>
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
                   <n-link
                     to="/policy/privacy"
-                    label="Privacy"
                     class="text-white hover:text-grey-dark"
-                  />
+                  >
+                    プライバシーポリシー
+                  </n-link>
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link
-                    to="/"
-                    label="Contact"
-                    class="text-white hover:text-grey-dark"
-                  />
+                  <n-link to="/" class="text-white hover:text-grey-dark">
+                    お問い合わせ
+                  </n-link>
                 </li>
               </ul>
             </div>
@@ -54,10 +49,11 @@
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
                   <n-link
                     :to="profile_site_url"
-                    label="Profile"
                     class="text-white hover:text-grey"
                     :target-blank="true"
-                  />
+                  >
+                    Profile
+                  </n-link>
                 </li>
               </ul>
               <p class="uppercase text-white text-sm sm:mb-3">
@@ -71,9 +67,10 @@
                 >
                   <n-link
                     :to="`/categories/${category.slug}`"
-                    :label="category.name"
                     class="text-white hover:text-grey"
-                  />
+                  >
+                    {{ category.name }}
+                  </n-link>
                 </li>
               </ul>
             </div>

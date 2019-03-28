@@ -7,9 +7,10 @@
             <n-link
               v-if="data.link"
               :to="data.link"
-              :label="data.label"
               class="text-blue-dark font-bold no-underline hover:underline"
-            />
+            >
+              {{ data.label }}
+            </n-link>
             <span v-else class="text-grey-darkest" v-text="data.label" />
           </li>
         </ol>

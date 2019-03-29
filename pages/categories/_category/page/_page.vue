@@ -88,16 +88,16 @@ export default {
 
     return {
       category: params.category,
-      title: `${params.category}ページ${
+      title: `${params.category}${
         store.getters['category/page'] > 1
           ? ' - ' + store.getters['category/page'] + 'ページ目'
           : ''
       }`,
-      description: `${params.category}ページ${
+      description: `${params.category}${
         store.getters['category/page'] > 1
           ? ' - ' + store.getters['category/page'] + 'ページ目'
           : ''
-      }です。エンジニアとして経験をブログとして残しています。エンジニアを目指す方やIT業界に興味がある方、海外移住に興味がある方向けの記事を投稿しています。`,
+      }に関する情報をまとめたページです。本ブログでは筆者のエンジニアとしての経験をブログとして残しています。エンジニアを目指す方やIT業界に興味がある方、または海外移住に興味がある方向けの記事を投稿しています。`,
       author: store.getters['author/author'],
       page: store.getters['category/page'],
       prevPage: store.getters['category/prevPage'],

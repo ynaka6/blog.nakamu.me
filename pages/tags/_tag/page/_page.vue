@@ -86,18 +86,19 @@ export default {
       ])
     }
 
+    const tag = store.getters['tag/tag']
     return {
-      tag: params.tag,
-      title: `${params.tag}ページ${
+      tag: tag,
+      title: `${tag.name}${
         store.getters['tag/page'] > 1
           ? ' - ' + store.getters['tag/page'] + 'ページ目'
           : ''
       }`,
-      description: `${params.tag}ページ${
+      description: `${tag.name}${
         store.getters['tag/page'] > 1
           ? ' - ' + store.getters['tag/page'] + 'ページ目'
           : ''
-      }です。エンジニアとして経験をブログとして残しています。エンジニアを目指す方やIT業界に興味がある方、海外移住に興味がある方向けの記事を投稿しています。`,
+      }に関する情報をまとめたページです。本ブログでは筆者のエンジニアとしての経験をブログとして残しています。エンジニアを目指す方やIT業界に興味がある方、または海外移住に興味がある方向けの記事を投稿しています。`,
       author: store.getters['author/author'],
       page: store.getters['tag/page'],
       prevPage: store.getters['tag/prevPage'],

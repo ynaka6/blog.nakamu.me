@@ -1,5 +1,6 @@
 /* eslint-disable nuxt/no-cjs-in-config */
 import pkg from './package'
+import categories from './assets/json/categories.json'
 import tags from './assets/json/tags.json'
 import flatten from 'flatten'
 
@@ -108,7 +109,7 @@ export default {
     }
   },
   generate: {
-    interval: 500,
+    interval: 1000,
     subFolders: false,
     routes: () => {
       return Promise.all([
@@ -121,6 +122,58 @@ export default {
           limit: 1000
         })
       ]).then(([person, posts]) => {
+        const postRoutes = posts.items.map(entry => {
+          return {
+            route: `/posts/${entry.fields.slug}`,
+            payload: {
+              author: person.items[0],
+              post: entry,
+              loadLatestPosts: posts.items.slice(0, 6)
+            }
+          }
+        })
+        const categoryRoutes = flatten(categories
+          .map(category => {
+            const categoryPosts = posts.items.filter(post => post.fields.category[0] === category.name)
+            const total = categoryPosts.length
+            const limit = parseInt(process.env.PAGENATE_LIMIT)
+            const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+
+            if (total == 0) return null
+
+            return [
+              {
+                route: `/categories/${category.slug}`,
+                payload: {
+                  author: person.items[0],
+                  posts: categoryPosts.slice(0, limit),
+                  page: 1,
+                  prevPage: null,
+                  nextPage: pageCount > 1 ? 2 : null,
+                  loadLatestPosts: posts.items.slice(0, 6)
+                }
+              },
+              ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
+                const page = i + 2
+                return {
+                  route: `/categories/${category.slug}/page/${page}`,
+                  payload: {
+                    author: person.items[0],
+                    posts: categoryPosts.slice(
+                      process.env.PAGENATE_LIMIT * page,
+                      limit
+                    ),
+                    page: page,
+                    prevPage: page,
+                    nextPage: pageCount > page ? page + 1 : null,
+                    loadLatestPosts: posts.items.slice(0, 6)
+                  }
+                }
+              })
+            ]
+          })
+          .filter(r => r != null))
+
         const tagRoutes = flatten(tags
           .map(tag => {
             const tagPosts = posts.items.filter(post => post.fields.tags && post.fields.tags.includes(tag.name))
@@ -135,10 +188,11 @@ export default {
                 route: `/tags/${tag.slug}`,
                 payload: {
                   author: person.items[0],
-                  posts: tagPosts.splice(0, limit),
+                  posts: tagPosts.slice(0, limit),
                   page: 1,
                   prevPage: null,
-                  nextPage: pageCount > 1 ? 2 : null
+                  nextPage: pageCount > 1 ? 2 : null,
+                  loadLatestPosts: posts.items.slice(0, 6)
                 }
               },
               ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
@@ -147,13 +201,14 @@ export default {
                   route: `/tags/${tag.slug}/page/${page}`,
                   payload: {
                     author: person.items[0],
-                    posts: tagPosts.splice(
+                    posts: tagPosts.slice(
                       process.env.PAGENATE_LIMIT * page,
                       limit
                     ),
                     page: page,
                     prevPage: page,
-                    nextPage: pageCount > page ? page + 1 : null
+                    nextPage: pageCount > page ? page + 1 : null,
+                    loadLatestPosts: posts.items.slice(0, 6)
                   }
                 }
               })
@@ -165,11 +220,12 @@ export default {
         const limit = parseInt(process.env.PAGENATE_LIMIT)
         const pageCount = Math.floor((total - 1) / limit) + 1
         const route = [
+          ...postRoutes,
           {
             route: '/posts',
             payload: {
               author: person.items[0],
-              posts: posts.items.splice(0, limit),
+              posts: posts.items.slice(0, limit),
               page: 1,
               prevPage: null,
               nextPage: pageCount > 1 ? 2 : null
@@ -181,7 +237,7 @@ export default {
               route: '/posts/page/' + page,
               payload: {
                 author: person.items[0],
-                posts: posts.items.splice(
+                posts: posts.items.slice(
                   process.env.PAGENATE_LIMIT * page,
                   limit
                 ),
@@ -191,9 +247,8 @@ export default {
               }
             }
           }),
-          ...tagRoutes,
-
-          // ...posts.items.map(entry => `/posts/${entry.fields.slug}/`)
+          ...categoryRoutes,
+          ...tagRoutes
         ]
         return route
       })

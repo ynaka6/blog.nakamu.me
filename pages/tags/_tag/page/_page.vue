@@ -33,7 +33,7 @@ export default {
         {
           hid: 'twitter:site',
           name: 'twitter:site',
-          content: this.person ? this.person.fields.twitter : ''
+          content: this.author ? this.author.fields.twitter : ''
         },
         {
           id: 'twitter:author',
@@ -71,6 +71,9 @@ export default {
       }
       if (payload.posts) {
         store.dispatch('tag/setPosts', payload)
+      }
+      if (payload.loadLatestPosts) {
+        store.dispatch('post/setLatestPosts', payload)
       }
     } else {
       await Promise.all([

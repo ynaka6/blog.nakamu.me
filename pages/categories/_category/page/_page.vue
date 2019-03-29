@@ -72,6 +72,9 @@ export default {
       if (payload.posts) {
         store.dispatch('category/setPosts', payload)
       }
+      if (payload.loadLatestPosts) {
+        store.dispatch('post/setLatestPosts', payload)
+      }
     } else {
       await Promise.all([
         store.dispatch('author/loadAuthor'),

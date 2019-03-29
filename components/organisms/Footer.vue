@@ -88,24 +88,22 @@
             Copyright © nnn All Rights Reserved.
           </div>
           <div class="w-full md:w-1/5 mb-4 lg:mb-0 flex justify-center">
-            <a
-              class="bg-white text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
-              :href="'https://twitter.com/' + author.fields.twitter"
-              target="_blank"
-              rel="noopener"
-              aria-label="twitter"
+            <n-link
+              :to="'https://twitter.com/' + author.fields.twitter"
+              :target-blank="true"
+              :external-icon="false"
+              class="bg-white hover:bg-grey-light text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
             >
               <n-icon icon="twitter" size="5" />
-            </a>
-            <a
-              class="bg-white text-grey-darkest w-10 h-10 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
-              :href="'https://github.com/' + author.fields.github"
-              target="_blank"
-              rel="noopener"
-              aria-label="github"
+            </n-link>
+            <n-link
+              :to="'https://github.com/' + author.fields.github"
+              :target-blank="true"
+              :external-icon="false"
+              class="bg-white hover:bg-grey-light text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
             >
               <n-icon icon="github" size="5" />
-            </a>
+            </n-link>
           </div>
         </div>
       </div>

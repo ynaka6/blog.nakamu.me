@@ -7,7 +7,9 @@ export const state = () => ({
   page: null,
   prevPage: null,
   nextPage: null,
-  post: null
+  post: null,
+  prevPost: null,
+  nextPost: null
 })
 
 export const getters = {
@@ -16,13 +18,15 @@ export const getters = {
   page: ({ page }) => page,
   prevPage: ({ prevPage }) => prevPage,
   nextPage: ({ nextPage }) => nextPage,
-  post: ({ post }) => post,
   isPrevPage: ({ page, prevPage }) => {
     return prevPage && page > prevPage
   },
   isNextPage: ({ page, nextPage }) => {
     return nextPage && nextPage > page
-  }
+  },
+  post: ({ post }) => post,
+  prevPost: ({ prevPost }) => prevPost,
+  nextPost: ({ nextPost }) => nextPost
 }
 
 export const actions = {
@@ -71,12 +75,44 @@ export const actions = {
   setPost({ commit }, payload) {
     commit('SET_POST', payload.post)
   },
-  async loadPost({ commit }, slug) {
-    const posts = await client.getEntries({
-      content_type: process.env.CTF_BLOG_POST_TYPE_ID,
-      'fields.slug': slug
-    })
-    commit('SET_POST', posts.items[0])
+  async loadPost({ commit, state }, slug) {
+    const index = state.posts.findIndex(p => p.fields && p.fields.slug === slug)
+    let post = null
+    if (index >= 0) {
+      post = state.posts[index]
+    } else {
+      const posts = await client.getEntries({
+        content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+        'fields.slug': slug
+      })
+      post = posts.items[0]
+    }
+    commit('SET_POST', post)
+
+    let prevPost = index >= 0 ? state.posts[index + 1] : null
+    if (!prevPost) {
+      const prevPosts = await client.getEntries({
+        content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+        'fields.publishDate[lt]': post.fields.publishDate,
+        order: '-fields.publishDate',
+        limit: 1
+      })
+      prevPost = prevPosts.items.length ? prevPosts.items[0] : null
+      console.log(prevPost)
+    }
+    commit('SET_PREV_POST', prevPost)
+
+    let nextPost = index > 0 ? state.posts[index - 1] : null
+    if (!nextPost) {
+      const nextPosts = await client.getEntries({
+        content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+        'fields.publishDate[gt]': post.fields.publishDate,
+        order: 'fields.publishDate',
+        limit: 1
+      })
+      nextPost = nextPosts.items.length ? nextPosts.items[0] : null
+    }
+    commit('SET_NEXT_POST', nextPost)
   }
 }
 
@@ -98,5 +134,11 @@ export const mutations = {
   },
   SET_POST: (state, post) => {
     state.post = post
+  },
+  SET_PREV_POST: (state, prevPost) => {
+    state.prevPost = prevPost
+  },
+  SET_NEXT_POST: (state, nextPost) => {
+    state.nextPost = nextPost
   }
 }

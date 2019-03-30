@@ -69,7 +69,8 @@ export default {
 .blog-content pre.hljs {
   @apply my-4 p-4;
 }
-.blog-content ol {
+.blog-content ol,
+.blog-content ul {
   @apply mb-4 leading-loose;
 }
 .blog-content img {

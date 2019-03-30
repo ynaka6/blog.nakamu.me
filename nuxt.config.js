@@ -314,5 +314,12 @@ export default {
       // 言語設定がない場合、プレーンテキストとして表示する
       return '<pre class="hljs"><code>' +  hljs.highlight('plaintext', str, true).value + '</code></pre>';
     }
-  }
+  },
+  manifest: {
+    name: process.env.APP_TITLE,
+    lang: 'ja',
+    short_name: process.env.APP_TITLE,
+    theme_color: '#ffffff',
+    background_color: '#ffffff'
+  },
 }

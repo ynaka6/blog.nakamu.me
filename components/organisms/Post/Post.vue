@@ -59,6 +59,7 @@
               />
             </picture>
             <post-content :content="post.fields.body" />
+            <pagination :prev-url="prevUrl" :next-url="nextUrl" />
           </article>
         </div>
         <div class="lg:w-1/3 lg:p-4">
@@ -85,6 +86,7 @@ import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import PostDate from '~/components/molecules/Post/PostDate'
 import PostContent from '~/components/molecules/Post/PostContent'
 import PostList from '~/components/molecules/Post/PostList'
+import Pagination from '~/components/molecules/Pagination'
 
 export default {
   components: {
@@ -94,7 +96,8 @@ export default {
     ProfileCard,
     PostContent,
     PostDate,
-    PostList
+    PostList,
+    Pagination
   },
   data: () => ({}),
   computed: {
@@ -114,6 +117,20 @@ export default {
     },
     latestPosts: function() {
       return this.$store.getters['post/latestPosts']
+    },
+    prevUrl: function() {
+      const prevPost = this.$store.getters['post/prevPost']
+      if (prevPost) {
+        return `/posts/${prevPost.fields.slug}`
+      }
+      return null
+    },
+    nextUrl: function() {
+      const nextPost = this.$store.getters['post/nextPost']
+      if (nextPost) {
+        return `/posts/${nextPost.fields.slug}`
+      }
+      return null
     }
   }
 }

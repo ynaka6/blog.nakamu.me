@@ -128,12 +128,17 @@ export default {
           limit: 1000
         })
       ]).then(([person, posts]) => {
-        const postRoutes = posts.items.map(entry => {
+        const postRoutes = posts.items.map(post => {
+          const index = posts.items.findIndex(p => p.fields && p.fields.slug === post.fields.slug)
+          const prevPost = index >= 0 ? posts.items[index + 1] : null
+          const nextPost = index > 0 ? posts.items[index - 1] : null
           return {
-            route: `/posts/${entry.fields.slug}`,
+            route: `/posts/${post.fields.slug}`,
             payload: {
               author: person.items[0],
-              post: entry,
+              post: post,
+              prevPost: prevPost,
+              nextPost: nextPost,
               loadLatestPosts: posts.items.slice(0, 6)
             }
           }

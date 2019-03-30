@@ -55,6 +55,12 @@ export default {
       if (payload.post) {
         store.dispatch('post/setPost', payload)
       }
+      if (payload.prevPost) {
+        store.dispatch('post/setPrevPost', payload)
+      }
+      if (payload.nextPost) {
+        store.dispatch('post/setNextPost', payload)
+      }
       if (payload.loadLatestPosts) {
         store.dispatch('post/setLatestPosts', payload)
       }

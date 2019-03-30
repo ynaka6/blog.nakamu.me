@@ -75,6 +75,12 @@ export const actions = {
   setPost({ commit }, payload) {
     commit('SET_POST', payload.post)
   },
+  setPrevPost({ commit }, payload) {
+    commit('SET_PREV_POST', payload.prevPost)
+  },
+  setNextPost({ commit }, payload) {
+    commit('SET_NEXT_POST', payload.nextPost)
+  },
   async loadPost({ commit, state }, slug) {
     const index = state.posts.findIndex(p => p.fields && p.fields.slug === slug)
     let post = null
@@ -98,7 +104,6 @@ export const actions = {
         limit: 1
       })
       prevPost = prevPosts.items.length ? prevPosts.items[0] : null
-      console.log(prevPost)
     }
     commit('SET_PREV_POST', prevPost)
 

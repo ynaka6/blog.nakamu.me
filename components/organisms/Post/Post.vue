@@ -21,10 +21,12 @@
             <h1 class="my-2 text-2xl lg:text-3xl leading-tight">
               {{ post.fields.title }}
             </h1>
+            <!-- eslint-disable vue/no-v-html -->
             <p
               class="text-sm text-grey-darker mb-4"
               v-html="post.fields.description"
             />
+            <!--eslint-enable-->
             <div>
               <n-tag
                 v-for="(tag, index) in tags"

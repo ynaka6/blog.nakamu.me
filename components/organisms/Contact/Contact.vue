@@ -12,7 +12,7 @@
         </div>
       </div>
     </section>
-    <alert :message="message" type="success" v-on:close="closeAlert" />
+    <alert :message="message" type="success" @close="closeAlert" />
   </div>
 </template>
 

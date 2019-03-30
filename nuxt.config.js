@@ -24,7 +24,8 @@ export default {
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
     PAGENATE_LIMIT: process.env.PAGENATE_LIMIT || 20,
-    PROFILE_SITE_URL: process.env.PROFILE_SITE_URL
+    PROFILE_SITE_URL: process.env.PROFILE_SITE_URL,
+    CONTACT_API_URL: process.env.CONTACT_API_URL
   },
 
   /*
@@ -69,8 +70,10 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    '~/plugins/axios.js',
     '~/plugins/day.js',
-    { src: '~/plugins/microlink.js', ssr: false }
+    { src: '~/plugins/microlink.js', ssr: false },
+    { src: '~/plugins/vuelidate.js', ssr: false }
   ],
 
   /*
@@ -93,6 +96,9 @@ export default {
    ** Build configuration
    */
   build: {
+    vendor: [
+      'vuelidate'
+    ],
     /*
      ** You can extend webpack config here
      */

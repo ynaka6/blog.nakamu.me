@@ -35,7 +35,7 @@
                   </n-link>
                 </li>
                 <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link to="/" class="text-white hover:text-grey-dark">
+                  <n-link to="/contact" class="text-white hover:text-grey-dark">
                     お問い合わせ
                   </n-link>
                 </li>

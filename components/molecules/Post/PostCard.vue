@@ -16,7 +16,7 @@
         sizes="(min-width: 1024px) 400px, 100vw"
       />
       <p
-        class="absolute pin-t pin-r text-grey-darken text-sm bg-yellow-dark py-1 px-3 my-1 mx-2 rounded-full"
+        class="absolute pin-t pin-r font-bold text-grey-darkest text-xs bg-yellow py-1 px-3 mt-2 mx-2 rounded-full"
       >
         {{ category.name }}
       </p>

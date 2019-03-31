@@ -89,6 +89,7 @@
           </div>
           <div class="w-full md:w-1/5 mb-4 lg:mb-0 flex justify-center">
             <n-link
+              v-if="author && author.fields && author.fields.twitter"
               :to="'https://twitter.com/' + author.fields.twitter"
               :target-blank="true"
               :external-icon="false"
@@ -97,6 +98,7 @@
               <n-icon icon="twitter" size="5" />
             </n-link>
             <n-link
+              v-if="author && author.fields && author.fields.github"
               :to="'https://github.com/' + author.fields.github"
               :target-blank="true"
               :external-icon="false"

@@ -8,6 +8,159 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
 
+
+const generateRoutes = routeOnly => {
+  return Promise.all([
+    client.getEntries({
+      'sys.id': process.env.CTF_PERSON_ID
+    }),
+    client.getEntries({
+      content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+      order: '-fields.publishDate',
+      limit: 1000
+    })
+  ]).then(([person, posts]) => {
+    const postRoutes = posts.items.map(post => {
+      const index = posts.items.findIndex(p => p.fields && p.fields.slug === post.fields.slug)
+      const prevPost = index >= 0 ? posts.items[index + 1] : null
+      const nextPost = index > 0 ? posts.items[index - 1] : null
+      const route = `/posts/${post.fields.slug}`
+      return routeOnly ? route : {
+        route: route,
+        payload: {
+          author: person.items[0],
+          post: post,
+          prevPost: prevPost,
+          nextPost: nextPost,
+          loadLatestPosts: posts.items.slice(0, 6)
+        }
+      }
+    })
+    const categoryRoutes = flatten(categories
+      .map(category => {
+        const categoryPosts = posts.items.filter(post => post.fields.category[0] === category.name)
+        const total = categoryPosts.length
+        const limit = parseInt(process.env.PAGENATE_LIMIT)
+        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+
+        if (total == 0) return null
+
+        return [
+          routeOnly ? `/categories/${category.slug}` : {
+            route: `/categories/${category.slug}`,
+            payload: {
+              author: person.items[0],
+              posts: categoryPosts.slice(0, limit),
+              page: 1,
+              prevPage: null,
+              nextPage: pageCount > 1 ? 2 : null,
+              loadLatestPosts: posts.items.slice(0, 6)
+            }
+          },
+          ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
+            const page = i + 2
+            const route = `/categories/${category.slug}/page/${page}`
+            return routeOnly ? route : {
+              route: route,
+              payload: {
+                author: person.items[0],
+                posts: categoryPosts.slice(
+                  process.env.PAGENATE_LIMIT * page,
+                  limit
+                ),
+                page: page,
+                prevPage: page,
+                nextPage: pageCount > page ? page + 1 : null,
+                loadLatestPosts: posts.items.slice(0, 6)
+              }
+            }
+          })
+        ]
+      })
+      .filter(r => r != null))
+
+    const tagRoutes = flatten(tags
+      .map(tag => {
+        const tagPosts = posts.items.filter(post => post.fields.tags && post.fields.tags.includes(tag.name))
+        const total = tagPosts.length
+        const limit = parseInt(process.env.PAGENATE_LIMIT)
+        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+
+        if (total == 0) return null
+
+        return [
+          routeOnly ? `/tags/${tag.slug}` : {
+            route: `/tags/${tag.slug}`,
+            payload: {
+              author: person.items[0],
+              posts: tagPosts.slice(0, limit),
+              page: 1,
+              prevPage: null,
+              nextPage: pageCount > 1 ? 2 : null,
+              loadLatestPosts: posts.items.slice(0, 6)
+            }
+          },
+          ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
+            const page = i + 2
+            const route = `/tags/${tag.slug}/page/${page}`
+            return routeOnly ? route : {
+              route: route,
+              payload: {
+                author: person.items[0],
+                posts: tagPosts.slice(
+                  process.env.PAGENATE_LIMIT * page,
+                  limit
+                ),
+                page: page,
+                prevPage: page,
+                nextPage: pageCount > page ? page + 1 : null,
+                loadLatestPosts: posts.items.slice(0, 6)
+              }
+            }
+          })
+        ]
+      })
+      .filter(r => r != null))
+
+    const total = posts.items.length
+    const limit = parseInt(process.env.PAGENATE_LIMIT)
+    const pageCount = Math.floor((total - 1) / limit) + 1
+    const route = [
+      ...postRoutes,
+      routeOnly ? '/posts' : {
+        route: '/posts',
+        payload: {
+          author: person.items[0],
+          posts: posts.items.slice(0, limit),
+          page: 1,
+          prevPage: null,
+          nextPage: pageCount > 1 ? 2 : null
+        }
+      },
+      ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
+        const page = i + 2
+        const route = '/posts/page/' + page
+        return routeOnly ? route : {
+          route: route,
+          payload: {
+            author: person.items[0],
+            posts: posts.items.slice(
+              process.env.PAGENATE_LIMIT * page,
+              limit
+            ),
+            page: page,
+            prevPage: page,
+            nextPage: pageCount > page ? page + 1 : null
+          }
+        }
+      }),
+      ...categoryRoutes,
+      ...tagRoutes
+    ]
+    return route
+  })
+}
+
 export default {
   mode: 'universal',
 
@@ -83,7 +236,9 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/feed',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Axios module configuration
@@ -115,154 +270,10 @@ export default {
     }
   },
   generate: {
-    interval: 1000,
+    interval: 2000,
     subFolders: false,
     routes: () => {
-      return Promise.all([
-        client.getEntries({
-          'sys.id': process.env.CTF_PERSON_ID
-        }),
-        client.getEntries({
-          content_type: process.env.CTF_BLOG_POST_TYPE_ID,
-          order: '-fields.publishDate',
-          limit: 1000
-        })
-      ]).then(([person, posts]) => {
-        const postRoutes = posts.items.map(post => {
-          const index = posts.items.findIndex(p => p.fields && p.fields.slug === post.fields.slug)
-          const prevPost = index >= 0 ? posts.items[index + 1] : null
-          const nextPost = index > 0 ? posts.items[index - 1] : null
-          return {
-            route: `/posts/${post.fields.slug}`,
-            payload: {
-              author: person.items[0],
-              post: post,
-              prevPost: prevPost,
-              nextPost: nextPost,
-              loadLatestPosts: posts.items.slice(0, 6)
-            }
-          }
-        })
-        const categoryRoutes = flatten(categories
-          .map(category => {
-            const categoryPosts = posts.items.filter(post => post.fields.category[0] === category.name)
-            const total = categoryPosts.length
-            const limit = parseInt(process.env.PAGENATE_LIMIT)
-            const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-
-            if (total == 0) return null
-
-            return [
-              {
-                route: `/categories/${category.slug}`,
-                payload: {
-                  author: person.items[0],
-                  posts: categoryPosts.slice(0, limit),
-                  page: 1,
-                  prevPage: null,
-                  nextPage: pageCount > 1 ? 2 : null,
-                  loadLatestPosts: posts.items.slice(0, 6)
-                }
-              },
-              ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
-                const page = i + 2
-                return {
-                  route: `/categories/${category.slug}/page/${page}`,
-                  payload: {
-                    author: person.items[0],
-                    posts: categoryPosts.slice(
-                      process.env.PAGENATE_LIMIT * page,
-                      limit
-                    ),
-                    page: page,
-                    prevPage: page,
-                    nextPage: pageCount > page ? page + 1 : null,
-                    loadLatestPosts: posts.items.slice(0, 6)
-                  }
-                }
-              })
-            ]
-          })
-          .filter(r => r != null))
-
-        const tagRoutes = flatten(tags
-          .map(tag => {
-            const tagPosts = posts.items.filter(post => post.fields.tags && post.fields.tags.includes(tag.name))
-            const total = tagPosts.length
-            const limit = parseInt(process.env.PAGENATE_LIMIT)
-            const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
-
-            if (total == 0) return null
-
-            return [
-              {
-                route: `/tags/${tag.slug}`,
-                payload: {
-                  author: person.items[0],
-                  posts: tagPosts.slice(0, limit),
-                  page: 1,
-                  prevPage: null,
-                  nextPage: pageCount > 1 ? 2 : null,
-                  loadLatestPosts: posts.items.slice(0, 6)
-                }
-              },
-              ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
-                const page = i + 2
-                return {
-                  route: `/tags/${tag.slug}/page/${page}`,
-                  payload: {
-                    author: person.items[0],
-                    posts: tagPosts.slice(
-                      process.env.PAGENATE_LIMIT * page,
-                      limit
-                    ),
-                    page: page,
-                    prevPage: page,
-                    nextPage: pageCount > page ? page + 1 : null,
-                    loadLatestPosts: posts.items.slice(0, 6)
-                  }
-                }
-              })
-            ]
-          })
-          .filter(r => r != null))
-
-        const total = posts.items.length
-        const limit = parseInt(process.env.PAGENATE_LIMIT)
-        const pageCount = Math.floor((total - 1) / limit) + 1
-        const route = [
-          ...postRoutes,
-          {
-            route: '/posts',
-            payload: {
-              author: person.items[0],
-              posts: posts.items.slice(0, limit),
-              page: 1,
-              prevPage: null,
-              nextPage: pageCount > 1 ? 2 : null
-            }
-          },
-          ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
-            const page = i + 2
-            return {
-              route: '/posts/page/' + page,
-              payload: {
-                author: person.items[0],
-                posts: posts.items.slice(
-                  process.env.PAGENATE_LIMIT * page,
-                  limit
-                ),
-                page: page,
-                prevPage: page,
-                nextPage: pageCount > page ? page + 1 : null
-              }
-            }
-          }),
-          ...categoryRoutes,
-          ...tagRoutes
-        ]
-        return route
-      })
+      return generateRoutes(false)
     }
   },
   markdownit: {
@@ -327,4 +338,63 @@ export default {
     theme_color: '#ffffff',
     background_color: '#ffffff'
   },
+  feed: [
+    {
+      path: '/atom.xml',
+      async create (feed) {
+        feed.options = {
+          title: process.env.APP_TITLE,
+          link: `${process.env.BASE_URL}/atom.xml`,
+          description: "This is Nakamu's personal feed!"
+        }
+
+        const [ posts, person ] = await Promise.all([
+          client.getEntries({
+            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+            order: '-fields.publishDate',
+            limit: 1000,
+          }),
+          client.getEntries({
+            'sys.id': process.env.CTF_PERSON_ID
+          })
+        ])
+        const author = person.items[0]
+
+
+        posts.items.forEach(post => {
+          feed.addItem({
+            title: post.fields.title,
+            id: post.fields.slug,
+            link: `${process.env.BASE_URL}/posts/${post.fields.slug}`,
+            description: post.fields.description,
+            content: post.fields.description,
+            date: new Date(post.fields.publishDate),
+            image: post.fields.heroImage.fields.file.url
+          })
+        })
+
+        feed.addCategory('Tech')
+        feed.addContributor({
+          name: author.fields.name,
+          email: author.fields.email,
+          link: process.env.BASE_URL
+        })
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'atom1'
+    }
+  ],
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: process.env.BASE_URL,
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    generate: true, // 静的ジェネレート時にも利用
+    exclude: [
+      '/404*', // 404ページは除く
+    ],
+    routes: () => {
+      return generateRoutes(true)
+    }
+  }
 }

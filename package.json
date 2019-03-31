@@ -1,6 +1,6 @@
 {
   "name": "myblog",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Blog Nakamu Life",
   "author": "nnn",
   "private": true,
@@ -22,8 +22,10 @@
   "dependencies": {
     "@microlink/vanilla": "^3.0.5",
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/feed": "^1.1.0",
     "@nuxtjs/markdownit": "^1.2.3",
     "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/sitemap": "^0.2.2",
     "contentful": "^7.5.0",
     "contentful-management": "^5.7.0",
     "cross-env": "^5.2.0",

@@ -14,9 +14,6 @@ export const actions = {
     commit('SET_AUTHOR', payload.author)
   },
   async loadAuthor({ commit, state }) {
-    if (state.author) {
-      return
-    }
     const person = await client.getEntries({
       'sys.id': process.env.CTF_PERSON_ID
     })

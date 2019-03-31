@@ -82,3 +82,6 @@ dist
 
 # Service worker
 sw.*
+
+static/sitemap.xml*
+static/atom.xml

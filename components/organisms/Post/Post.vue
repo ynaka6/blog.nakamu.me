@@ -36,28 +36,35 @@
                 size="small"
               />
             </div>
-            <picture>
-              <n-image
-                class="block h-auto w-full my-4"
-                :alt="post.fields.title"
-                :src="`${post.fields.heroImage.fields.file.url}?w=10`"
-                :placeholder="post.fields.heroImage.fields.file.url"
-                :srcset="
-                  `
-                  ${
-                    post.fields.heroImage.fields.file.url
-                  }?w=350&h=196&fit=fill 350w,
-                  ${
-                    post.fields.heroImage.fields.file.url
-                  }?w=1000&h=562&fit=fill 1000w,
-                  ${
-                    post.fields.heroImage.fields.file.url
-                  }?w=2000&h=1125&fit=fill 2000w
-                  `
-                "
-                sizes="(min-width: 1024px) 400px, 100vw"
-              />
-            </picture>
+            <div class="relative">
+              <picture>
+                <n-image
+                  class="block h-auto w-full my-4"
+                  :alt="post.fields.title"
+                  :src="`${post.fields.heroImage.fields.file.url}?w=10`"
+                  :placeholder="post.fields.heroImage.fields.file.url"
+                  :srcset="
+                    `
+                    ${
+                      post.fields.heroImage.fields.file.url
+                    }?w=350&h=196&fit=fill 350w,
+                    ${
+                      post.fields.heroImage.fields.file.url
+                    }?w=1000&h=562&fit=fill 1000w,
+                    ${
+                      post.fields.heroImage.fields.file.url
+                    }?w=2000&h=1125&fit=fill 2000w
+                    `
+                  "
+                  sizes="(min-width: 1024px) 400px, 100vw"
+                />
+              </picture>
+              <p
+                class="absolute pin-t pin-r text-white text-sm bg-pink-dark py-1 px-2 my-1 mx-2 rounded-full"
+              >
+                {{ category.name }}
+              </p>
+            </div>
             <post-content :content="post.fields.body" />
             <pagination :prev-url="prevUrl" :next-url="nextUrl" />
           </article>

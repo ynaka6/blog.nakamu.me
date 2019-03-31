@@ -1,6 +1,6 @@
 <template>
   <article class="overflow-hidden rounded-lg bg-white hover:shadow-lg">
-    <nuxt-link :to="`/posts/${post.fields.slug}`">
+    <nuxt-link :to="`/posts/${post.fields.slug}`" class="block relative">
       <n-image
         class="block h-auto w-full"
         :alt="post.fields.title"
@@ -15,6 +15,11 @@
         "
         sizes="(min-width: 1024px) 400px, 100vw"
       />
+      <p
+        class="absolute pin-t pin-r text-grey-darken text-sm bg-yellow-dark py-1 px-3 my-1 mx-2 rounded-full"
+      >
+        {{ category.name }}
+      </p>
     </nuxt-link>
     <div class="p-2 md:px-4">
       <post-date
@@ -62,6 +67,11 @@ export default {
       return this.post.fields.tags
         .map(t => this.$store.getters['tag/tagOfName'](t))
         .filter(t => t != null)
+    },
+    category() {
+      return this.$store.getters['category/categoryOfName'](
+        this.post.fields.category[0]
+      )
     }
   }
 }

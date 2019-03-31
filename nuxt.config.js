@@ -251,9 +251,6 @@ export default {
    ** Build configuration
    */
   build: {
-    vendor: [
-      'vuelidate'
-    ],
     /*
      ** You can extend webpack config here
      */

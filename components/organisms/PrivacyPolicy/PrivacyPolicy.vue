@@ -3,17 +3,17 @@
     <breadcrumb
       :list="[
         { link: '/', label: 'Home' },
-        { link: null, label: 'Privacy Policy' }
+        { link: null, label: 'プライバシーポリシー' }
       ]"
     />
     <section class="container mx-auto py-10">
       <div class="flex justify-center">
         <div class="lg:w-4/5 lg:p-6">
-          <n-title>
-            Privacy Policy
+          <n-title class="text-3xl">
+            プライバシーポリシー
           </n-title>
           <div
-            class="bg-white border shadow-md rounded px-4 lg:px-8 pt-6 pb-8 mt-5 mb-10"
+            class="bg-white border shadow-md rounded px-4 lg:px-8 pt-6 pb-8 mt-10 mb-10"
           >
             <h3 class="mb-4">
               <strong>個人情報の利用目的</strong>

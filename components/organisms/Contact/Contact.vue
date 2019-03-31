@@ -3,7 +3,7 @@
     <section class="container mx-auto">
       <div class="flex justify-center">
         <div class="lg:w-4/5 lg:p-6">
-          <n-title class="mt-10">
+          <n-title class="text-3xl mt-10">
             お問い合わせ
           </n-title>
           <div class="flex flex-wrap justify-center">

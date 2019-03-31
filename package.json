@@ -40,12 +40,12 @@
     "markdown-it-video": "^0.6.3",
     "nuxt": "^2.4.0",
     "vuelidate": "^0.7.4",
+    "autoprefixer": "^8.6.4",
     "tailwindcss": "^0.7.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
     "@vue/test-utils": "^1.0.0-beta.27",
-    "autoprefixer": "^8.6.4",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",

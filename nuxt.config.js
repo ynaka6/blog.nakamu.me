@@ -251,6 +251,8 @@ export default {
    ** Build configuration
    */
   build: {
+    maxChunkSize: 300000,
+    
     /*
      ** You can extend webpack config here
      */

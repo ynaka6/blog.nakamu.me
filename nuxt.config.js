@@ -1,4 +1,5 @@
 /* eslint-disable nuxt/no-cjs-in-config */
+import fs from 'fs'
 import flatten from 'flatten'
 import pkg from './package'
 import categories from './assets/json/categories.json'
@@ -19,6 +20,12 @@ const generateRoutes = routeOnly => {
       limit: 1000
     })
   ]).then(([person, posts]) => {
+    // jsonファイル出力
+    fs.writeFile(
+      './assets/json/authors.json',
+      JSON.stringify(person.items, null, '    ')
+    )
+
     const postRoutes = posts.items.map(post => {
       const index = posts.items.findIndex(
         p => p.fields && p.fields.slug === post.fields.slug

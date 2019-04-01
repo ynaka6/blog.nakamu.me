@@ -1,5 +1,5 @@
 <template>
-  <article class="overflow-hidden rounded-lg bg-white hover:shadow-lg">
+  <article class="article">
     <nuxt-link :to="`/posts/${post.fields.slug}`" class="block relative">
       <n-image
         class="block h-auto w-full"
@@ -77,4 +77,14 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss"></style>
+<style scoped lang="postcss">
+.article {
+  @apply overflow-hidden rounded-lg bg-white;
+}
+.article:hover {
+  -webkit-transform: translateY(-0.25rem);
+  -ms-transform: translateY(-0.25rem);
+  transform: translateY(-0.25rem);
+  @apply shadow-lg;
+}
+</style>

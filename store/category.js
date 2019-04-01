@@ -1,10 +1,12 @@
 import categories from '~/assets/json/categories.json'
+import postJson from '~/assets/json/posts.json'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
 export const state = () => ({
   categories: categories,
   category: {},
+  postJson: postJson,
   posts: [],
   page: null,
   prevPage: null,
@@ -48,6 +50,21 @@ export const actions = {
     const p = parseInt(page) || 1
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit
+
+    if (process.browser && state.postJson && state.postJson.length > 0) {
+      const categoryPostJson = state.postJson.filter(
+        post => post.fields.category[0] === state.category.name
+      )
+      const prevPage = p > 1 ? p - 1 : null
+      const nextPage = categoryPostJson.length > skip + limit ? p + 1 : null
+
+      commit('SET_POSTS', categoryPostJson.slice(skip, skip + limit))
+      commit('SET_PAGE', p)
+      commit('SET_PREV_PAGE', prevPage)
+      commit('SET_NEXT_PAGE', nextPage)
+      return
+    }
+
     const posts = await client.getEntries({
       content_type: process.env.CTF_BLOG_POST_TYPE_ID,
       'fields.category[in]': state.category.name,

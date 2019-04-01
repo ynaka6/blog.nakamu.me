@@ -220,7 +220,8 @@ export default {
     API_URL: process.env.API_URL,
     PAGENATE_LIMIT: process.env.PAGENATE_LIMIT || 20,
     PROFILE_SITE_URL: process.env.PROFILE_SITE_URL,
-    CONTACT_API_URL: process.env.CONTACT_API_URL
+    CONTACT_API_URL: process.env.CONTACT_API_URL,
+    GOOGLE_ANALYTICS_TRACKING_ID: process.env.GOOGLE_ANALYTICS_TRACKING_ID
   },
 
   /*
@@ -300,7 +301,8 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
     '@nuxtjs/feed',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/google-analytics'
   ],
   /*
    ** Axios module configuration
@@ -465,6 +467,20 @@ export default {
     ],
     routes: () => {
       return generateRoutes(true)
+    }
+  },
+  'google-analytics': {
+    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    debug: {
+      enabled:
+        process.env.NODE_ENV === 'production' &&
+        process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      trace:
+        process.env.NODE_ENV === 'production' &&
+        process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      sendHitTask:
+        process.env.NODE_ENV === 'production' &&
+        process.env.GOOGLE_ANALYTICS_TRACKING_ID
     }
   }
 }

@@ -470,7 +470,7 @@ export default {
     }
   },
   'google-analytics': {
-    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    id: `${process.env.GOOGLE_ANALYTICS_TRACKING_ID}`,
     debug: {
       enabled:
         process.env.NODE_ENV === 'production' &&

@@ -1,13 +1,12 @@
 /* eslint-disable nuxt/no-cjs-in-config */
+import flatten from 'flatten'
 import pkg from './package'
 import categories from './assets/json/categories.json'
 import tags from './assets/json/tags.json'
-import flatten from 'flatten'
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const { createClient } = require('./plugins/contentful')
 const client = createClient()
-
 
 const generateRoutes = routeOnly => {
   return Promise.all([
@@ -21,138 +20,163 @@ const generateRoutes = routeOnly => {
     })
   ]).then(([person, posts]) => {
     const postRoutes = posts.items.map(post => {
-      const index = posts.items.findIndex(p => p.fields && p.fields.slug === post.fields.slug)
+      const index = posts.items.findIndex(
+        p => p.fields && p.fields.slug === post.fields.slug
+      )
       const prevPost = index >= 0 ? posts.items[index + 1] : null
       const nextPost = index > 0 ? posts.items[index - 1] : null
       const route = `/posts/${post.fields.slug}`
-      return routeOnly ? route : {
-        route: route,
-        payload: {
-          author: person.items[0],
-          post: post,
-          prevPost: prevPost,
-          nextPost: nextPost,
-          loadLatestPosts: posts.items.slice(0, 6)
-        }
-      }
+      return routeOnly
+        ? route
+        : {
+            route: route,
+            payload: {
+              author: person.items[0],
+              post: post,
+              prevPost: prevPost,
+              nextPost: nextPost,
+              loadLatestPosts: posts.items.slice(0, 6)
+            }
+          }
     })
-    const categoryRoutes = flatten(categories
-      .map(category => {
-        const categoryPosts = posts.items.filter(post => post.fields.category[0] === category.name)
-        const total = categoryPosts.length
-        const limit = parseInt(process.env.PAGENATE_LIMIT)
-        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+    const categoryRoutes = flatten(
+      categories
+        .map(category => {
+          const categoryPosts = posts.items.filter(
+            post => post.fields.category[0] === category.name
+          )
+          const total = categoryPosts.length
+          const limit = parseInt(process.env.PAGENATE_LIMIT)
+          const pageCount =
+            Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
 
-        if (total == 0) return null
+          if (total === 0) return null
+          return [
+            routeOnly
+              ? `/categories/${category.slug}`
+              : {
+                  route: `/categories/${category.slug}`,
+                  payload: {
+                    author: person.items[0],
+                    posts: categoryPosts.slice(0, limit),
+                    page: 1,
+                    prevPage: null,
+                    nextPage: pageCount > 1 ? 2 : null,
+                    loadLatestPosts: posts.items.slice(0, 6)
+                  }
+                },
+            ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
+              const page = i + 2
+              const route = `/categories/${category.slug}/page/${page}`
+              return routeOnly
+                ? route
+                : {
+                    route: route,
+                    payload: {
+                      author: person.items[0],
+                      posts: categoryPosts.slice(
+                        process.env.PAGENATE_LIMIT * page,
+                        limit
+                      ),
+                      page: page,
+                      prevPage: page,
+                      nextPage: pageCount > page ? page + 1 : null,
+                      loadLatestPosts: posts.items.slice(0, 6)
+                    }
+                  }
+            })
+          ]
+        })
+        .filter(r => r != null)
+    )
 
-        return [
-          routeOnly ? `/categories/${category.slug}` : {
-            route: `/categories/${category.slug}`,
-            payload: {
-              author: person.items[0],
-              posts: categoryPosts.slice(0, limit),
-              page: 1,
-              prevPage: null,
-              nextPage: pageCount > 1 ? 2 : null,
-              loadLatestPosts: posts.items.slice(0, 6)
-            }
-          },
-          ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
-            const page = i + 2
-            const route = `/categories/${category.slug}/page/${page}`
-            return routeOnly ? route : {
-              route: route,
-              payload: {
-                author: person.items[0],
-                posts: categoryPosts.slice(
-                  process.env.PAGENATE_LIMIT * page,
-                  limit
-                ),
-                page: page,
-                prevPage: page,
-                nextPage: pageCount > page ? page + 1 : null,
-                loadLatestPosts: posts.items.slice(0, 6)
-              }
-            }
-          })
-        ]
-      })
-      .filter(r => r != null))
+    const tagRoutes = flatten(
+      tags
+        .map(tag => {
+          const tagPosts = posts.items.filter(
+            post => post.fields.tags && post.fields.tags.includes(tag.name)
+          )
+          const total = tagPosts.length
+          const limit = parseInt(process.env.PAGENATE_LIMIT)
+          const pageCount =
+            Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
 
-    const tagRoutes = flatten(tags
-      .map(tag => {
-        const tagPosts = posts.items.filter(post => post.fields.tags && post.fields.tags.includes(tag.name))
-        const total = tagPosts.length
-        const limit = parseInt(process.env.PAGENATE_LIMIT)
-        const pageCount = Math.floor((total - 1) / process.env.PAGENATE_LIMIT) + 1
+          if (total === 0) return null
 
-        if (total == 0) return null
-
-        return [
-          routeOnly ? `/tags/${tag.slug}` : {
-            route: `/tags/${tag.slug}`,
-            payload: {
-              author: person.items[0],
-              posts: tagPosts.slice(0, limit),
-              page: 1,
-              prevPage: null,
-              nextPage: pageCount > 1 ? 2 : null,
-              loadLatestPosts: posts.items.slice(0, 6)
-            }
-          },
-          ...[...Array(0 == pageCount ? 0 : pageCount - 1).keys()].map(i => {
-            const page = i + 2
-            const route = `/tags/${tag.slug}/page/${page}`
-            return routeOnly ? route : {
-              route: route,
-              payload: {
-                author: person.items[0],
-                posts: tagPosts.slice(
-                  process.env.PAGENATE_LIMIT * page,
-                  limit
-                ),
-                page: page,
-                prevPage: page,
-                nextPage: pageCount > page ? page + 1 : null,
-                loadLatestPosts: posts.items.slice(0, 6)
-              }
-            }
-          })
-        ]
-      })
-      .filter(r => r != null))
+          return [
+            routeOnly
+              ? `/tags/${tag.slug}`
+              : {
+                  route: `/tags/${tag.slug}`,
+                  payload: {
+                    author: person.items[0],
+                    posts: tagPosts.slice(0, limit),
+                    page: 1,
+                    prevPage: null,
+                    nextPage: pageCount > 1 ? 2 : null,
+                    loadLatestPosts: posts.items.slice(0, 6)
+                  }
+                },
+            ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
+              const page = i + 2
+              const route = `/tags/${tag.slug}/page/${page}`
+              return routeOnly
+                ? route
+                : {
+                    route: route,
+                    payload: {
+                      author: person.items[0],
+                      posts: tagPosts.slice(
+                        process.env.PAGENATE_LIMIT * page,
+                        limit
+                      ),
+                      page: page,
+                      prevPage: page,
+                      nextPage: pageCount > page ? page + 1 : null,
+                      loadLatestPosts: posts.items.slice(0, 6)
+                    }
+                  }
+            })
+          ]
+        })
+        .filter(r => r != null)
+    )
 
     const total = posts.items.length
     const limit = parseInt(process.env.PAGENATE_LIMIT)
     const pageCount = Math.floor((total - 1) / limit) + 1
     const route = [
       ...postRoutes,
-      routeOnly ? '/posts' : {
-        route: '/posts',
-        payload: {
-          author: person.items[0],
-          posts: posts.items.slice(0, limit),
-          page: 1,
-          prevPage: null,
-          nextPage: pageCount > 1 ? 2 : null
-        }
-      },
+      routeOnly
+        ? '/posts'
+        : {
+            route: '/posts',
+            payload: {
+              author: person.items[0],
+              posts: posts.items.slice(0, limit),
+              page: 1,
+              prevPage: null,
+              nextPage: pageCount > 1 ? 2 : null
+            }
+          },
       ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
         const page = i + 2
         const route = '/posts/page/' + page
-        return routeOnly ? route : {
-          route: route,
-          payload: {
-            author: person.items[0],
-            posts: posts.items.slice(
-              process.env.PAGENATE_LIMIT * page,
-              limit
-            ),
-            page: page,
-            prevPage: page,
-            nextPage: pageCount > page ? page + 1 : null
-          }
-        }
+        return routeOnly
+          ? route
+          : {
+              route: route,
+              payload: {
+                author: person.items[0],
+                posts: posts.items.slice(
+                  process.env.PAGENATE_LIMIT * page,
+                  limit
+                ),
+                page: page,
+                prevPage: page,
+                nextPage: pageCount > page ? page + 1 : null
+              }
+            }
       }),
       ...categoryRoutes,
       ...tagRoutes
@@ -193,6 +217,22 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
+      {
+        rel: 'manifest',
+        href: '/site.webmanifest'
+      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Leckerli+One'
@@ -252,7 +292,6 @@ export default {
    */
   build: {
     maxChunkSize: 300000,
-    
     /*
      ** You can extend webpack config here
      */
@@ -283,51 +322,63 @@ export default {
     linkify: true,
     typography: true,
     use: [
-      ['markdown-it-container', 'warning', {
-
-        validate: function(params) {
-          return params.trim().match(/^message\s+(.*)$/);
-        },
-      
-        render: function (tokens, idx) {
-          var m = tokens[idx].info.trim().match(/^message\s+(.*)$/);
-      
-          if (tokens[idx].nesting === 1) {
-            return '<div class="message ' + md.utils.escapeHtml(m[1]) + '">';
-      
-          } else {
-            return '</div>\n';
+      [
+        'markdown-it-container',
+        'warning',
+        {
+          validate: function(params) {
+            return params.trim().match(/^message\s+(.*)$/)
+          },
+          render: function(tokens, idx) {
+            const m = tokens[idx].info.trim().match(/^message\s+(.*)$/)
+            if (tokens[idx].nesting === 1) {
+              return '<div class="message ' + md.utils.escapeHtml(m[1]) + '">'
+            } else {
+              return '</div>\n'
+            }
           }
         }
-      }],
+      ],
       'markdown-it-toc',
-      ['markdown-it-video', {
-        youtube: { width: 640, height: 390 },
-        vimeo: { width: 500, height: 281 },
-        vine: { width: 600, height: 600, embed: 'simple' },
-        prezi: { width: 550, height: 400 }
-      }],
-      'markdown-it-mark',
-      ['markdown-it-link-attributes', {
-        pattern: /^http(s):/,
-        attrs: {
-          target: '_blank',
-          rel: 'noopener'
+      [
+        'markdown-it-video',
+        {
+          youtube: { width: 640, height: 390 },
+          vimeo: { width: 500, height: 281 },
+          vine: { width: 600, height: 600, embed: 'simple' },
+          prezi: { width: 550, height: 400 }
         }
-      }],
+      ],
+      'markdown-it-mark',
+      [
+        'markdown-it-link-attributes',
+        {
+          pattern: /^http(s):/,
+          attrs: {
+            target: '_blank',
+            rel: 'noopener'
+          }
+        }
+      ],
       'markdown-it-attrs'
     ],
     highlight: (str, lang) => {
-      const hljs = require('highlight.js');
+      const hljs = require('highlight.js')
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return '<pre class="hljs"><code>' +
-                  hljs.highlight(lang, str, true).value +
-                  '</code></pre>';
+          return (
+            '<pre class="hljs"><code>' +
+            hljs.highlight(lang, str, true).value +
+            '</code></pre>'
+          )
         } catch (__) {}
       }
       // 言語設定がない場合、プレーンテキストとして表示する
-      return '<pre class="hljs"><code>' +  hljs.highlight('plaintext', str, true).value + '</code></pre>';
+      return (
+        '<pre class="hljs"><code>' +
+        hljs.highlight('plaintext', str, true).value +
+        '</code></pre>'
+      )
     }
   },
   manifest: {
@@ -340,26 +391,24 @@ export default {
   feed: [
     {
       path: '/atom.xml',
-      async create (feed) {
+      async create(feed) {
         feed.options = {
           title: process.env.APP_TITLE,
           link: `${process.env.BASE_URL}/atom.xml`,
           description: "This is Nakamu's personal feed!"
         }
 
-        const [ posts, person ] = await Promise.all([
+        const [posts, person] = await Promise.all([
           client.getEntries({
-            'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+            content_type: process.env.CTF_BLOG_POST_TYPE_ID,
             order: '-fields.publishDate',
-            limit: 1000,
+            limit: 1000
           }),
           client.getEntries({
             'sys.id': process.env.CTF_PERSON_ID
           })
         ])
         const author = person.items[0]
-
-
         posts.items.forEach(post => {
           feed.addItem({
             title: post.fields.title,
@@ -390,7 +439,7 @@ export default {
     gzip: true,
     generate: true, // 静的ジェネレート時にも利用
     exclude: [
-      '/404*', // 404ページは除く
+      '/404*' // 404ページは除く
     ],
     routes: () => {
       return generateRoutes(true)

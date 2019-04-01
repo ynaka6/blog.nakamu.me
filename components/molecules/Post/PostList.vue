@@ -14,7 +14,7 @@
         />
       </div>
     </div>
-    <div class="mt-10 mx-4">
+    <div class="mt-10 mx-4 lg:mx-0">
       <n-link
         to="/posts"
         class="w-full block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"

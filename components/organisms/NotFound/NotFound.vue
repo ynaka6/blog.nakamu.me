@@ -2,17 +2,17 @@
   <div>
     <section class="container mx-auto">
       <div class="flex justify-center">
-        <div class="lg:w-2/3 p-4">
+        <div class="lg:w-2/3 p-4 text-center">
           <n-title class="text-4xl mt-10">
             Page not found.
           </n-title>
-          <p class="my-16 text-center">
+          <p class="my-16">
             お探しのページは削除されたか存在しません。
           </p>
-          <div class="mt-10 mx-4">
+          <div class="my-10 mx-4">
             <n-link
               to="/"
-              class="block p-4 text-center text-2xl text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+              class="p-4 text-2xl text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
             >
               <n-icon icon="undo" size="3" />
               Homeに戻る

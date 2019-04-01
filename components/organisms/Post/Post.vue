@@ -74,11 +74,7 @@
             :author="$store.getters['author/author']"
             class="m-4 lg:m-0"
           />
-          <post-list
-            label="Latest Posts"
-            :posts="latestPosts"
-            class="mt-10 mb-10"
-          />
+          <post-list label="Latest Posts" :posts="latestPosts" class="my-10" />
         </div>
       </div>
     </section>

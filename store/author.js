@@ -1,9 +1,9 @@
-import authors from '~/assets/json/authors.json'
+import json from '~/assets/json/authors.json'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
 export const state = () => ({
-  json: authors,
+  json: json,
   author: null
 })
 
@@ -16,7 +16,7 @@ export const actions = {
     commit('SET_AUTHOR', payload.author)
   },
   async loadAuthor({ commit, state }) {
-    if (state.json && state.json[0]) {
+    if (state.json && state.json.length > 0) {
       commit('SET_AUTHOR', state.json[0])
       return
     }

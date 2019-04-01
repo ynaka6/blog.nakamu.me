@@ -1,7 +1,9 @@
+import json from '~/assets/json/posts.json'
 import { createClient } from '~/plugins/contentful.js'
 const client = createClient()
 
 export const state = () => ({
+  json: json,
   latestPosts: [],
   posts: [],
   page: null,
@@ -33,13 +35,17 @@ export const actions = {
   setLatestPosts({ commit }, payload) {
     commit('SET_LATEST_POSTS', payload.loadLatestPosts)
   },
-  async loadLatestPosts({ commit }, attributes) {
-    const posts = await client.getEntries(
-      Object.assign(
-        { content_type: process.env.CTF_BLOG_POST_TYPE_ID },
-        attributes
-      )
-    )
+  async loadLatestPosts({ commit, state }, limit) {
+    if (state.json && state.json.length > 0) {
+      commit('SET_LATEST_POSTS', state.json.slice(0, limit))
+      return
+    }
+
+    const posts = await client.getEntries({
+      content_type: process.env.CTF_BLOG_POST_TYPE_ID,
+      order: '-fields.publishDate',
+      limit: limit
+    })
     commit('SET_LATEST_POSTS', posts.items)
   },
   setPosts({ commit }, payload) {
@@ -54,6 +60,18 @@ export const actions = {
     const p = parseInt(page) || 1
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit
+
+    if (state.json && state.json.length > 0) {
+      const prevPage = p > 1 ? p - 1 : null
+      const nextPage = state.json.length > limit ? p + 1 : null
+
+      commit('SET_POSTS', state.json.slice(skip, skip + limit))
+      commit('SET_PAGE', p)
+      commit('SET_PREV_PAGE', prevPage)
+      commit('SET_NEXT_PAGE', nextPage)
+      return
+    }
+
     const posts = await client.getEntries({
       content_type: process.env.CTF_BLOG_POST_TYPE_ID,
       order: '-fields.publishDate',
@@ -82,6 +100,19 @@ export const actions = {
     commit('SET_NEXT_POST', payload.nextPost)
   },
   async loadPost({ commit, state }, slug) {
+    if (state.json && state.json.length > 0) {
+      const index = state.json.findIndex(
+        p => p.fields && p.fields.slug === slug
+      )
+      commit('SET_POST', state.posts[index])
+      commit('SET_PREV_POST', index > 0 ? state.posts[index - 1] : null)
+      commit(
+        'SET_NEXT_POST',
+        state.posts.length > index ? state.posts[index + 1] : null
+      )
+      return
+    }
+
     const index = state.posts.findIndex(p => p.fields && p.fields.slug === slug)
     let post = null
     if (index >= 0) {

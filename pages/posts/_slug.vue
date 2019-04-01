@@ -68,10 +68,7 @@ export default {
       await Promise.all([
         store.dispatch('author/loadAuthor'),
         store.dispatch('post/loadPost', params.slug),
-        store.dispatch('post/loadLatestPosts', {
-          order: '-fields.publishDate',
-          limit: 6
-        })
+        store.dispatch('post/loadLatestPosts', 6)
       ])
     }
 

@@ -24,7 +24,16 @@ const generateRoutes = routeOnly => {
     fs.writeFile(
       './assets/json/authors.json',
       JSON.stringify(person.items, null, '    '),
-      err => console.log(err)
+      err => {
+        if (err) console.log(err)
+      }
+    )
+    fs.writeFile(
+      './assets/json/posts.json',
+      JSON.stringify(posts.items, null, '    '),
+      err => {
+        if (err) console.log(err)
+      }
     )
 
     const postRoutes = posts.items.map(post => {

@@ -273,7 +273,7 @@ export default {
    */
   css: [
     '~/assets/css/tailwind.css',
-    { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' },
+    { src: '~/node_modules/highlight.js/styles/hopscotch.css', lang: 'css' }
   ],
 
   /*

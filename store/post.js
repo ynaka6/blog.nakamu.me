@@ -56,7 +56,7 @@ export const actions = {
     commit('SET_PREV_PAGE', parseInt(prevPage))
     commit('SET_NEXT_PAGE', parseInt(nextPage))
   },
-  async loadPosts({ commit }, page) {
+  async loadPosts({ commit, state }, page) {
     const p = parseInt(page) || 1
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit

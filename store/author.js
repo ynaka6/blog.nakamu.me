@@ -16,7 +16,7 @@ export const actions = {
     commit('SET_AUTHOR', payload.author)
   },
   async loadAuthor({ commit, state }) {
-    if (state.json && state.json.length > 0) {
+    if (process.browser && state.json && state.json.length > 0) {
       commit('SET_AUTHOR', state.json[0])
       return
     }

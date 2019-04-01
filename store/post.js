@@ -36,7 +36,7 @@ export const actions = {
     commit('SET_LATEST_POSTS', payload.loadLatestPosts)
   },
   async loadLatestPosts({ commit, state }, limit) {
-    if (state.json && state.json.length > 0) {
+    if (process.browser && state.json && state.json.length > 0) {
       commit('SET_LATEST_POSTS', state.json.slice(0, limit))
       return
     }
@@ -61,9 +61,9 @@ export const actions = {
     const limit = parseInt(process.env.PAGENATE_LIMIT) || 20
     const skip = (p - 1) * limit
 
-    if (state.json && state.json.length > 0) {
+    if (process.browser && state.json && state.json.length > 0) {
       const prevPage = p > 1 ? p - 1 : null
-      const nextPage = state.json.length > limit ? p + 1 : null
+      const nextPage = state.json.length > skip + limit ? p + 1 : null
 
       commit('SET_POSTS', state.json.slice(skip, skip + limit))
       commit('SET_PAGE', p)
@@ -100,15 +100,15 @@ export const actions = {
     commit('SET_NEXT_POST', payload.nextPost)
   },
   async loadPost({ commit, state }, slug) {
-    if (state.json && state.json.length > 0) {
+    if (process.browser && state.json && state.json.length > 0) {
       const index = state.json.findIndex(
         p => p.fields && p.fields.slug === slug
       )
-      commit('SET_POST', state.posts[index])
-      commit('SET_PREV_POST', index > 0 ? state.posts[index - 1] : null)
+      commit('SET_POST', state.json[index])
+      commit('SET_PREV_POST', index > 0 ? state.json[index - 1] : null)
       commit(
         'SET_NEXT_POST',
-        state.posts.length > index ? state.posts[index + 1] : null
+        state.json.length > index ? state.json[index + 1] : null
       )
       return
     }

@@ -7,7 +7,7 @@
         訪問ありがとうございます！
         <n-link
           :to="profile_site_url"
-          class="text-blue hover:text-blue-darker"
+          class="text-blue-dark hover:text-blue-lighter"
           :target-blank="true"
         >
           プロフィールサイト

@@ -207,6 +207,7 @@ export default {
 
   env: {
     APP_TITLE: process.env.APP_TITLE,
+    APP_SHORT_NAME: process.env.APP_SHORT_NAME,
     APP_SUBTITLE: process.env.APP_SUBTITLE,
     APP_DESCRIPTION: process.env.APP_DESCRIPTION,
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
@@ -226,11 +227,15 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: process.env.APP_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.APP_DESCRIPTION
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -401,7 +406,7 @@ export default {
   manifest: {
     name: process.env.APP_TITLE,
     lang: 'ja',
-    short_name: process.env.APP_TITLE,
+    short_name: pkg.name,
     theme_color: '#ffffff',
     background_color: '#ffffff'
   },

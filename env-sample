@@ -1,0 +1,24 @@
+# 本サイトのタイトル
+APP_TITLE=
+# 本サイトのサブタイトル
+APP_SUBTITLE=
+# 本サイトの説明
+APP_DESCRIPTION=
+
+# 本サイトのベースURL
+BASE_URL=
+
+# Contentfulのアクセス情報
+CTF_BLOG_POST_TYPE_ID=
+CTF_CDA_ACCESS_TOKEN=
+CTF_PERSON_ID=
+CTF_SPACE_ID=
+
+# 一覧ページの１ページの表示件数
+PAGENATE_LIMIT=
+
+# プロフィールサイトへのURL
+PROFILE_SITE_URL=
+
+# getform.ioを利用した問い合わせを行う際の、API URL
+CONTACT_API_URL=

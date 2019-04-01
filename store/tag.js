@@ -52,6 +52,8 @@ export const actions = {
       const tagPostJson = state.postJson.filter(post =>
         post.fields.tags.includes(state.tag.name)
       )
+      console.log(state.tag.name)
+      console.log(tagPostJson)
       const prevPage = p > 1 ? p - 1 : null
       const nextPage = tagPostJson.length > skip + limit ? p + 1 : null
 

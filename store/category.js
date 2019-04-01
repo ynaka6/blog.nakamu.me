@@ -53,8 +53,9 @@ export const actions = {
 
     if (process.browser && state.postJson && state.postJson.length > 0) {
       const categoryPostJson = state.postJson.filter(
-        post => post.fields.category[0] === state.category.name
+        post => state.category.name === post.fields.category[0]
       )
+      console.log(categoryPostJson)
       const prevPage = p > 1 ? p - 1 : null
       const nextPage = categoryPostJson.length > skip + limit ? p + 1 : null
 

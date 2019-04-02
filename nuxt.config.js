@@ -95,7 +95,7 @@ const generateRoutes = routeOnly => {
                       author: person.items[0],
                       posts: categoryPosts.slice(start, end),
                       page: page,
-                      prevPage: page,
+                      prevPage: page - 1,
                       nextPage: pageCount > page ? page + 1 : null,
                       loadLatestPosts: posts.items.slice(0, 6)
                     }
@@ -146,7 +146,7 @@ const generateRoutes = routeOnly => {
                       author: person.items[0],
                       posts: tagPosts.slice(start, end),
                       page: page,
-                      prevPage: page,
+                      prevPage: page - 1,
                       nextPage: pageCount > page ? page + 1 : null,
                       loadLatestPosts: posts.items.slice(0, 6)
                     }
@@ -179,6 +179,7 @@ const generateRoutes = routeOnly => {
         const route = '/posts/page/' + page
         const start = (page - 1) * limit
         const end = start + limit
+        console.log(route, start, end)
         return routeOnly
           ? route
           : {
@@ -187,7 +188,7 @@ const generateRoutes = routeOnly => {
                 author: person.items[0],
                 posts: posts.items.slice(start, end),
                 page: page,
-                prevPage: page,
+                prevPage: page - 1,
                 nextPage: pageCount > page ? page + 1 : null
               }
             }

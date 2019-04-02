@@ -20,27 +20,30 @@
       </div>
     </div>
     <div
-      v-if="$store.getters['drawerMenu']"
-      class="absolute pin-x bg-white shadow-lg"
+      class="dropdown-menu"
+      :class="{ active: $store.getters['drawerMenu'] }"
     >
       <ul class="list-reset flex flex-col">
-        <li class="py-4 px-8 border-b">
-          <n-link to="/" class="text-black hover:text-grey-dark no-underline">
+        <li class="border-b">
+          <n-link
+            to="/"
+            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
+          >
             Home
           </n-link>
         </li>
-        <li class="py-4 px-8 border-b">
+        <li class="border-b">
           <n-link
             to="/posts"
-            class="text-black hover:text-grey-dark no-underline"
+            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
           >
             記事一覧
           </n-link>
         </li>
-        <li class="py-4 px-8 border-b">
+        <li class="border-b">
           <n-link
             :to="profile_site_url"
-            class="text-black hover:text-grey-dark no-underline"
+            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
             :target-blank="true"
           >
             プロフィールサイト
@@ -85,3 +88,15 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="postcss">
+.dropdown-menu {
+  transition: all 500ms ease;
+  max-height: 0%;
+  @apply absolute pin-x bg-white shadow-lg overflow-y-hidden;
+}
+.dropdown-menu.active {
+  transition: all 500ms ease;
+  @apply max-h-full;
+}
+</style>

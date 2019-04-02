@@ -1,7 +1,7 @@
 <template>
   <a
     href="#"
-    class="menu-trigger lg:mr-3"
+    class="menu-trigger mr-3"
     :class="{ active: active }"
     @click="toggle"
   >
@@ -32,8 +32,8 @@ export default {
   box-sizing: border-box;
 }
 .menu-trigger {
-  width: 30px;
-  height: 28px;
+  width: 25px;
+  height: 27px;
   @apply relative;
 }
 .menu-trigger span {
@@ -47,20 +47,20 @@ export default {
   top: 0;
 }
 .menu-trigger span:nth-of-type(2) {
-  top: 13px;
+  top: 11px;
 }
 .menu-trigger span:nth-of-type(3) {
   bottom: 0;
 }
 .menu-trigger.active span:nth-of-type(1) {
-  -webkit-transform: translateY(12px) rotate(-45deg);
-  transform: translateY(12px) rotate(-45deg);
+  -webkit-transform: translateY(11.8px) rotate(-45deg);
+  transform: translateY(11.8px) rotate(-45deg);
 }
 .menu-trigger.active span:nth-of-type(2) {
   opacity: 0;
 }
 .menu-trigger.active span:nth-of-type(3) {
-  -webkit-transform: translateY(-12px) rotate(45deg);
-  transform: translateY(-12px) rotate(45deg);
+  -webkit-transform: translateY(-11.8px) rotate(45deg);
+  transform: translateY(-11.8px) rotate(45deg);
 }
 </style>

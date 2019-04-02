@@ -7,8 +7,7 @@
       <div class="py-1">
         <n-icon
           icon="info-circle"
-          size="6"
-          class="fill-current text-blue mr-4"
+          class="w-6 h-6 fill-current text-blue mr-4"
         />
       </div>
       <div>

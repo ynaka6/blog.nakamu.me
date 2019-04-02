@@ -14,7 +14,7 @@
               to="/"
               class="p-4 text-2xl text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
             >
-              <n-icon icon="undo" size="3" />
+              <n-icon icon="undo" class="w-6 h-6" />
               Homeに戻る
             </n-link>
           </div>

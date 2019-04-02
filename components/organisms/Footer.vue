@@ -96,7 +96,7 @@
               class="bg-white hover:bg-grey-light text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
               aria-label="Twitter"
             >
-              <n-icon icon="twitter" size="5" />
+              <n-icon icon="twitter" class="w-5 h-5" />
             </n-link>
             <n-link
               v-if="author && author.fields && author.fields.github"
@@ -106,7 +106,7 @@
               class="bg-white hover:bg-grey-light text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
               aria-label="Github"
             >
-              <n-icon icon="github" size="5" />
+              <n-icon icon="github" class="w-5 h-5" />
             </n-link>
           </div>
         </div>

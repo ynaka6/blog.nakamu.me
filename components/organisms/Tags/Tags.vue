@@ -11,7 +11,7 @@
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
           <n-title>
-            <n-icon icon="tag" size="5" />
+            <n-icon icon="tag" class="w-5 h-5" />
             {{ $store.getters['tag/tag'].name }}
           </n-title>
           <information-box>
@@ -47,7 +47,7 @@
               to="/posts"
               class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
             >
-              <n-icon icon="undo" size="3" />
+              <n-icon icon="undo" class="w-3 h-3" />
               記事一覧に戻る
             </n-link>
           </p>

@@ -25,7 +25,7 @@
           rel="noreferrer"
           aria-label="Twitter"
         >
-          <n-icon icon="twitter" size="6" />
+          <n-icon icon="twitter" class="w-6 h-6" />
         </a>
         <a
           :href="'https://github.com/' + author.fields.github"
@@ -34,7 +34,7 @@
           rel="noreferrer"
           aria-label="Github"
         >
-          <n-icon icon="github" size="6" />
+          <n-icon icon="github" class="w-6 h-6" />
         </a>
         <a
           :href="'https://gitlab.com/' + author.fields.gitlab"
@@ -43,7 +43,7 @@
           rel="noreferrer"
           aria-label="Gitlab"
         >
-          <n-icon icon="gitlab" size="6" />
+          <n-icon icon="gitlab" class="w-6 h-6" />
         </a>
         <a
           :href="'https://www.instagram.com/' + author.fields.instagram"
@@ -52,7 +52,7 @@
           rel="noreferrer"
           aria-label="instagram"
         >
-          <n-icon icon="instagram" size="6" />
+          <n-icon icon="instagram" class="w-6 h-6" />
         </a>
       </div>
       <p class="py-2 text-right">

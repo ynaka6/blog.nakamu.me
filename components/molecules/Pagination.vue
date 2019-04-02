@@ -7,7 +7,7 @@
           class="bg-white hover:bg-grey-light border text-grey-darkest w-12 h-12 rounded-full font-semibold flex items-center justify-center no-underline"
           aria-label="前のページ"
         >
-          <n-icon icon="chevron-left" size="6" />
+          <n-icon icon="chevron-left" class="w-6 h-6" />
         </n-link>
         <p class="text-grey-darker text-xs pt-1">前のページ</p>
       </div>
@@ -19,7 +19,7 @@
           class="bg-white hover:bg-grey-light border text-grey-darkest w-12 h-12 rounded-full font-semibold flex items-center justify-center no-underline"
           aria-label="次のページ"
         >
-          <n-icon icon="chevron-right" size="6" />
+          <n-icon icon="chevron-right" class="w-6 h-6" />
         </n-link>
         <p class="text-grey-darker text-xs pt-1">次のページ</p>
       </div>

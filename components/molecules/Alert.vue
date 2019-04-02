@@ -13,8 +13,7 @@
       <div class="py-1">
         <n-icon
           icon="info-circle"
-          size="6"
-          class="fill-current text-icon mr-4"
+          class="w-6 h-6 fill-current text-icon mr-4"
         />
       </div>
       <div>
@@ -22,7 +21,7 @@
         <p class="text-sm" v-text="message.description"></p>
       </div>
       <span class="absolute pin-t pin-r py-2 text-grey-darker" @click="close">
-        <n-icon icon="close" size="6" />
+        <n-icon icon="close" class="w-6 h-6" />
       </span>
     </div>
   </div>

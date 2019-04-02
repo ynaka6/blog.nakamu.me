@@ -31,7 +31,7 @@
           >
             <span class="font-bold">Home</span>
             <div class="flex items-center">
-              <n-icon icon="chevron-right" size="6" />
+              <n-icon icon="chevron-right" class="w-6 h-6" />
             </div>
           </n-link>
         </li>
@@ -43,7 +43,7 @@
             <span class="font-bold">記事一覧</span>
             <div class="flex items-center">
               <span class="mr-2 text-xs">ブログ記事の投稿一覧</span>
-              <n-icon icon="chevron-right" size="6" />
+              <n-icon icon="chevron-right" class="w-6 h-6" />
             </div>
           </n-link>
         </li>

@@ -47,7 +47,7 @@
               to="/posts"
               class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
             >
-              <n-icon icon="undo" size="3" />
+              <n-icon icon="undo" class="w-3 h-3" />
               記事一覧に戻る
             </n-link>
           </p>

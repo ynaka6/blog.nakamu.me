@@ -85,16 +85,15 @@ const generateRoutes = routeOnly => {
             ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
               const page = i + 2
               const route = `/categories/${category.slug}/page/${page}`
+              const start = (page - 1) * limit
+              const end = start + limit
               return routeOnly
                 ? route
                 : {
                     route: route,
                     payload: {
                       author: person.items[0],
-                      posts: categoryPosts.slice(
-                        limit * page,
-                        limit * page + limit
-                      ),
+                      posts: categoryPosts.slice(start, end),
                       page: page,
                       prevPage: page,
                       nextPage: pageCount > page ? page + 1 : null,
@@ -137,13 +136,15 @@ const generateRoutes = routeOnly => {
             ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
               const page = i + 2
               const route = `/tags/${tag.slug}/page/${page}`
+              const start = (page - 1) * limit
+              const end = start + limit
               return routeOnly
                 ? route
                 : {
                     route: route,
                     payload: {
                       author: person.items[0],
-                      posts: tagPosts.slice(limit * page, limit * page + limit),
+                      posts: tagPosts.slice(start, end),
                       page: page,
                       prevPage: page,
                       nextPage: pageCount > page ? page + 1 : null,
@@ -176,13 +177,15 @@ const generateRoutes = routeOnly => {
       ...[...Array(pageCount === 0 ? 0 : pageCount - 1).keys()].map(i => {
         const page = i + 2
         const route = '/posts/page/' + page
+        const start = (page - 1) * limit
+        const end = start + limit
         return routeOnly
           ? route
           : {
               route: route,
               payload: {
                 author: person.items[0],
-                posts: posts.items.slice(limit * page, limit),
+                posts: posts.items.slice(start, end),
                 page: page,
                 prevPage: page,
                 nextPage: pageCount > page ? page + 1 : null

@@ -38,7 +38,7 @@ export const actions = {
   setPosts({ commit }, payload) {
     const { posts, page, prevPage, nextPage } = payload
 
-    commit('SET_POST', posts)
+    commit('SET_POSTS', posts)
     commit('SET_PAGE', parseInt(page) || 1)
     commit('SET_PREV_PAGE', parseInt(prevPage))
     commit('SET_NEXT_PAGE', parseInt(nextPage))
@@ -80,7 +80,7 @@ export const actions = {
       posts.items.pop()
     }
 
-    commit('SET_POST', posts.items)
+    commit('SET_POSTS', posts.items)
     commit('SET_PAGE', p)
     commit('SET_PREV_PAGE', prevPage)
     commit('SET_NEXT_PAGE', nextPage)
@@ -91,7 +91,7 @@ export const mutations = {
   SET_TAG: (state, tag) => {
     state.tag = tag
   },
-  SET_POST: (state, posts) => {
+  SET_POSTS: (state, posts) => {
     state.posts = posts
   },
   SET_PAGE: (state, page) => {

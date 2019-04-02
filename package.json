@@ -34,6 +34,7 @@
     "dayjs": "^1.8.11",
     "dotenv": "^7.0.0",
     "flatten": "^1.0.2",
+    "glob-all": "^3.1.0",
     "markdown-it-attrs": "^2.3.2",
     "markdown-it-container": "^2.0.0",
     "markdown-it-link-attributes": "^2.1.0",
@@ -41,6 +42,7 @@
     "markdown-it-toc": "^1.1.0",
     "markdown-it-video": "^0.6.3",
     "nuxt": "^2.4.0",
+    "purgecss-webpack-plugin": "^1.4.0",
     "tailwindcss": "^0.7.0",
     "vuelidate": "^0.7.4"
   },

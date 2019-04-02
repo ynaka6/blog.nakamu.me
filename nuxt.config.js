@@ -1,9 +1,18 @@
 /* eslint-disable nuxt/no-cjs-in-config */
 import fs from 'fs'
+import path from 'path'
+import glob from 'glob-all'
 import flatten from 'flatten'
+import PurgecssPlugin from 'purgecss-webpack-plugin'
 import pkg from './package'
 import categories from './assets/json/categories.json'
 import tags from './assets/json/tags.json'
+
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-z0-9-:\/]+/g) || [];
+  }
+}
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const { createClient } = require('./plugins/contentful')
@@ -326,6 +335,27 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+
+      if (!ctx.isDev) {
+        config.plugins.push(
+          new PurgecssPlugin({
+            // purgecss configuration
+            // https://github.com/FullHuman/purgecss
+            paths: glob.sync([
+              path.join(__dirname, './pages/**/*.vue'),
+              path.join(__dirname, './layouts/**/*.vue'),
+              path.join(__dirname, './components/**/*.vue')
+            ]),
+            extractors: [
+              {
+                extractor: TailwindExtractor,
+                extensions: ['vue']
+              }
+            ],
+            whitelist: ['html', 'body', 'nuxt-progress']
+          })
+        )
       }
     }
   },

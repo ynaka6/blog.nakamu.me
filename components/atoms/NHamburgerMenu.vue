@@ -3,6 +3,7 @@
     href="#"
     class="menu-trigger mr-3"
     :class="{ active: active }"
+    aria-label="menu"
     @click="toggle"
   >
     <span></span>

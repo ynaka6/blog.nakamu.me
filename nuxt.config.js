@@ -189,7 +189,6 @@ const generateRoutes = routeOnly => {
         const route = '/posts/page/' + page
         const start = (page - 1) * limit
         const end = start + limit
-        console.log(route, start, end)
         return routeOnly
           ? route
           : {

@@ -31,11 +31,6 @@ export default {
         { hid: 'description', name: 'description', content: this.description },
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
         {
-          hid: 'twitter:site',
-          name: 'twitter:site',
-          content: this.person ? this.person.fields.twitter : ''
-        },
-        {
           id: 'twitter:author',
           name: 'twitter:author',
           content: this.author ? this.author.fields.twitter : ''
@@ -43,8 +38,7 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content:
-            'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill'
+          content: `${process.env.BASE_URL}/icon.png`
         },
         { hid: 'twitter:title', name: 'twitter:title', content: this.title },
         {

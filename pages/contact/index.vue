@@ -15,7 +15,7 @@ export default {
         {
           hid: 'twitter:card',
           name: 'twitter:card',
-          content: 'summary_large_image'
+          content: 'summary'
         },
         {
           hid: 'twitter:creator',
@@ -25,8 +25,7 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content:
-            'https://images.ctfassets.net/httuqftbm1yv/6A64KKKMmsY2W82Wgy082S/116a0e43794cbd6a00556c20c6131203/nakamu_blog_banner.png?w=1000&h=562&fit=fill'
+          content: `${process.env.BASE_URL}/icon.png`
         },
         { hid: 'twitter:title', name: 'twitter:title', content: this.title },
         {

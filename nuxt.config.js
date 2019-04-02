@@ -92,8 +92,8 @@ const generateRoutes = routeOnly => {
                     payload: {
                       author: person.items[0],
                       posts: categoryPosts.slice(
-                        process.env.PAGENATE_LIMIT * page,
-                        limit
+                        limit * page,
+                        limit * page + limit
                       ),
                       page: page,
                       prevPage: page,
@@ -143,10 +143,7 @@ const generateRoutes = routeOnly => {
                     route: route,
                     payload: {
                       author: person.items[0],
-                      posts: tagPosts.slice(
-                        process.env.PAGENATE_LIMIT * page,
-                        limit
-                      ),
+                      posts: tagPosts.slice(limit * page, limit * page + limit),
                       page: page,
                       prevPage: page,
                       nextPage: pageCount > page ? page + 1 : null,
@@ -185,10 +182,7 @@ const generateRoutes = routeOnly => {
               route: route,
               payload: {
                 author: person.items[0],
-                posts: posts.items.slice(
-                  process.env.PAGENATE_LIMIT * page,
-                  limit
-                ),
+                posts: posts.items.slice(limit * page, limit),
                 page: page,
                 prevPage: page,
                 nextPage: pageCount > page ? page + 1 : null

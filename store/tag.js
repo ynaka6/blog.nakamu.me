@@ -51,6 +51,7 @@ export const actions = {
     if (process.browser && state.postJson && state.postJson.length > 0) {
       const tagPostJson = state.postJson.filter(
         post =>
+          post.fields &&
           post.fields.tags.length > 0 &&
           post.fields.tags.includes(state.tag.name)
       )

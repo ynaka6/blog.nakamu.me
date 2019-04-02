@@ -4,6 +4,8 @@
 Nuxt.js + Contentful + TailwindCSSを利用した技術ブログです。
 日々の開発ノウハウや海外居住情報をまとめて投稿しています。
 
+![ブログ - スクショ](https://github.com/nakanakamu0828/myblog/blob/master/screenshot.png)
+
 # Usage
 ## Build Setup
 
@@ -57,4 +59,4 @@ EOF
 This software is released under the MIT License, see LICENSE.
 
 # Authors
-[@nakanakamu0828]()https://twitter.com/nakanakamu0828
+[@nakanakamu0828](https://twitter.com/nakanakamu0828)

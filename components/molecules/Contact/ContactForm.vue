@@ -130,9 +130,6 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) return
 
-      this.form.name = null
-      this.form.email = null
-      this.form.content = null
       this.$emit('submit', this.form)
     }
   }

@@ -15,7 +15,11 @@ export default {
       title: this.title,
       meta: [
         { hid: 'description', name: 'description', content: this.description },
-        { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
         {
           id: 'twitter:author',
           name: 'twitter:author',
@@ -24,7 +28,12 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.post ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}` : ''
+          content: this.post
+            ? `${process.env.HTTP_SCHEMA}:${
+                this.post.fields.heroImage.fields.file.url
+              }
+            `
+            : ''
         },
         { hid: 'twitter:title', name: 'twitter:title', content: this.title },
         {

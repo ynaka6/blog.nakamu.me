@@ -2,8 +2,9 @@
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob-all'
-import flatten from 'flatten'
 import PurgecssPlugin from 'purgecss-webpack-plugin'
+import purgecss from '@fullhuman/postcss-purgecss'
+import flatten from 'flatten'
 import pkg from './package'
 import categories from './assets/json/categories.json'
 import tags from './assets/json/tags.json'
@@ -323,6 +324,19 @@ export default {
    */
   build: {
     maxChunkSize: 300000,
+    extractCSS: true,
+    postcss: {
+      plugins: [
+        purgecss({
+          content: [
+            './pages/**/*.vue',
+            './layouts/**/*.vue',
+            './components/**/*.vue'
+          ],
+          whitelist: ['html', 'body']
+        })
+      ]
+    },
     /*
      ** You can extend webpack config here
      */
@@ -340,8 +354,6 @@ export default {
       if (!ctx.isDev) {
         config.plugins.push(
           new PurgecssPlugin({
-            // purgecss configuration
-            // https://github.com/FullHuman/purgecss
             paths: glob.sync([
               path.join(__dirname, './pages/**/*.vue'),
               path.join(__dirname, './layouts/**/*.vue'),

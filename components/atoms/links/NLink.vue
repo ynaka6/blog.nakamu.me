@@ -1,9 +1,8 @@
 <template>
   <a v-if="targetBlank" :href="to" target="_blank" rel="noopener noreferrer">
     <slot />
-    <sup>
+    <sup v-if="externalIcon">
       <svg
-        v-if="externalIcon"
         xmlns="http://www.w3.org/2000/svg"
         width="12"
         height="12"

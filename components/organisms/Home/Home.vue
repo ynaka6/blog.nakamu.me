@@ -10,7 +10,7 @@
           class="text-blue-dark hover:text-blue-lighter"
           :target-blank="true"
         >
-          プロフィールサイト
+          プロフィール
         </n-link>
         も合わせてご確認ください🙇🏻
       </div>

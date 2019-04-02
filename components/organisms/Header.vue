@@ -11,7 +11,7 @@
         <p class="text-xs" v-text="subtitle" />
       </div>
       <div class="w-1/6 flex items-center justify-end">
-        <div class="lg:hidden">
+        <div class="">
           <n-hamburger-menu
             :active="$store.getters['drawerMenu']"
             @toggle="toggleMenu"
@@ -27,33 +27,40 @@
         <li class="border-b">
           <n-link
             to="/"
-            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
+            class="flex items-center justify-between block py-4 px-4 lg:px-8 text-black hover:text-grey-dark no-underline"
           >
-            Home
+            <span class="font-bold">Home</span>
+            <div class="flex items-center">
+              <n-icon icon="chevron-right" size="6" />
+            </div>
           </n-link>
         </li>
         <li class="border-b">
           <n-link
             to="/posts"
-            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
+            class="flex items-center justify-between block py-4 px-4 lg:px-8 text-black hover:text-grey-dark no-underline"
           >
-            記事一覧
+            <span class="font-bold">記事一覧</span>
+            <div class="flex items-center">
+              <span class="mr-2 text-xs">ブログ記事の投稿一覧</span>
+              <n-icon icon="chevron-right" size="6" />
+            </div>
           </n-link>
         </li>
         <li class="border-b">
           <n-link
             :to="profile_site_url"
-            class="block py-4 px-8 text-black hover:text-grey-dark no-underline"
+            class="block py-4 px-4 lg:px-8 text-black hover:text-grey-dark no-underline"
             :target-blank="true"
           >
-            プロフィールサイト
+            <span class="font-bold">プロフィール</span>
           </n-link>
         </li>
       </ul>
       <div class="p-4">
         <n-link
           to="/contact"
-          class="w-full block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+          class="lg:w-2/5 lg:mx-auto block p-4 text-center text-white font-bold hover:text-grey-light bg-grey-darkest hover:bg-grey-dark border border-grey-darkest no-underline"
         >
           お問い合わせはこちら
         </n-link>
@@ -64,11 +71,12 @@
 
 <script>
 import NLogo from '~/components/atoms/links/NLogo'
+import NIcon from '~/components/atoms/NIcon'
 import NLink from '~/components/atoms/links/NLink'
 import NHamburgerMenu from '~/components/atoms/NHamburgerMenu'
 
 export default {
-  components: { NLogo, NLink, NHamburgerMenu },
+  components: { NLogo, NIcon, NLink, NHamburgerMenu },
   data: () => ({
     title: process.env.APP_TITLE,
     subtitle: process.env.APP_SUBTITLE,

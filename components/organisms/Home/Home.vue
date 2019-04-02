@@ -34,7 +34,7 @@
           <div class="flex justify-center">
             <n-link
               to="/posts"
-              class="w-1/3 block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+              class="lg:w-1/3 block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
             >
               記事をもっと見る
             </n-link>

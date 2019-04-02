@@ -15,6 +15,7 @@ import Footer from '~/components/organisms/Footer.vue'
 
 export default {
   components: { Header, Footer },
+  middleware: 'router',
   data: () => ({})
 }
 </script>

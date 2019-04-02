@@ -49,8 +49,10 @@ export const actions = {
     const skip = (p - 1) * limit
 
     if (process.browser && state.postJson && state.postJson.length > 0) {
-      const tagPostJson = state.postJson.filter(post =>
-        post.fields.tags.includes(state.tag.name)
+      const tagPostJson = state.postJson.filter(
+        post =>
+          post.fields.tags.length > 0 &&
+          post.fields.tags.includes(state.tag.name)
       )
       console.log(state.tag.name)
       console.log(tagPostJson)

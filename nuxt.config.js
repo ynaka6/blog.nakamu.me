@@ -330,7 +330,8 @@ export default {
           content: [
             './pages/**/*.vue',
             './layouts/**/*.vue',
-            './components/**/*.vue'
+            './components/**/*.vue',
+            './node_modules/highlight.js/**/*.js'
           ],
           whitelist: ['html', 'body']
         })
@@ -356,7 +357,8 @@ export default {
             paths: glob.sync([
               path.join(__dirname, './pages/**/*.vue'),
               path.join(__dirname, './layouts/**/*.vue'),
-              path.join(__dirname, './components/**/*.vue')
+              path.join(__dirname, './components/**/*.vue'),
+              path.join(__dirname, './node_modules/highlight.js/**/*.js')
             ]),
             extractors: [
               {

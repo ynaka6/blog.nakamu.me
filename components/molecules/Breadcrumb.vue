@@ -31,7 +31,7 @@ export default {
 
 <style scoped lang="postcss">
 ol.breadcrumb {
-  @apply list-reset flex text-grey-dark p-4 overflow-x-scroll whitespace-no-wrap;
+  @apply list-reset flex text-grey-dark px-4 py-5 overflow-x-scroll whitespace-no-wrap;
 }
 ol.breadcrumb > li {
   @apply flex items-center;

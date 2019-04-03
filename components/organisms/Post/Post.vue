@@ -12,7 +12,7 @@
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 lg:p-4">
           <article
-            class="border-b lg:border bg-white shadow-sm px-2 lg:px-6 py-6"
+            class="border-b lg:border bg-white shadow-sm px-4 lg:px-6 py-6"
           >
             <post-date
               :publish-time="post.fields.publishDate"

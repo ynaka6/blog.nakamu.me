@@ -101,10 +101,12 @@ export default {
 .dropdown-menu {
   transition: all 500ms ease;
   max-height: 0%;
+  pointer-events: none;
   @apply absolute pin-x bg-white shadow-lg overflow-y-hidden;
 }
 .dropdown-menu.active {
   transition: all 500ms ease;
+  pointer-events: auto;
   @apply max-h-full;
 }
 </style>

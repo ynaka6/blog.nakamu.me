@@ -11,7 +11,7 @@ import tags from './assets/json/tags.json'
 
 class TailwindExtractor {
   static extract(content) {
-    return content.match(/[A-z0-9-:\/]+/g) || [];
+    return content.match(/[A-z0-9-:\\/]+/g) || []
   }
 }
 
@@ -331,6 +331,7 @@ export default {
             './pages/**/*.vue',
             './layouts/**/*.vue',
             './components/**/*.vue',
+            './plugins/**/*.js',
             './node_modules/highlight.js/**/*.js'
           ],
           whitelist: ['html', 'body']
@@ -363,10 +364,11 @@ export default {
             extractors: [
               {
                 extractor: TailwindExtractor,
-                extensions: ['vue']
+                extensions: ['vue', 'js']
               }
             ],
-            whitelist: ['html', 'body', 'nuxt-progress']
+            whitelist: ['html', 'body', 'nuxt-progress'],
+            whitelistPatterns: [/hljs/]
           })
         )
       }

@@ -17,8 +17,5 @@ CTF_SPACE_ID=
 # 一覧ページの１ページの表示件数
 PAGENATE_LIMIT=
 
-# プロフィールサイトへのURL
-PROFILE_SITE_URL=
-
 # getform.ioを利用した問い合わせを行う際の、API URL
 CONTACT_API_URL=

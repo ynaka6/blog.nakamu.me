@@ -55,7 +55,6 @@ export const actions = {
       const categoryPostJson = state.postJson.filter(
         post => state.category.name === post.fields.category[0]
       )
-      console.log(categoryPostJson)
       const prevPage = p > 1 ? p - 1 : null
       const nextPage = categoryPostJson.length > skip + limit ? p + 1 : null
 

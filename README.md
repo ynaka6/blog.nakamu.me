@@ -36,7 +36,6 @@ CTF_CDA_ACCESS_TOKEN=
 CTF_PERSON_ID=
 CTF_SPACE_ID=
 PAGENATE_LIMIT=
-PROFILE_SITE_URL=
 CONTACT_API_URL=
 EOF
 ```
@@ -51,7 +50,6 @@ CTF_BLOG_POST_TYPE_ID  |ContentfulのTypeID
 CTF_CDA_ACCESS_TOKEN  |Contentfulのアクセストークン
 CTF_PERSON_ID  |Contentfulのアクセストークン
 CTF_SPACE_ID  |Contentfulのアクセストークン
-PROFILE_SITE_URL  |プロフィールサイトのURL: ex. https://nakamu.life
 CONTACT_API_URL  |getform.ioを利用した問い合わせAPIのURL
 
 

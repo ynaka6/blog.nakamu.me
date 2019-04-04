@@ -47,9 +47,9 @@
             </div>
           </n-link>
         </li>
-        <li class="border-b">
+        <li v-if="author.fields.url" class="border-b">
           <n-link
-            :to="profile_site_url"
+            :to="author.fields.url"
             class="block py-4 px-4 lg:px-8 text-black hover:text-grey-dark no-underline"
             :target-blank="true"
           >
@@ -80,9 +80,13 @@ export default {
   data: () => ({
     title: process.env.APP_TITLE,
     subtitle: process.env.APP_SUBTITLE,
-    profile_site_url: process.env.PROFILE_SITE_URL,
     scrollY: null
   }),
+  computed: {
+    author() {
+      return this.$store.getters['author/author']
+    }
+  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },

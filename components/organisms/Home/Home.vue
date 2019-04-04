@@ -2,11 +2,12 @@
   <div>
     <section>
       <div
+        v-if="author.fields.url"
         class="text-center bg-white opacity-90 p-4 leading-normal border-b border-grey-lighter"
       >
         訪問ありがとうございます！
         <n-link
-          :to="profile_site_url"
+          :to="author.fields.url"
           class="text-blue-dark hover:text-blue-lighter"
           :target-blank="true"
         >
@@ -56,8 +57,11 @@ import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 
 export default {
   components: { NTitle, NLink, PostCard, ProfileCard },
-  data: () => ({
-    profile_site_url: process.env.PROFILE_SITE_URL
-  })
+  data: () => ({}),
+  computed: {
+    author() {
+      return this.$store.getters['author/author']
+    }
+  }
 }
 </script>

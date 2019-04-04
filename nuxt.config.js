@@ -226,7 +226,6 @@ export default {
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
     PAGENATE_LIMIT: process.env.PAGENATE_LIMIT || 20,
-    PROFILE_SITE_URL: process.env.PROFILE_SITE_URL,
     CONTACT_API_URL: process.env.CONTACT_API_URL,
     GOOGLE_ANALYTICS_TRACKING_ID: process.env.GOOGLE_ANALYTICS_TRACKING_ID
   },

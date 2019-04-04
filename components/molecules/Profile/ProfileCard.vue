@@ -9,16 +9,21 @@
       />
       <p class="text-center">
         <n-link
+          v-if="author.fields.url"
           :to="author.fields.url"
           class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
           :target-blank="true"
         >
           {{ author.fields.name }}
         </n-link>
+        <span v-else>
+          {{ author.fields.name }}
+        </span>
       </p>
       <p class="py-4 text-grey-darkest" v-text="author.fields.shortBio"></p>
       <div class="py-2">
         <a
+          v-if="author.fields.twitter"
           :href="'https://twitter.com/' + author.fields.twitter"
           target="_blank"
           style="color: #55acee;"
@@ -28,6 +33,7 @@
           <n-icon icon="twitter" class="w-6 h-6" />
         </a>
         <a
+          v-if="author.fields.github"
           :href="'https://github.com/' + author.fields.github"
           target="_blank"
           style="color: #333;"
@@ -37,6 +43,7 @@
           <n-icon icon="github" class="w-6 h-6" />
         </a>
         <a
+          v-if="author.fields.gitlab"
           :href="'https://gitlab.com/' + author.fields.gitlab"
           target="_blank"
           style="color: #fa6d34;"
@@ -46,6 +53,7 @@
           <n-icon icon="gitlab" class="w-6 h-6" />
         </a>
         <a
+          v-if="author.fields.instagram"
           :href="'https://www.instagram.com/' + author.fields.instagram"
           target="_blank"
           style="color: #d93177;"
@@ -55,7 +63,7 @@
           <n-icon icon="instagram" class="w-6 h-6" />
         </a>
       </div>
-      <p class="py-2 text-right">
+      <p v-if="author.fields.url" class="py-2 text-right">
         <n-link
           :to="author.fields.url"
           class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"

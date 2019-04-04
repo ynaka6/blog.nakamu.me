@@ -1,5 +1,11 @@
 <template>
   <div>
+    <breadcrumb
+      :list="[
+        { link: '/', label: 'Home' },
+        { link: null, label: 'お問い合わせ' }
+      ]"
+    />
     <section class="container mx-auto">
       <div class="flex justify-center">
         <div class="lg:w-4/5 lg:p-6">
@@ -20,9 +26,10 @@
 import NTitle from '~/components/atoms/titles/NTitle'
 import ContactForm from '~/components/molecules/Contact/ContactForm'
 import Alert from '~/components/molecules/Alert'
+import Breadcrumb from '~/components/molecules/Breadcrumb'
 
 export default {
-  components: { NTitle, ContactForm, Alert },
+  components: { NTitle, ContactForm, Alert, Breadcrumb },
   data: () => ({
     message: null,
     messageType: null,

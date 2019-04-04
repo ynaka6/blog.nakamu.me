@@ -1,13 +1,6 @@
 <template>
   <div>
-    <breadcrumb
-      :list="[
-        { link: '/', label: 'Home' },
-        { link: '/posts', label: '記事一覧' },
-        { link: `/categories/${category.slug}`, label: category.name },
-        { link: null, label: post.fields.title }
-      ]"
-    />
+    <breadcrumb :list="breadcrumb" />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 lg:p-4">
@@ -60,6 +53,7 @@
                 />
               </picture>
               <p
+                v-if="category"
                 class="absolute pin-t pin-r font-bold text-grey-darkest text-xs bg-yellow py-1 px-3 mt-2 mx-2 rounded-full"
               >
                 {{ category.name }}
@@ -107,7 +101,28 @@ export default {
     post() {
       return this.$store.getters['post/post']
     },
+    breadcrumb() {
+      const post = this.$store.getters['post/post']
+      const category = post.fields.category
+      const list = [
+        { link: '/', label: 'Home' },
+        { link: '/posts', label: '記事一覧' }
+      ]
+
+      if (category) {
+        list.push({
+          link: `/categories/${category.slug}`,
+          label: category.name
+        })
+      }
+
+      list.push({ link: null, label: post.fields.title })
+
+      return list
+    },
     category() {
+      if (!this.$store.getters['post/post'].fields.category) return null
+
       return this.$store.getters['category/categoryOfName'](
         this.$store.getters['post/post'].fields.category[0]
       )

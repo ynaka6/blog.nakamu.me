@@ -42,20 +42,22 @@
               </ul>
             </div>
             <div class="w-1/2">
-              <p class="uppercase text-white text-sm sm:mb-3">
-                ABOUT
-              </p>
-              <ul class="list-reset text-xs mb-8">
-                <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
-                  <n-link
-                    :to="profile_site_url"
-                    class="text-white hover:text-grey"
-                    :target-blank="true"
-                  >
-                    Profile
-                  </n-link>
-                </li>
-              </ul>
+              <div v-if="author.fields.url">
+                <p class="uppercase text-white text-sm sm:mb-3">
+                  ABOUT
+                </p>
+                <ul class="list-reset text-xs mb-8">
+                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                    <n-link
+                      :to="author.fields.url"
+                      class="text-white hover:text-grey"
+                      :target-blank="true"
+                    >
+                      Profile
+                    </n-link>
+                  </li>
+                </ul>
+              </div>
               <p class="uppercase text-white text-sm sm:mb-3">
                 CATEGORY
               </p>
@@ -125,8 +127,7 @@ export default {
   components: { NLogo, NLink, NIcon, Tags },
   data: () => ({
     title: process.env.APP_TITLE,
-    explain: process.env.APP_DESCRIPTION,
-    profile_site_url: process.env.PROFILE_SITE_URL
+    explain: process.env.APP_DESCRIPTION
   }),
   computed: {
     categories() {

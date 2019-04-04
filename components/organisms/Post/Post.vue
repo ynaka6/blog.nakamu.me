@@ -101,35 +101,32 @@ export default {
     post() {
       return this.$store.getters['post/post']
     },
+    category() {
+      if (!this.post.fields.category) return null
+
+      return this.$store.getters['category/categoryOfName'](
+        this.post.fields.category[0]
+      )
+    },
     breadcrumb() {
-      const post = this.$store.getters['post/post']
-      const category = post.fields.category
       const list = [
         { link: '/', label: 'Home' },
         { link: '/posts', label: '記事一覧' }
       ]
 
-      if (category) {
+      if (this.category) {
         list.push({
-          link: `/categories/${category.slug}`,
-          label: category.name
+          link: `/categories/${this.category.slug}`,
+          label: this.category.name
         })
       }
 
-      list.push({ link: null, label: post.fields.title })
-
+      list.push({ link: null, label: this.post.fields.title })
       return list
     },
-    category() {
-      if (!this.$store.getters['post/post'].fields.category) return null
-
-      return this.$store.getters['category/categoryOfName'](
-        this.$store.getters['post/post'].fields.category[0]
-      )
-    },
     tags: function() {
-      if (!this.$store.getters['post/post'].fields.tags) return []
-      return this.$store.getters['post/post'].fields.tags
+      if (!this.post.fields.tags) return []
+      return this.post.fields.tags
         .map(t => this.$store.getters['tag/tagOfName'](t))
         .filter(t => t != null)
     },

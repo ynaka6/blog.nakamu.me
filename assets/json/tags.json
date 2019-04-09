@@ -150,6 +150,11 @@
         "description": ""
     },
     {
+        "name": "ブログ",
+        "slug": "blog",
+        "description": "本ブログに関連する技術情報をまとめた記事になります。"
+    },
+    {
         "name": "振り返り",
         "slug": "review",
         "description": "ブログや一年のエンジニア経験を振り返る記事になります。"

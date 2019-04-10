@@ -261,10 +261,6 @@ export default {
       {
         rel: 'manifest',
         href: '/site.webmanifest'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Leckerli+One'
       }
     ],
     htmlAttrs: {

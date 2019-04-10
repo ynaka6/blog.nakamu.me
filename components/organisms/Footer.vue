@@ -6,7 +6,7 @@
         <div class="flex flex-col lg:flex-row">
           <div class="lg:w-2/3 lg:px-2">
             <h2 class="mb-3 text-white">
-              <n-logo :label="title" color="text-white" />
+              <n-logo :label="title" class="text-white" />
             </h2>
             <p class="mb-6 text-white text-sm max-w-md" v-text="explain"></p>
           </div>

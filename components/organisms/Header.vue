@@ -6,7 +6,7 @@
       <div class="w-1/6 text-center"></div>
       <div class="w-5/6 text-center text-white mr-6">
         <h1 class="my-1">
-          <n-logo :label="title" color="text-white" />
+          <n-logo :label="title" class="text-white" />
         </h1>
         <p class="text-xs" v-text="subtitle" />
       </div>

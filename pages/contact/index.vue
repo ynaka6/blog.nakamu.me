@@ -56,7 +56,7 @@ export default {
       await Promise.all([store.dispatch('author/loadAuthor')])
     }
     store.dispatch('setBreadcrumb', [
-      { link: '/', label: 'Home' },
+      { link: '/', label: 'Home', icon: 'home-solid' },
       { link: null, label: 'お問い合わせ' }
     ])
     return {

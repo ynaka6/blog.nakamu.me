@@ -66,7 +66,7 @@ export default {
     }
 
     store.dispatch('setBreadcrumb', [
-      { link: '/', label: 'Home' },
+      { link: '/', label: 'Home', icon: 'home-solid' },
       { link: null, label: '記事一覧' }
     ])
 

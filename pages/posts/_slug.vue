@@ -77,7 +77,7 @@ export default {
 
     const post = store.getters['post/post']
     const breadcrumb = [
-      { link: '/', label: 'Home' },
+      { link: '/', label: 'Home', icon: 'home-solid' },
       { link: '/posts', label: '記事一覧' }
     ]
 

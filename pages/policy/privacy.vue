@@ -25,7 +25,7 @@ export default {
     }
 
     store.dispatch('setBreadcrumb', [
-      { link: '/', label: 'Home' },
+      { link: '/', label: 'Home', icon: 'home-solid' },
       { link: null, label: 'プライバシーポリシー' }
     ])
 

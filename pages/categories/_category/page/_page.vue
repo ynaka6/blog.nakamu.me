@@ -78,7 +78,7 @@ export default {
     }
 
     store.dispatch('setBreadcrumb', [
-      { link: '/', label: 'Home' },
+      { link: '/', label: 'Home', icon: 'home-solid' },
       { link: '/posts', label: '記事一覧' },
       { link: null, label: store.getters['category/category'].name }
     ])

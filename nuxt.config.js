@@ -271,6 +271,14 @@ export default {
     }
   },
 
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style'].includes(type)
+      }
+    }
+  },
+
   /*
    ** Customize the progress-bar color
    */

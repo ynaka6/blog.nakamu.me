@@ -2,11 +2,17 @@
   <div class="border bg-white shadow-sm p-2 md:px-4">
     <h3>Profile</h3>
     <div>
-      <n-image
-        class="p-6 block w-48 h-48 mx-auto rounded-full"
-        :alt="author.fields.name"
-        :src="`${author.fields.image.fields.file.url}`"
-      />
+      <picture class="p-6 block w-48 h-48 mx-auto rounded-full">
+        <source
+          type="image/webp"
+          :srcset="`${author.fields.image.fields.file.url}?fm=webp`"
+        />
+        <n-image
+          :alt="author.fields.name"
+          :src="`${author.fields.image.fields.file.url}`"
+          class="rounded-full"
+        />
+      </picture>
       <p class="text-center">
         <n-link
           v-if="author.fields.url"

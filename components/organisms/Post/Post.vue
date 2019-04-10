@@ -29,9 +29,12 @@
               />
             </div>
             <div class="relative">
-              <picture>
+              <picture class="block h-auto w-full my-4">
+                <source
+                  type="image/webp"
+                  :srcset="`${post.fields.heroImage.fields.file.url}?fm=webp`"
+                />
                 <n-image
-                  class="block h-auto w-full my-4"
                   :alt="post.fields.title"
                   :src="`${post.fields.heroImage.fields.file.url}?w=10`"
                   :placeholder="post.fields.heroImage.fields.file.url"

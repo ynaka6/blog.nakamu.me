@@ -171,6 +171,15 @@ const generateRoutes = routeOnly => {
     const limit = parseInt(process.env.PAGENATE_LIMIT)
     const pageCount = Math.floor((total - 1) / limit) + 1
     const route = [
+      routeOnly
+        ? '/'
+        : {
+            route: '/',
+            payload: {
+              author: person.items[0],
+              loadLatestPosts: posts.items.slice(0, 6)
+            }
+          },
       ...postRoutes,
       routeOnly
         ? '/posts'

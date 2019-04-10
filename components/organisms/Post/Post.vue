@@ -1,6 +1,5 @@
 <template>
   <div>
-    <breadcrumb :list="breadcrumb" />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 lg:p-4">
@@ -78,7 +77,6 @@
 <script>
 import NTag from '~/components/atoms/links/NTag'
 import NImage from '~/components/atoms/NImage'
-import Breadcrumb from '~/components/molecules/Breadcrumb'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import PostDate from '~/components/molecules/Post/PostDate'
 import PostContent from '~/components/molecules/Post/PostContent'
@@ -89,7 +87,6 @@ export default {
   components: {
     NTag,
     NImage,
-    Breadcrumb,
     ProfileCard,
     PostContent,
     PostDate,
@@ -107,22 +104,6 @@ export default {
       return this.$store.getters['category/categoryOfName'](
         this.post.fields.category[0]
       )
-    },
-    breadcrumb() {
-      const list = [
-        { link: '/', label: 'Home' },
-        { link: '/posts', label: '記事一覧' }
-      ]
-
-      if (this.category) {
-        list.push({
-          link: `/categories/${this.category.slug}`,
-          label: this.category.name
-        })
-      }
-
-      list.push({ link: null, label: this.post.fields.title })
-      return list
     },
     tags: function() {
       if (!this.post.fields.tags) return []

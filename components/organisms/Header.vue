@@ -47,7 +47,7 @@
             </div>
           </n-link>
         </li>
-        <li v-if="author.fields.url" class="border-b">
+        <li v-if="author && author.fields.url" class="border-b">
           <n-link
             :to="author.fields.url"
             class="block py-4 px-4 lg:px-8 text-black hover:text-grey-dark no-underline"

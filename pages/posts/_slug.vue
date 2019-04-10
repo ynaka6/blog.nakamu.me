@@ -75,10 +75,30 @@ export default {
       ])
     }
 
+    const post = store.getters['post/post']
+    const breadcrumb = [
+      { link: '/', label: 'Home' },
+      { link: '/posts', label: '記事一覧' }
+    ]
+
+    if (post.fields.category) {
+      const category = store.getters['category/categoryOfName'](
+        post.fields.category[0]
+      )
+      if (category) {
+        breadcrumb.push({
+          link: `/categories/${category.slug}`,
+          label: category.name
+        })
+      }
+    }
+    breadcrumb.push({ link: null, label: post.fields.title })
+    store.dispatch('setBreadcrumb', breadcrumb)
+
     return {
       title: `${store.getters['post/post'].fields.title}`,
       description: `${store.getters['post/post'].fields.description}`,
-      post: store.getters['post/post'],
+      post: post,
       author: store.getters['author/author']
     }
   }

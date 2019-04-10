@@ -1,8 +1,5 @@
 <template>
   <div>
-    <breadcrumb
-      :list="[{ link: '/', label: 'Home' }, { link: null, label: '記事一覧' }]"
-    />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
@@ -31,13 +28,12 @@
 
 <script>
 import NTitle from '~/components/atoms/titles/NTitle'
-import Breadcrumb from '~/components/molecules/Breadcrumb'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import Pagination from '~/components/molecules/Pagination'
 
 export default {
-  components: { NTitle, Breadcrumb, PostCard, ProfileCard, Pagination },
+  components: { NTitle, PostCard, ProfileCard, Pagination },
   data: () => ({}),
   computed: {
     prevUrl: function() {

@@ -1,21 +1,5 @@
 <template>
   <div>
-    <section>
-      <div
-        v-if="author.fields.url"
-        class="text-center bg-white opacity-90 p-4 leading-normal border-b border-grey-lighter"
-      >
-        訪問ありがとうございます！
-        <n-link
-          :to="author.fields.url"
-          class="text-blue-dark hover:text-blue-lighter"
-          :target-blank="true"
-        >
-          プロフィール
-        </n-link>
-        も合わせてご確認ください🙇🏻
-      </div>
-    </section>
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">

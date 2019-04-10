@@ -42,7 +42,7 @@
               </ul>
             </div>
             <div class="w-1/2">
-              <div v-if="author.fields.url">
+              <div v-if="author && author.fields.url">
                 <p class="uppercase text-white text-sm sm:mb-3">
                   ABOUT
                 </p>

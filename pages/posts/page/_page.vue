@@ -65,6 +65,11 @@ export default {
       ])
     }
 
+    store.dispatch('setBreadcrumb', [
+      { link: '/', label: 'Home' },
+      { link: null, label: '記事一覧' }
+    ])
+
     return {
       title: `投稿一覧${
         store.getters['post/page'] > 1

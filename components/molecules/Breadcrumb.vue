@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white border-b border-grey-lighter">
-    <div class="container mx-auto">
+  <div ref="section" class="section" :class="{ active: list.length > 1 }">
+    <div class="container">
       <nav>
         <ol class="breadcrumb">
           <li v-for="(data, index) in list" :key="index">
@@ -30,6 +30,20 @@ export default {
 </script>
 
 <style scoped lang="postcss">
+.section {
+  transition: all 1000ms ease;
+  max-height: 0;
+  pointer-events: none;
+  @apply bg-white border-b border-grey-lighter opacity-0 overflow-y-hidden;
+}
+.section.active {
+  transition: all 2000ms ease;
+  pointer-events: auto;
+  @apply opacity-100 max-h-full;
+}
+.container {
+  @apply mx-auto h-full;
+}
 ol.breadcrumb {
   @apply list-reset flex text-grey-dark px-4 py-5 overflow-x-scroll whitespace-no-wrap;
 }

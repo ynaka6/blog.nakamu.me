@@ -23,6 +23,12 @@ export default {
     } else {
       await store.dispatch('author/loadAuthor')
     }
+
+    store.dispatch('setBreadcrumb', [
+      { link: '/', label: 'Home' },
+      { link: null, label: 'プライバシーポリシー' }
+    ])
+
     return {
       title: 'プライバシーポリシー',
       description: 'プライバシーポリシーのページです。',

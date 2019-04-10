@@ -56,6 +56,7 @@ export default {
         store.dispatch('post/loadLatestPosts', 6)
       ])
     }
+    store.dispatch('setBreadcrumb', [{ link: '/', label: 'Home' }])
     return {
       title: `${process.env.APP_TITLE} | ${process.env.APP_SUBTITLE}`,
       description: process.env.APP_DESCRIPTION,

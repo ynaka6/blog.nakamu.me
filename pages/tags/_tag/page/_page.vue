@@ -78,6 +78,12 @@ export default {
     }
 
     const tag = store.getters['tag/tag']
+    store.dispatch('setBreadcrumb', [
+      { link: '/', label: 'Home' },
+      { link: '/posts', label: '記事一覧' },
+      { link: null, label: tag.name }
+    ])
+
     return {
       tag: tag,
       title: `${tag.name}${

@@ -1,12 +1,5 @@
 <template>
   <div>
-    <breadcrumb
-      :list="[
-        { link: '/', label: 'Home' },
-        { link: '/posts', label: '記事一覧' },
-        { link: null, label: $store.getters['category/category'].name }
-      ]"
-    />
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
@@ -72,7 +65,6 @@
 import NIcon from '~/components/atoms/NIcon'
 import NLink from '~/components/atoms/links/NLink'
 import NTitle from '~/components/atoms/titles/NTitle'
-import Breadcrumb from '~/components/molecules/Breadcrumb'
 import PostCard from '~/components/molecules/Post/PostCard'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
 import InformationBox from '~/components/molecules/Message/InformationBox'
@@ -84,7 +76,6 @@ export default {
     NIcon,
     NLink,
     NTitle,
-    Breadcrumb,
     PostCard,
     ProfileCard,
     InformationBox,

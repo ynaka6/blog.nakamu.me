@@ -77,6 +77,12 @@ export default {
       ])
     }
 
+    store.dispatch('setBreadcrumb', [
+      { link: '/', label: 'Home' },
+      { link: '/posts', label: '記事一覧' },
+      { link: null, label: store.getters['category/category'].name }
+    ])
+
     return {
       category: params.category,
       title: `${params.category}${

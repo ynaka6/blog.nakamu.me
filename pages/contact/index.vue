@@ -55,10 +55,14 @@ export default {
     } else {
       await Promise.all([store.dispatch('author/loadAuthor')])
     }
+    store.dispatch('setBreadcrumb', [
+      { link: '/', label: 'Home' },
+      { link: null, label: 'お問い合わせ' }
+    ])
     return {
-      title: '問い合わせ画面',
+      title: 'お問い合わせ',
       description:
-        '本ブログへの質問やお仕事、メンターの依頼は問い合わせフォームからご連絡ください',
+        '本ブログへの質問やお仕事、メンターの依頼はお問い合わせフォームからご連絡ください',
       author: store.getters['author/author']
     }
   }

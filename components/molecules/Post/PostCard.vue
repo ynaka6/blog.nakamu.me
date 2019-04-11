@@ -1,36 +1,40 @@
 <template>
   <article class="article">
-    <nuxt-link :to="`/posts/${post.fields.slug}`" class="block relative">
-      <picture class="block h-auto w-full">
-        <source
-          type="image/webp"
-          :srcset="`${post.fields.heroImage.fields.file.url}?fm=webp`"
-        />
-        <n-image
-          :alt="post.fields.title"
-          :src="`${post.fields.heroImage.fields.file.url}?w=10`"
-          :placeholder="post.fields.heroImage.fields.file.url"
-          :srcset="
-            `
-            ${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w,
-            ${
-              post.fields.heroImage.fields.file.url
-            }?w=1000&h=562&fit=fill 1000w,
-            ${
-              post.fields.heroImage.fields.file.url
-            }?w=2000&h=1125&fit=fill 2000w
-            `
-          "
-          sizes="(min-width: 1024px) 400px, 100vw"
-        />
-      </picture>
-      <p
+    <div class="relative">
+      <nuxt-link :to="`/posts/${post.fields.slug}`" class="block">
+        <picture class="block h-auto w-full">
+          <source
+            type="image/webp"
+            :srcset="`${post.fields.heroImage.fields.file.url}?fm=webp`"
+          />
+          <n-image
+            :alt="post.fields.title"
+            :src="`${post.fields.heroImage.fields.file.url}?w=10`"
+            :placeholder="post.fields.heroImage.fields.file.url"
+            :srcset="
+              `
+              ${
+                post.fields.heroImage.fields.file.url
+              }?w=350&h=196&fit=fill 350w,
+              ${
+                post.fields.heroImage.fields.file.url
+              }?w=1000&h=562&fit=fill 1000w,
+              ${
+                post.fields.heroImage.fields.file.url
+              }?w=2000&h=1125&fit=fill 2000w
+              `
+            "
+            sizes="(min-width: 1024px) 400px, 100vw"
+          />
+        </picture>
+      </nuxt-link>
+      <n-category
         v-if="category"
-        class="absolute pin-t pin-r font-bold text-grey-darkest text-xs bg-yellow py-1 px-3 mt-2 mx-2 rounded-full"
-      >
-        {{ category.name }}
-      </p>
-    </nuxt-link>
+        :to="`/categories/${category.slug}`"
+        :label="category.name"
+        class="absolute pin-t pin-r"
+      />
+    </div>
     <div class="p-2 md:px-4">
       <post-date
         :publish-time="post.fields.publishDate"
@@ -62,12 +66,13 @@
 </template>
 
 <script>
+import NCategory from '~/components/atoms/links/NCategory'
 import NTag from '~/components/atoms/links/NTag'
 import NImage from '~/components/atoms/NImage'
 import PostDate from '~/components/molecules/Post/PostDate'
 
 export default {
-  components: { NTag, NImage, PostDate },
+  components: { NCategory, NTag, NImage, PostDate },
   props: {
     post: { type: Object, required: true }
   },

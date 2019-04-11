@@ -54,12 +54,12 @@
                   sizes="(min-width: 1024px) 400px, 100vw"
                 />
               </picture>
-              <p
+              <n-category
                 v-if="category"
-                class="absolute pin-t pin-r font-bold text-grey-darkest text-xs bg-yellow py-1 px-3 mt-2 mx-2 rounded-full"
-              >
-                {{ category.name }}
-              </p>
+                :to="`/categories/${category.slug}`"
+                :label="category.name"
+                class="absolute pin-t pin-r"
+              />
             </div>
             <post-content :content="post.fields.body" />
             <pagination :prev-url="prevUrl" :next-url="nextUrl" />
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import NCategory from '~/components/atoms/links/NCategory'
 import NTag from '~/components/atoms/links/NTag'
 import NImage from '~/components/atoms/NImage'
 import ProfileCard from '~/components/molecules/Profile/ProfileCard'
@@ -96,6 +97,7 @@ import Pagination from '~/components/molecules/Pagination'
 
 export default {
   components: {
+    NCategory,
     NTag,
     NImage,
     ProfileCard,

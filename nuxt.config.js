@@ -419,23 +419,15 @@ export default {
         }
       ],
       'markdown-it-toc',
-      [
-        'markdown-it-video',
-        {
-          youtube: { width: 640, height: 390 },
-          vimeo: { width: 500, height: 281 },
-          vine: { width: 600, height: 600, embed: 'simple' },
-          prezi: { width: 550, height: 400 }
-        }
-      ],
+      'markdown-it-video',
       'markdown-it-mark',
       [
         'markdown-it-link-attributes',
         {
-          pattern: /^http(s):/,
+          pattern: /https?:/,
           attrs: {
             target: '_blank',
-            rel: 'noopener'
+            rel: 'nofollow noopener noreferrer'
           }
         }
       ],

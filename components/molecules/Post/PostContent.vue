@@ -40,22 +40,19 @@ export default {
 .blog-content h5:not(:first-child) {
   @apply mt-4;
 }
-
+.blog-content a {
+  @apply no-underline text-blue;
+}
+.blog-content a:hover {
+  @apply text-blue-darker;
+}
 .blog-content pre {
   @apply overflow-x-auto;
 }
 .blog-content > p {
   @apply mb-4;
 }
-.blog-content > p a,
-.blog-content > :first-child + h3 + ul a {
-  @apply text-blue no-underline mx-1;
-}
-.blog-content > p a:hover,
-.blog-content > :first-child + h3 + ul a:hover {
-  @apply text-blue-dark underline;
-}
-.blog-content > p a[target='_blank']:not(.link-preview)::after {
+.blog-content a[target='_blank']:not(.link-preview):not(.img-preview)::after {
   content: '';
   display: inline-block;
   top: 0em;

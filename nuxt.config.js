@@ -69,9 +69,13 @@ const generateRoutes = routeOnly => {
     const categoryRoutes = flatten(
       categories
         .map(category => {
-          const categoryPosts = posts.items.filter(
-            post => post.fields.category[0] === category.name
-          )
+          const categoryPosts = posts.items.filter(post => {
+            return (
+              Array.isArray(post.fields.category) &&
+              post.fields.category.length > 0 &&
+              post.fields.category[0] === category.name
+            )
+          })
           const total = categoryPosts.length
           const limit = parseInt(process.env.PAGENATE_LIMIT)
           const pageCount =

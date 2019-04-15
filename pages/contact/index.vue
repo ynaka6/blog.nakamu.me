@@ -38,11 +38,6 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: this.description
-        },
-        {
-          hid: 'robots',
-          name: 'robots',
-          content: 'noindex'
         }
       ]
     }

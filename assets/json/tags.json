@@ -25,6 +25,11 @@
         "description": ""
     },
     {
+        "name": "GatsbyJS",
+        "slug": "gatsbyjs",
+        "description": ""
+    },
+    {
         "name": "Git",
         "slug": "git",
         "description": ""

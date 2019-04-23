@@ -63,14 +63,6 @@
             </div>
             <post-content :content="post.fields.body" />
             <pagination :prev-url="prevUrl" :next-url="nextUrl" />
-
-            <div
-              ref="comments"
-              class="mt-20 just-comments"
-              data-locale="ja"
-              :data-pageid="post.fields.slug"
-              :data-apikey="just_comments_apy_key"
-            />
           </article>
         </div>
         <div class="lg:w-1/3 lg:p-4">
@@ -145,14 +137,14 @@ export default {
     }
   },
   mounted: function() {
-    this.$nextTick(() => {
-      if (this.$refs.comments) {
-        const s = document.createElement('script')
-        s.src = '//just-comments.com/w.js'
-        s.setAttribute('data-timestamp', +new Date())
-        this.$refs.comments.appendChild(s)
-      }
-    })
+    // this.$nextTick(() => {
+    //   if (this.$refs.comments) {
+    //     const s = document.createElement('script')
+    //     s.src = '//just-comments.com/w.js'
+    //     s.setAttribute('data-timestamp', +new Date())
+    //     this.$refs.comments.appendChild(s)
+    //   }
+    // })
   }
 }
 </script>

@@ -145,6 +145,11 @@
         "description": ""
     },
     {
+        "name": "Vagrant",
+        "slug": "vagrant",
+        "description": ""
+    },
+    {
         "name": "Vue.js",
         "slug": "vuejs",
         "description": ""

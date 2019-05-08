@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="leading-normal">
     <tags :tags="tags" />
     <section class="bg-gradient-blue py-8 w-full">
       <div class="container mx-auto px-4 lg:px-8">
@@ -87,7 +87,11 @@
           <div
             class="w-full md:w-3/5 mb-4 lg:mb-0 text-xs sm:text-sm text-center"
           >
-            Copyright © nnn All Rights Reserved.
+            <p class="py-1">Copyright © nnn All Rights Reserved.</p>
+            <p class="py-1 flex justify-center items-center">
+              made with Nuxt.js
+              <n-image :src="nuxtLogo" alt="Nuxt.js" class="ml-2 h-6 w-6" />
+            </p>
           </div>
           <div class="w-full md:w-1/5 mb-4 lg:mb-0 flex justify-center">
             <n-link
@@ -110,6 +114,16 @@
             >
               <n-icon icon="github" class="w-5 h-5" />
             </n-link>
+            <n-link
+              v-if="author && author.fields && author.fields.email"
+              :to="'mailto:' + author.fields.email"
+              :target-blank="true"
+              :external-icon="false"
+              class="bg-white hover:bg-grey-light text-grey-darkest w-10 h-10 mr-2 rounded-full font-semibold flex items-center justify-center font-hairline no-underline"
+              aria-label="email"
+            >
+              <n-icon icon="envelope-solid" class="w-5 h-5" />
+            </n-link>
           </div>
         </div>
       </div>
@@ -118,16 +132,18 @@
 </template>
 
 <script>
+import NImage from '~/components/atoms/NImage'
 import NLogo from '~/components/atoms/links/NLogo'
 import NLink from '~/components/atoms/links/NLink'
 import NIcon from '~/components/atoms/NIcon'
 import Tags from '~/components/molecules/Footer/Tags'
 
 export default {
-  components: { NLogo, NLink, NIcon, Tags },
+  components: { NImage, NLogo, NLink, NIcon, Tags },
   data: () => ({
     title: process.env.APP_TITLE,
-    explain: process.env.APP_DESCRIPTION
+    explain: process.env.APP_DESCRIPTION,
+    nuxtLogo: require('~/assets/svg/nuxt.svg')
   }),
   computed: {
     categories() {

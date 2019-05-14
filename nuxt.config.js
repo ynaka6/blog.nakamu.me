@@ -351,7 +351,15 @@ export default {
             './plugins/**/*.js',
             './node_modules/highlight.js/**/*.js'
           ],
-          whitelist: ['html', 'body']
+          whitelist: [
+            'html',
+            'body',
+            '.is-primary',
+            '.is-info',
+            '.is-success',
+            '.is-warning',
+            '.is-danger'
+          ]
         })
       ]
     },
@@ -383,8 +391,16 @@ export default {
                 extractor: TailwindExtractor,
                 extensions: ['vue', 'js']
               }
+            ],,
+            whitelist: [
+              'html',
+              'body',
+              '.is-primary',
+              '.is-info',
+              '.is-success',
+              '.is-warning',
+              '.is-danger'
             ],
-            whitelist: ['html', 'body', 'nuxt-progress'],
             whitelistPatterns: [/hljs/]
           })
         )

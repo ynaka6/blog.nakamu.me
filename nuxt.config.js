@@ -386,11 +386,8 @@ export default {
                 extractor: TailwindExtractor,
                 extensions: ['vue', 'js']
               }
-            ],,
-            whitelist: [
-              'html',
-              'body',
             ],
+            whitelist: ['html', 'body'],
             whitelistPatterns: [/hljs/, /is-*/]
           })
         )

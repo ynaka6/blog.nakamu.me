@@ -353,12 +353,7 @@ export default {
           ],
           whitelist: [
             'html',
-            'body',
-            '.is-primary',
-            '.is-info',
-            '.is-success',
-            '.is-warning',
-            '.is-danger'
+            'body'
           ]
         })
       ]
@@ -395,13 +390,8 @@ export default {
             whitelist: [
               'html',
               'body',
-              '.is-primary',
-              '.is-info',
-              '.is-success',
-              '.is-warning',
-              '.is-danger'
             ],
-            whitelistPatterns: [/hljs/]
+            whitelistPatterns: [/hljs/, /is-*/]
           })
         )
       }

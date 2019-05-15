@@ -1,9 +1,7 @@
 <template>
   <section>
-    <div
-      class="text-center bg-white opacity-90 p-6 border-b border-grey-lighter"
-    >
-      <n-title>
+    <div class="text-center bg-white opacity-90 p-6 border-b border-gray-400">
+      <n-title class="text-3xl">
         Tags
       </n-title>
       <div>

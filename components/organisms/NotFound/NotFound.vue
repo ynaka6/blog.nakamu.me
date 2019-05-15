@@ -12,7 +12,7 @@
           <div class="my-10 mx-4">
             <n-link
               to="/"
-              class="p-4 text-2xl text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+              class="p-4 text-2xl text-gray-800 hover:text-gray-600 bg-white hover:bg-gray-700 border border-gray-800 no-underline"
             >
               <n-icon icon="undo" class="w-6 h-6" />
               Homeに戻る

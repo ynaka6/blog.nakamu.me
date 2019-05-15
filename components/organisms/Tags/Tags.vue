@@ -3,19 +3,19 @@
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
-          <n-title>
+          <n-title class="text-3xl">
             <n-icon icon="tag" class="w-5 h-5" />
             {{ $store.getters['tag/tag'].name }}
           </n-title>
           <information-box>
             <p
               v-if="$store.getters['tag/tag'].description"
-              class="text-sm text-grey-darker"
+              class="text-sm text-gray-600"
               v-text="$store.getters['tag/tag'].description"
             ></p>
             <p
               v-else
-              class="text-sm text-grey-darker"
+              class="text-sm text-gray-600"
               v-text="
                 `
                 ${$store.getters['tag/tag'].name}
@@ -38,9 +38,8 @@
           <p class="pt-10">
             <n-link
               to="/posts"
-              class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
+              class="text-blue-600 hover:text-blue-300 no-underline hover:underline inline-flex"
             >
-              <n-icon icon="undo" class="w-3 h-3" />
               記事一覧に戻る
             </n-link>
           </p>
@@ -62,7 +61,6 @@
 </template>
 
 <script>
-import NIcon from '~/components/atoms/NIcon'
 import NLink from '~/components/atoms/links/NLink'
 import NTitle from '~/components/atoms/titles/NTitle'
 import PostCard from '~/components/molecules/Post/PostCard'
@@ -75,7 +73,6 @@ export default {
   components: {
     NLink,
     NTitle,
-    NIcon,
     PostCard,
     ProfileCard,
     InformationBox,

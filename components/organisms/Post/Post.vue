@@ -15,7 +15,7 @@
             </h1>
             <!-- eslint-disable vue/no-v-html -->
             <p
-              class="text-sm text-grey-darker mb-4"
+              class="text-sm text-gray-600 mb-4"
               v-html="post.fields.description"
             />
             <!--eslint-enable-->
@@ -58,7 +58,7 @@
                 v-if="category"
                 :to="`/categories/${category.slug}`"
                 :label="category.name"
-                class="absolute pin-t pin-r"
+                class="absolute top-0 right-0"
               />
             </div>
             <post-content :content="post.fields.body" />

@@ -85,6 +85,6 @@ export default {
 
 <style scoped lang="postcss">
 p {
-  @apply leading-normal text-grey-darkest text-sm;
+  @apply leading-normal text-gray-800 text-sm;
 }
 </style>

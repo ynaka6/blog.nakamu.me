@@ -1,6 +1,6 @@
 <template>
   <div class="border bg-white shadow-sm p-2 md:px-4">
-    <h3>Profile</h3>
+    <h3 class="text-2xl">Profile</h3>
     <div>
       <picture class="p-6 block w-48 h-48 mx-auto rounded-full">
         <source
@@ -17,7 +17,7 @@
         <n-link
           v-if="author.fields.url"
           :to="author.fields.url"
-          class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
+          class="text-blue-600 hover:text-blue-300 no-underline hover:underline"
           :target-blank="true"
         >
           {{ author.fields.name }}
@@ -26,8 +26,8 @@
           {{ author.fields.name }}
         </span>
       </p>
-      <p class="py-4 text-grey-darkest" v-text="author.fields.shortBio"></p>
-      <div class="py-2">
+      <p class="py-4 text-gray-800" v-text="author.fields.shortBio"></p>
+      <div class="py-2 flex">
         <a
           v-if="author.fields.twitter"
           :href="'https://twitter.com/' + author.fields.twitter"
@@ -35,6 +35,7 @@
           style="color: #55acee;"
           rel="noreferrer"
           aria-label="Twitter"
+          class="mr-1"
         >
           <n-icon icon="twitter" class="w-6 h-6" />
         </a>
@@ -45,6 +46,7 @@
           style="color: #333;"
           rel="noreferrer"
           aria-label="Github"
+          class="mr-1"
         >
           <n-icon icon="github" class="w-6 h-6" />
         </a>
@@ -55,6 +57,7 @@
           style="color: #fa6d34;"
           rel="noreferrer"
           aria-label="Gitlab"
+          class="mr-1"
         >
           <n-icon icon="gitlab" class="w-6 h-6" />
         </a>
@@ -72,7 +75,7 @@
       <p v-if="author.fields.url" class="py-2 text-right">
         <n-link
           :to="author.fields.url"
-          class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
+          class="text-blue-600 hover:text-blue-300 no-underline hover:underline"
           :target-blank="true"
         >
           プロフィール詳細はこちら

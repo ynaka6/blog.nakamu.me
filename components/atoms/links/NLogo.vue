@@ -18,6 +18,6 @@ export default {
   @apply text-white;
 }
 .logo.text-white:hover {
-  @apply text-grey-lighter;
+  @apply text-gray-300;
 }
 </style>

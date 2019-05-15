@@ -70,10 +70,10 @@ export default {
 
 <style scoped lang="postcss">
 .title {
-  @apply block no-underline font-bold text-base text-grey-darkest mb-2 text-black;
+  @apply block no-underline font-bold text-base text-gray-800 mb-2 text-black;
 }
 .description {
   text-overflow: ellipsis;
-  @apply overflow-hidden whitespace-no-wrap text-sm text-grey-darker mb-1;
+  @apply overflow-hidden whitespace-no-wrap text-sm text-gray-600 mb-1;
 }
 </style>

@@ -7,20 +7,20 @@
             <n-link
               v-if="data.link"
               :to="data.link"
-              class="flex items-center text-blue-dark font-bold no-underline hover:underline"
+              class="flex items-center text-blue-600 font-bold no-underline hover:underline"
             >
               <n-icon
                 v-if="data.icon"
                 :icon="data.icon"
-                class="text-blue-dark w-4 h-4 mr-1"
+                class="text-blue-600 w-4 h-4 mr-1"
               />
               {{ data.label }}
             </n-link>
-            <span v-else class="flex items-center text-grey-darkest">
+            <span v-else class="flex items-center text-gray-800">
               <n-icon
                 v-if="data.icon"
                 :icon="data.icon"
-                class="text-grey-darkest w-4 h-4"
+                class="text-gray-800 w-4 h-4"
               />
               {{ data.label }}
             </span>
@@ -47,7 +47,7 @@ export default {
   transition: all 1000ms ease;
   max-height: 0;
   pointer-events: none;
-  @apply bg-white border-b border-grey-lighter opacity-0 overflow-y-hidden;
+  @apply bg-white border-b border-gray-400 opacity-0 overflow-y-hidden;
 }
 .section.active {
   transition: all 2000ms ease;
@@ -58,7 +58,7 @@ export default {
   @apply mx-auto h-full;
 }
 ol.breadcrumb {
-  @apply list-reset flex text-grey-dark px-4 py-5 overflow-x-scroll whitespace-no-wrap;
+  @apply list-none flex text-gray-600 px-4 py-5 overflow-x-scroll whitespace-no-wrap;
 }
 ol.breadcrumb::-webkit-scrollbar {
   @apply hidden;

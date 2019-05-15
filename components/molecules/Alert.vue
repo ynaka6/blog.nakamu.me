@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="message"
-    class="fixed pin-t pin-l w-full z-20 leading-normal"
+    class="fixed top-0 left-0 w-full z-20 leading-normal"
     :class="{
       'alert-success': 'success' === type,
       'alert-info': 'info' === type,
@@ -20,7 +20,7 @@
         <p class="font-bold" v-text="message.title"></p>
         <p class="text-sm" v-text="message.description"></p>
       </div>
-      <span class="absolute pin-t pin-r py-2 text-grey-darker" @click="close">
+      <span class="absolute top-0 right-0 py-2 text-gray-600" @click="close">
         <n-icon icon="close" class="w-6 h-6" />
       </span>
     </div>
@@ -54,21 +54,21 @@ export default {
 
 <style scoped lang="postcss">
 .alert-success {
-  @apply bg-teal-lightest border-t-4 border-teal rounded-b text-teal-darkest px-4 py-3 shadow-md;
+  @apply bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-800 px-4 py-3 shadow-md;
 }
 .alert-success .text-icon {
-  @apply text-teal;
+  @apply text-teal-500;
 }
 .alert-info {
-  @apply bg-teal-lightest border-t-4 border-blue rounded-b text-blue-darkest px-4 py-3 shadow-md;
+  @apply bg-teal-100 border-t-4 border-blue-500 rounded-b text-blue-800 px-4 py-3 shadow-md;
 }
 .alert-info .text-icon {
-  @apply text-blue;
+  @apply text-blue-500;
 }
 .alert-error {
-  @apply bg-red-lightest border-t-4 border-red rounded-b text-red-darkest px-4 py-3 shadow-md;
+  @apply bg-red-100 border-t-4 border-red-500 rounded-b text-red-800 px-4 py-3 shadow-md;
 }
 .alert-error .text-icon {
-  @apply text-red;
+  @apply text-red-500;
 }
 </style>

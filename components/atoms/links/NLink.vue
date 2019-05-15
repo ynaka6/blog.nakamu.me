@@ -1,5 +1,11 @@
 <template>
-  <a v-if="targetBlank" :href="to" target="_blank" rel="noopener noreferrer">
+  <a
+    v-if="targetBlank"
+    :href="to"
+    class="inline-flex"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     <slot />
     <sup v-if="externalIcon">
       <svg

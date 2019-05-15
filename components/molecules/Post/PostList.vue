@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-col items-center justify-center w-full">
-      <n-title>
+      <n-title class="text-2xl">
         {{ label }}
       </n-title>
       <div
@@ -17,7 +17,7 @@
     <div class="mt-10 mx-4 lg:mx-0">
       <n-link
         to="/posts"
-        class="w-full block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+        class="w-full block p-4 text-center text-gray-800 hover:text-gray-600 bg-white hover:bg-gray-700 border border-gray-500-darkest no-underline"
       >
         記事をもっと見る
       </n-link>

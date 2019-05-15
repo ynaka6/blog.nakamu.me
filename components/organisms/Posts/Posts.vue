@@ -3,7 +3,7 @@
     <section class="container mx-auto">
       <div class="flex flex-col lg:flex-row">
         <div class="lg:w-2/3 p-4">
-          <n-title>
+          <n-title class="text-3xl">
             記事一覧
           </n-title>
           <div class="flex flex-wrap justify-center">

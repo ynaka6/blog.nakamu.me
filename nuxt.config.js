@@ -281,7 +281,7 @@ export default {
       lang: 'ja'
     },
     bodyAttrs: {
-      class: 'bg-grey-lighter'
+      class: 'bg-gray-200'
     }
   },
 
@@ -351,10 +351,7 @@ export default {
             './plugins/**/*.js',
             './node_modules/highlight.js/**/*.js'
           ],
-          whitelist: [
-            'html',
-            'body'
-          ]
+          whitelist: ['html', 'body']
         })
       ]
     },

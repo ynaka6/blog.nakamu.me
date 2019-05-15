@@ -22,29 +22,29 @@ export default {
 
 <style lang="postcss">
 .blog-content {
-  @apply py-4 leading-normal text-grey-darkest;
+  @apply py-4 leading-normal text-gray-800;
 }
 
 .blog-content > :first-child + h3 {
-  @apply text-center;
+  @apply text-center text-xl font-bold;
 }
 .blog-content > :first-child + h3 + ul {
-  @apply pt-16 pb-5 px-2 -mt-12 mb-10 ml-0 bg-grey-lightest border leading-loose;
+  @apply pt-16 pb-5 px-6 -mt-12 mb-10 ml-0 bg-gray-200 border leading-loose;
 }
 
 .blog-content h2:not(:first-child) {
-  @apply p-3 my-6 bg-grey-lighter border-solid border-0 border-l border-l-4 border-blue;
+  @apply p-3 my-6 font-bold bg-gray-200 border-solid border-0 border-l border-l-4 border-blue-500;
 }
 .blog-content > not(:first-child) + h3,
 .blog-content h4,
 .blog-content h5 {
-  @apply p-2 mt-6 mb-4 bg-grey-lighter border-solid border-0 border-l border-l-2 border-blue;
+  @apply p-2 mt-6 mb-4 font-bold bg-gray-200 border-solid border-0 border-l border-l-2 border-blue-500;
 }
 .blog-content a {
-  @apply no-underline text-blue;
+  @apply no-underline text-blue-500;
 }
 .blog-content a:hover {
-  @apply text-blue-darker;
+  @apply text-blue-500;
 }
 .blog-content pre {
   @apply overflow-x-auto;
@@ -75,14 +75,14 @@ export default {
 }
 
 .blog-content blockquote {
-  @apply block relative mt-4 mb-8 italic text-grey-darker bg-grey-lighter border-l-4 border-blue-light shadow-md pl-6 pr-2 pt-8 pb-2;
+  @apply block relative mt-4 mb-8 italic text-gray-600 bg-gray-700 border-l-4 border-blue-400 shadow-md pl-6 pr-2 pt-8 pb-2;
 }
 
 .blog-content blockquote:before {
   content: '“';
   font-family: sans-serif;
   font-size: 90px;
-  @apply inline-block absolute pin-t pin-l pt-1 pl-1 text-blue-light align-middle leading-none;
+  @apply inline-block absolute top-0 left-0 pt-1 pl-1 text-blue-400 align-middle leading-none;
 }
 
 .blog-content blockquote p {
@@ -94,7 +94,7 @@ export default {
 }
 .blog-content table > thead > tr > th,
 .blog-content table > tbody > tr > th {
-  @apply text-grey-darkest bg-grey-lightest border p-2;
+  @apply text-gray-800 bg-gray-400 border p-2;
 }
 .blog-content table > tbody > tr > td {
   @apply border p-2;
@@ -110,6 +110,6 @@ export default {
 .blog-content .embed-responsive object,
 .blog-content .embed-responsive embed,
 .blog-content .embed-responsive video {
-  @apply absolute pin-t pin-l w-full h-full;
+  @apply absolute top-0 left-0 w-full h-full;
 }
 </style>

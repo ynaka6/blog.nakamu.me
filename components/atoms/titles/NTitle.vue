@@ -12,7 +12,7 @@ export default {
 
 <style scoped lang="postcss">
 .title-underline {
-  @apply relative mb-8 text-blue-darkest;
+  @apply relative mb-8 text-blue-800;
 }
 .title-underline:before {
   content: '';
@@ -22,7 +22,7 @@ export default {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  background-color: config('colors.blue-darkest');
+  background-color: theme('colors.blue.800');
   border-radius: 2px;
   @apply absolute inline-block;
 }

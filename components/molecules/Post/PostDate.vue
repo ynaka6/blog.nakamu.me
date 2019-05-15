@@ -1,16 +1,20 @@
 <template>
-  <p class="my-1 text-sm text-grey-darker">
-    <span class="text-grey-darker text-sm">
-      <time class="mr-3" :datetime="publishDate.format('YYYY/MM/DD')">
-        <n-icon icon="calendar-alt" class="w-3 h-3" />
-        {{ publishDate.format('YYYY.MM.DD') }}
+  <p class="my-1 text-sm text-gray-600">
+    <span class="text-gray-600 text-sm flex">
+      <time
+        class="mr-3 flex items-center"
+        :datetime="publishDate.format('YYYY/MM/DD')"
+      >
+        <n-icon icon="calendar-alt" class="w-3 h-3 mr-1" />
+        <span>{{ publishDate.format('YYYY.MM.DD') }}</span>
       </time>
       <time
         v-if="publishDate.add(7, 'day').isBefore(updateDate)"
         :datetime="updateDate.format('YYYY/MM/DD')"
+        class="flex items-center"
       >
-        <n-icon icon="history" class="w-3 h-3" />
-        {{ updateDate.format('YYYY.MM.DD') }}
+        <n-icon icon="history" class="w-3 h-3 mr-1" />
+        <span>{{ updateDate.format('YYYY.MM.DD') }}</span>
       </time>
     </span>
   </p>

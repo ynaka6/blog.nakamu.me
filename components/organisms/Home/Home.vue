@@ -19,7 +19,7 @@
           <div class="flex justify-center">
             <n-link
               to="/posts"
-              class="lg:w-1/3 block p-4 text-center text-grey-darkest hover:text-grey-dark bg-white hover:bg-grey-lighter border border-grey-darkest no-underline"
+              class="lg:w-1/3 block p-4 text-center text-gray-800 hover:text-gray-600 bg-white hover:bg-gray-700 border border-gray-800 no-underline"
             >
               記事をもっと見る
             </n-link>

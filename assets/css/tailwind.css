@@ -1,110 +1,61 @@
-/**
- * This injects Tailwind's base styles, which is a combination of
- * Normalize.css and some additional base styles.
- *
- * You can see the styles here:
- * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/preflight";
- */
-@tailwind preflight;
+@tailwind base;
 
-/**
- * This injects any component classes registered by plugins.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/components";
- */
+ul {
+  list-style-type: disc;
+  padding-left: theme('padding.6');
+}
+ol {
+  list-style-type: decimal;
+  padding-left: theme('padding.6');
+}
+
 @tailwind components;
-
-/**
- * Here you would add any of your custom component classes; stuff that you'd
- * want loaded *before* the utilities so that the utilities could still
- * override them.
- *
- * Example:
- *
- * .btn { ... }
- * .form-input { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "components/buttons";
- * @import "components/forms";
- */
-
-/**
- * This injects all of Tailwind's utility classes, generated based on your
- * config file.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/utilities";
- */
 @tailwind utilities;
 
-/**
- * Here you would add any custom utilities you need that don't come out of the
- * box with Tailwind.
- *
- * Example :
- *
- * .bg-pattern-graph-paper { ... }
- * .skew-45 { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "utilities/background-patterns";
- * @import "utilities/skew-transforms";
- */
-
- .bg-gradient-blue {
+.bg-gradient-blue {
   background-image: linear-gradient(
     to top,
     #51daf5,
-    config('colors.blue-dark')
+    theme('colors.blue.600')
   );
 }
 
 
 .message {
-  @apply relative bg-grey-lightest border-l-4 border-grey-dark rounded-b pl-6 pr-4 py-3 my-3;
+  @apply relative bg-gray-100 border-solid border-0 border-l-4 border-gray-600 rounded-b pl-6 pr-4 py-3 my-3;
 }
 .message:before {
   content: "!";
   font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-  @apply absolute pin-t pin-l -ml-3 mt-3 w-5 h-5 text-white text-center font-bold bg-grey-dark rounded-full leading-tight;
+  @apply absolute top-0 left-0 -ml-3 mt-3 w-5 h-5 text-white text-center font-bold bg-gray-600 rounded-full leading-tight;
 }
 .message.is-primary {
-  @apply border-blue-dark;
+  @apply border-blue-400;
 }
 .message.is-primary:before {
-  @apply bg-blue-dark;
+  @apply bg-blue-400;
 }
 .message.is-info {
-  @apply border-teal-dark;
+  @apply border-teal-400;
 }
 .message.is-info:before {
-  @apply bg-teal-dark;
+  @apply bg-teal-400;
 }
 .message.is-success {
-  @apply border-green-dark;
+  @apply border-green-400;
 }
 .message.is-success:before {
-  @apply bg-green-dark;
+  @apply bg-green-400;
 }
 .message.is-warning {
-  @apply border-yellow-dark;
+  @apply border-yellow-400;
 }
 .message.is-warning:before {
-  @apply bg-yellow-dark;
+  @apply bg-yellow-400;
 }
 .message.is-danger {
-  @apply border-red-dark;
+  @apply border-red-400;
 }
 .message.is-danger:before {
-  @apply bg-red-dark;
+  @apply bg-red-400;
 }

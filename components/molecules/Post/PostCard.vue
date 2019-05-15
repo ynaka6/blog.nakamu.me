@@ -32,7 +32,7 @@
         v-if="category"
         :to="`/categories/${category.slug}`"
         :label="category.name"
-        class="absolute pin-t pin-r"
+        class="absolute top-0 right-0"
       />
     </div>
     <div class="p-2 md:px-4">
@@ -48,10 +48,7 @@
           {{ post.fields.title }}
         </nuxt-link>
       </h3>
-      <p
-        class="text-grey-darker text-sm mb-4"
-        v-text="post.fields.description"
-      />
+      <p class="text-gray-600 text-sm mb-4" v-text="post.fields.description" />
       <div class="my-1">
         <n-tag
           v-for="(tag, index) in tags"

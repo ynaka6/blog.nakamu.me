@@ -9,12 +9,12 @@
           <information-box>
             <p
               v-if="$store.getters['category/category'].description"
-              class="text-sm text-grey-darker"
+              class="text-sm text-gray-600"
               v-text="$store.getters['category/category'].description"
             ></p>
             <p
               v-else
-              class="text-sm text-grey-darker"
+              class="text-sm text-gray-600"
               v-text="
                 `
                 ${$store.getters['category/category'].name}
@@ -38,9 +38,8 @@
           <p class="pt-10">
             <n-link
               to="/posts"
-              class="text-blue-dark hover:text-blue-lighter no-underline hover:underline"
+              class="text-blue-600 hover:text-blue-300 no-underline hover:underline inline-flex"
             >
-              <n-icon icon="undo" class="w-3 h-3" />
               記事一覧に戻る
             </n-link>
           </p>
@@ -62,7 +61,6 @@
 </template>
 
 <script>
-import NIcon from '~/components/atoms/NIcon'
 import NLink from '~/components/atoms/links/NLink'
 import NTitle from '~/components/atoms/titles/NTitle'
 import PostCard from '~/components/molecules/Post/PostCard'
@@ -73,7 +71,6 @@ import Pagination from '~/components/molecules/Pagination'
 
 export default {
   components: {
-    NIcon,
     NLink,
     NTitle,
     PostCard,

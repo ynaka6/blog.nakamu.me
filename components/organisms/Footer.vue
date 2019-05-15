@@ -87,7 +87,7 @@
           <div
             class="w-full md:w-3/5 mb-4 lg:mb-0 text-xs sm:text-sm text-center"
           >
-            <p class="py-1">Copyright © nnn All Rights Reserved.</p>
+            <p class="py-1">Copyright © {nnn} All Rights Reserved.</p>
             <p class="py-1 flex justify-center items-center">
               made with Nuxt.js
               <n-image :src="nuxtLogo" alt="Nuxt.js" class="ml-2 h-6 w-6" />

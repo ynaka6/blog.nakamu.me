@@ -33,12 +33,12 @@ export default {
 }
 
 .blog-content h2:not(:first-child) {
-  @apply mt-6;
+  @apply p-3 my-6 bg-grey-lighter border-solid border-0 border-l border-l-4 border-blue;
 }
-.blog-content h3:not(:first-child),
-.blog-content h4:not(:first-child),
-.blog-content h5:not(:first-child) {
-  @apply mt-4;
+.blog-content > not(:first-child) + h3,
+.blog-content h4,
+.blog-content h5 {
+  @apply p-2 mt-6 mb-4 bg-grey-lighter border-solid border-0 border-l border-l-2 border-blue;
 }
 .blog-content a {
   @apply no-underline text-blue;
@@ -90,7 +90,7 @@ export default {
 }
 
 .blog-content table {
-  @apply border w-full;
+  @apply border w-full my-6;
 }
 .blog-content table > thead > tr > th,
 .blog-content table > tbody > tr > th {

@@ -241,7 +241,8 @@ export default {
     PAGENATE_LIMIT: process.env.PAGENATE_LIMIT || 20,
     CONTACT_API_URL: process.env.CONTACT_API_URL,
     GOOGLE_ANALYTICS_TRACKING_ID: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-    JUST_COMMENTS_APY_KEY: process.env.JUST_COMMENTS_APY_KEY
+    JUST_COMMENTS_APY_KEY: process.env.JUST_COMMENTS_APY_KEY,
+    GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID
   },
 
   /*
@@ -326,7 +327,8 @@ export default {
     '@nuxtjs/markdownit',
     '@nuxtjs/feed',
     '@nuxtjs/sitemap',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    ['@nuxtjs/google-adsense', { id: process.env.GOOGLE_ADSENSE_ID || '' }]
   ],
   /*
    ** Axios module configuration

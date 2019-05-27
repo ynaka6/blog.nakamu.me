@@ -27,6 +27,9 @@
         </div>
         <div class="lg:w-1/3 p-4">
           <profile-card :author="$store.getters['author/author']" />
+          <div class="w-full my-4 mx-auto">
+            <adsbygoogle />
+          </div>
         </div>
       </div>
     </section>

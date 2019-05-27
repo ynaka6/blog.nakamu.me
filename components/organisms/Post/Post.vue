@@ -70,6 +70,9 @@
             :author="$store.getters['author/author']"
             class="m-4 lg:m-0"
           />
+          <div class="w-full my-4 mx-auto">
+            <adsbygoogle />
+          </div>
           <post-list label="Latest Posts" :posts="latestPosts" class="my-10" />
         </div>
       </div>

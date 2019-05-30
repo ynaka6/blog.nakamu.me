@@ -46,6 +46,16 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: this.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.post
+            ? `${process.env.HTTP_SCHEMA}:${
+                this.post.fields.heroImage.fields.file.url
+              }
+            `
+            : ''
         }
       ]
     }

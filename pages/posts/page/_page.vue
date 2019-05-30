@@ -45,6 +45,11 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           content: this.description
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: `${process.env.BASE_URL}/icon.png`
         }
       ],
       link: link

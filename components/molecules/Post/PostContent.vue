@@ -75,7 +75,7 @@ export default {
 }
 
 .blog-content blockquote {
-  @apply block relative mt-4 mb-8 italic text-gray-600 bg-gray-700 border-l-4 border-blue-400 shadow-md pl-6 pr-2 pt-8 pb-2;
+  @apply block relative mt-4 mb-8 italic text-gray-600 bg-gray-100 border-l-4 border-blue-400 shadow-md pl-6 pr-2 pt-8 pb-2;
 }
 
 .blog-content blockquote:before {

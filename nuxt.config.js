@@ -242,7 +242,8 @@ export default {
     CONTACT_API_URL: process.env.CONTACT_API_URL,
     GOOGLE_ANALYTICS_TRACKING_ID: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
     JUST_COMMENTS_APY_KEY: process.env.JUST_COMMENTS_APY_KEY,
-    GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID
+    GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID,
+    DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME,
   },
 
   /*
@@ -313,6 +314,7 @@ export default {
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/day.js',
+    '~/plugins/disqus',
     { src: '~/plugins/microlink.js', ssr: false },
     { src: '~/plugins/vuelidate.js', ssr: false }
   ],

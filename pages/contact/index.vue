@@ -43,7 +43,7 @@ export default {
           hid: 'og:image',
           name: 'og:image',
           content: `${process.env.BASE_URL}/icon.png`
-        },
+        }
       ]
     }
   },

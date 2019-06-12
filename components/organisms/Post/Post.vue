@@ -63,6 +63,13 @@
             </div>
             <post-content :content="post.fields.body" />
             <pagination :prev-url="prevUrl" :next-url="nextUrl" />
+            <div v-show="disqus_shortname" class="mt-10">
+              <vue-disqus
+                :shortname="disqus_shortname"
+                :identifier="post.fields.slug"
+                :url="`${base_url}/posts/${post.fields.slug}`"
+              ></vue-disqus>
+            </div>
           </article>
         </div>
         <div class="lg:w-1/3 lg:p-4">
@@ -102,7 +109,9 @@ export default {
     Pagination
   },
   data: () => ({
-    just_comments_apy_key: process.env.JUST_COMMENTS_APY_KEY
+    just_comments_apy_key: process.env.JUST_COMMENTS_APY_KEY,
+    base_url: process.env.BASE_URL,
+    disqus_shortname: process.env.DISQUS_SHORTNAME
   }),
   computed: {
     post() {

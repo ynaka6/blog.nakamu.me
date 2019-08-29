@@ -10,10 +10,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Breadcrumb from '~/components/molecules/Breadcrumb'
 import Header from '~/components/organisms/Header.vue'
 import Footer from '~/components/organisms/Footer.vue'
-import { mapGetters } from 'vuex'
 
 export default {
   components: { Breadcrumb, Header, Footer },

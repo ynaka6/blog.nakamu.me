@@ -29,9 +29,7 @@ export default {
           hid: 'twitter:image',
           name: 'twitter:image',
           content: this.post
-            ? `${process.env.HTTP_SCHEMA}:${
-                this.post.fields.heroImage.fields.file.url
-              }
+            ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}
             `
             : ''
         },
@@ -51,9 +49,7 @@ export default {
           hid: 'og:image',
           name: 'og:image',
           content: this.post
-            ? `${process.env.HTTP_SCHEMA}:${
-                this.post.fields.heroImage.fields.file.url
-              }
+            ? `${process.env.HTTP_SCHEMA}:${this.post.fields.heroImage.fields.file.url}
             `
             : ''
         }
